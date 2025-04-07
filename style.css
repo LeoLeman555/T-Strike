@@ -1,0 +1,41 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #121212;
+  color: #fff;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.container {
+  max-width: 400px;
+  margin: auto;
+}
+
+.timer {
+  font-size: 3rem;
+  margin: 20px 0;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #00c853;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #00e676;
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+.target-time {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
