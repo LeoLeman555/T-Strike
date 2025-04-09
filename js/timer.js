@@ -3,7 +3,7 @@ let startTime = 0;
 let animationFrameId;
 
 const targetTime = 5.0;
-const precision = 3; // Increase for more decimals 0 to 3
+const precision = 3;
 
 const display = document.getElementById("display");
 const button = document.getElementById("start-stop-btn");
@@ -17,7 +17,6 @@ function updateTimer() {
   const now = performance.now();
   const elapsed = (now - startTime) / 1000;
   display.textContent = elapsed.toFixed(precision) + "s";
-
   animationFrameId = requestAnimationFrame(updateTimer);
 }
 
@@ -34,11 +33,11 @@ function stopTimer() {
   cancelAnimationFrame(animationFrameId);
 
   const elapsed = (performance.now() - startTime) / 1000;
-  // Round elapsed to match chosen precision level (for fair scoring)
   const roundedElapsed = Number(elapsed.toFixed(precision));
   const diff = Math.abs(roundedElapsed - targetTime);
 
-  diffMsg.textContent = `Difference : ${diff.toFixed(precision)}s`;
+  diffMsg.textContent = `Difference: ${diff.toFixed(precision)}s`;
+
   if (diff <= 0.01) {
     resultMsg.textContent = "🎯 Perfect!";
     resultMsg.style.color = "#00e676";
@@ -66,32 +65,11 @@ button.addEventListener("click", () => {
   }
 });
 
-const backBtn = document.getElementById("back-to-menu-btn");
-const screens = document.querySelectorAll(".screen");
-const menu = document.getElementById("menu");
-
-function showScreen(screenId) {
-  screens.forEach((screen) => {
-    screen.style.display = "none";
-  });
-  document.getElementById(screenId).style.display = "block";
-
-  if (screenId !== "menu") {
-    backBtn.style.display = "block";
-  } else {
-    backBtn.style.display = "none";
-  }
-}
-
-document.getElementById("tutorial-btn").addEventListener("click", () => {
-  showScreen("tutorial");
-});
-
-document.getElementById("modes-btn").addEventListener("click", () => {
-  showScreen("game");
-});
-
-backBtn.addEventListener("click", () => {
-  showScreen("menu");
-  resetGame();
-});
+/** Makes resetGame globally accessible for other modules */
+window.resetGame = function () {
+  if (isRunning) stopTimer();
+  display.textContent = "0.00s";
+  resultMsg.textContent = "";
+  diffMsg.textContent = "";
+  button.textContent = "Start";
+};
