@@ -7,15 +7,51 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>T-Strike</h1>
-      <p class="target-time">Target Time: <span id="target">5.00</span>s</p>
-      <div class="timer" id="display">0.00s</div>
-      <button id="start-stop-btn">Start</button>
-      <p class="diff" id="diff-msg"></p>
-      <p class="result" id="result-msg"></p>
-    </div>
+    <main>
+      <!-- Global Back to Menu Button (shown dynamically) -->
+      <button id="back-to-menu-btn" class="back-btn" hidden>
+        Back to Menu
+      </button>
 
-    <script src="script.js"></script>
+      <!-- Main Menu Screen -->
+      <section id="menu" class="menu-container screen">
+        <h1 id="menu-title">T-Strike</h1>
+        <div class="menu-buttons">
+          <button class="menu-btn" id="tutorial-btn">Tutorial</button>
+          <button class="menu-btn" id="modes-btn">Game Modes</button>
+          <button class="menu-btn" id="stats-btn">Statistics</button>
+          <button class="menu-btn" id="challenges-btn">Challenges</button>
+          <button class="menu-btn" id="custom-btn">Customization</button>
+          <button class="menu-btn" id="settings-btn">Settings</button>
+        </div>
+      </section>
+
+      <!-- Tutorial Screen -->
+      <section id="tutorial" class="tutorial-container screen" hidden>
+        <h2 id="tutorial-title">How to Play</h2>
+        <ol class="tutorial-steps">
+          <li>Click "Start" to launch the timer.</li>
+          <li>
+            Try to stop the timer by clicking "Stop" exactly on the
+            <strong>target time</strong>.
+          </li>
+          <li>The closer you are to the target time, the better your score!</li>
+          <li>Train your precision and reflexes to beat your personal best.</li>
+        </ol>
+        <p>Press "Game Modes" in the menu to start a real game.</p>
+      </section>
+
+      <!-- Game Screen -->
+      <section id="game" class="game-container screen" hidden>
+        <h2 id="game-title">Game</h2>
+        <p class="target-time">Target Time: <span id="target">5.00</span>s</p>
+        <div class="timer" id="display" aria-live="polite">0.00s</div>
+        <button id="start-stop-btn">Start</button>
+        <p class="diff" id="diff-msg" aria-live="polite"></p>
+        <p class="result" id="result-msg" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script src="script.js" defer></script>
   </body>
 </html>
