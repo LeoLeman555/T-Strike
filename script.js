@@ -65,3 +65,33 @@ button.addEventListener("click", () => {
     button.textContent = "Start";
   }
 });
+
+const backBtn = document.getElementById("back-to-menu-btn");
+const screens = document.querySelectorAll(".screen");
+const menu = document.getElementById("menu");
+
+function showScreen(screenId) {
+  screens.forEach((screen) => {
+    screen.style.display = "none";
+  });
+  document.getElementById(screenId).style.display = "block";
+
+  if (screenId !== "menu") {
+    backBtn.style.display = "block";
+  } else {
+    backBtn.style.display = "none";
+  }
+}
+
+document.getElementById("tutorial-btn").addEventListener("click", () => {
+  showScreen("tutorial");
+});
+
+document.getElementById("modes-btn").addEventListener("click", () => {
+  showScreen("game");
+});
+
+backBtn.addEventListener("click", () => {
+  showScreen("menu");
+  resetGame();
+});
