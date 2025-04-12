@@ -10,12 +10,15 @@ function showScreen(screenId) {
   backBtn.style.display = screenId !== "menu" ? "block" : "none";
 }
 
+showScreen("menu");
+
 document.getElementById("tutorial-btn").addEventListener("click", () => {
   showScreen("tutorial");
 });
 
 document.getElementById("modes-btn").addEventListener("click", () => {
-  showScreen("game");
+  showScreen("mode-selection");
+  window.renderModes();
 });
 
 backBtn.addEventListener("click", () => {
@@ -24,3 +27,5 @@ backBtn.addEventListener("click", () => {
     resetGame(); // resets game if defined in timer.js
   }
 });
+
+window.showScreen = showScreen;

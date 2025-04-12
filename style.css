@@ -46,7 +46,8 @@ main {
 .container,
 .menu-container,
 .tutorial-container,
-.game-container {
+.game-container,
+.mode-selection-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 2rem;
@@ -90,6 +91,38 @@ button:hover {
   padding: 8px 14px;
   font-size: 1rem;
   z-index: 1000;
+}
+
+/* ===========================
+  Mode Selection Screen
+=========================== */
+
+.mode-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.mode-option {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mode-option.selected {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.mode-option.small {
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+.mode-instruction {
+  font-size: 0.9rem;
+  padding: 30px;
+  color: #aaaaaa;
 }
 
 /* ===========================

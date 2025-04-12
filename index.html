@@ -18,7 +18,7 @@
         <h1 id="menu-title">T-Strike</h1>
         <div class="menu-buttons">
           <button class="menu-btn" id="tutorial-btn">Tutorial</button>
-          <button class="menu-btn" id="modes-btn">Game Modes</button>
+          <button class="menu-btn" id="modes-btn">Modes</button>
           <button class="menu-btn" id="stats-btn">Statistics</button>
           <button class="menu-btn" id="challenges-btn">Challenges</button>
           <button class="menu-btn" id="custom-btn">Customization</button>
@@ -39,6 +39,21 @@
           <li>Train your precision and reflexes to beat your personal best.</li>
         </ol>
         <p>Press "Game Modes" in the menu to start a real game.</p>
+      </section>
+
+      <!-- Game Modes Selection Screen -->
+      <section
+        id="mode-selection"
+        class="mode-selection-container screen"
+        hidden
+      >
+        <h2>Mode Selection</h2>
+        <p class="mode-instruction">Click to select a mode or use ↑ / ↓</p>
+        <div class="mode-wrapper">
+          <div class="mode-option small" id="prev-mode"></div>
+          <div class="mode-option selected" id="current-mode"></div>
+          <div class="mode-option small" id="next-mode"></div>
+        </div>
       </section>
 
       <!-- Game Screen -->
