@@ -5,7 +5,7 @@ let animationFrameId;
 const targetTime = 5.0;
 const precision = 3;
 
-const display = document.getElementById("display");
+const timer = document.getElementById("timer");
 const button = document.getElementById("start-stop-btn");
 const resultMsg = document.getElementById("result-msg");
 const target = document.getElementById("target");
@@ -20,6 +20,11 @@ circle.style.strokeDashoffset = `${circumference}`;
 
 target.textContent = targetTime.toFixed(precision);
 
+function triggerShake(element) {
+  element.classList.add("shake");
+  setTimeout(() => element.classList.remove("shake"), 400);
+}
+
 function setProgress(progress) {
   const offset = circumference - progress * circumference;
   circle.style.strokeDashoffset = offset;
@@ -28,7 +33,7 @@ function setProgress(progress) {
 function updateTimer() {
   const now = performance.now();
   const elapsed = (now - startTime) / 1000;
-  display.textContent = elapsed.toFixed(precision) + "s";
+  timer.textContent = elapsed.toFixed(precision) + "s";
 
   const progress = Math.min(elapsed / targetTime, 1);
   setProgress(progress);
@@ -66,9 +71,10 @@ function stopTimer() {
   } else {
     resultMsg.textContent = "❌ Missed!";
     resultMsg.style.color = "#ff5252";
+    triggerShake(timer);
   }
 
-  display.textContent = elapsed.toFixed(precision) + "s";
+  timer.textContent = elapsed.toFixed(precision) + "s";
 }
 
 button.addEventListener("click", () => {
@@ -84,7 +90,7 @@ button.addEventListener("click", () => {
 /** Makes resetGame globally accessible for other modules */
 window.resetGame = function () {
   if (isRunning) stopTimer();
-  display.textContent = "0.00s";
+  timer.textContent = "0.00s";
   resultMsg.textContent = "";
   diffMsg.textContent = "";
   button.textContent = "Start";
