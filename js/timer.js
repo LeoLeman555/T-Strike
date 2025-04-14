@@ -11,12 +11,28 @@ const resultMsg = document.getElementById("result-msg");
 const target = document.getElementById("target");
 const diffMsg = document.getElementById("diff-msg");
 
+const circle = document.querySelector(".progress-ring__circle");
+const radius = circle.r.baseVal.value;
+const circumference = 2 * Math.PI * radius;
+
+circle.style.strokeDasharray = `${circumference} ${circumference}`;
+circle.style.strokeDashoffset = `${circumference}`;
+
 target.textContent = targetTime.toFixed(precision);
+
+function setProgress(progress) {
+  const offset = circumference - progress * circumference;
+  circle.style.strokeDashoffset = offset;
+}
 
 function updateTimer() {
   const now = performance.now();
   const elapsed = (now - startTime) / 1000;
   display.textContent = elapsed.toFixed(precision) + "s";
+
+  const progress = Math.min(elapsed / targetTime, 1);
+  setProgress(progress);
+
   animationFrameId = requestAnimationFrame(updateTimer);
 }
 
@@ -72,4 +88,5 @@ window.resetGame = function () {
   resultMsg.textContent = "";
   diffMsg.textContent = "";
   button.textContent = "Start";
+  setProgress(0);
 };

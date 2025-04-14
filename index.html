@@ -60,7 +60,21 @@
       <section id="game" class="game-container screen" hidden>
         <h2 id="game-title">Game</h2>
         <p class="target-time">Target Time: <span id="target">5.00</span>s</p>
-        <div class="timer" id="display" aria-live="polite">0.00s</div>
+        <div class="timer-container">
+          <svg class="progress-ring" width="160" height="160">
+            <circle
+              class="progress-ring__circle"
+              stroke="#00e676"
+              stroke-width="8"
+              fill="transparent"
+              r="70"
+              cx="80"
+              cy="80"
+            />
+          </svg>
+          <div class="timer" id="display" aria-live="polite">0s</div>
+        </div>
+
         <button id="start-stop-btn">Start</button>
         <p class="diff" id="diff-msg" aria-live="polite"></p>
         <p class="result" id="result-msg" aria-live="polite"></p>
