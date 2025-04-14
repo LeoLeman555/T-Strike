@@ -44,6 +44,8 @@ function updateTimer() {
 function startTimer() {
   resultMsg.textContent = "";
   diffMsg.textContent = "";
+  timer.style.color = "#ffffff";
+  circle.setAttribute("stroke", "#ffffff");
   startTime = performance.now();
   isRunning = true;
   animationFrameId = requestAnimationFrame(updateTimer);
@@ -62,15 +64,24 @@ function stopTimer() {
   if (diff <= 0.01) {
     resultMsg.textContent = "🎯 Perfect!";
     resultMsg.style.color = "#00e676";
+    timer.style.color = "#00e676";
+    circle.setAttribute("stroke", "#00e676");
   } else if (diff <= 0.2) {
     resultMsg.textContent = "👍 Good job!";
     resultMsg.style.color = "#00e676";
+    timer.style.color = "#00e676";
+    circle.setAttribute("stroke", "#00e676");
   } else if (diff <= 0.5) {
     resultMsg.textContent = "💪 You can do better!";
     resultMsg.style.color = "#ffeb3b";
+    timer.style.color = "#ffeb3b";
+    circle.setAttribute("stroke", "#ffeb3b");
+    triggerShake(timer);
   } else {
     resultMsg.textContent = "❌ Missed!";
     resultMsg.style.color = "#ff5252";
+    timer.style.color = "#ff5252";
+    circle.setAttribute("stroke", "#ff5252");
     triggerShake(timer);
   }
 
@@ -79,6 +90,7 @@ function stopTimer() {
 
 button.addEventListener("click", () => {
   if (!isRunning) {
+    resetGame();
     startTimer();
     button.textContent = "Stop";
   } else {
@@ -91,8 +103,10 @@ button.addEventListener("click", () => {
 window.resetGame = function () {
   if (isRunning) stopTimer();
   timer.textContent = "0.00s";
+  timer.style.color = "#ffffff";
   resultMsg.textContent = "";
   diffMsg.textContent = "";
   button.textContent = "Start";
+  circle.setAttribute("stroke", "#ffffff");
   setProgress(0);
 };
