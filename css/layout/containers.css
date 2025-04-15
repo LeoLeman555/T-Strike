@@ -1,0 +1,20 @@
+/* Page and section layout */
+main {
+  padding: 2rem 1rem;
+}
+
+.container,
+.tutorial-container,
+.game-container,
+.mode-selection-container {
+  max-width: 600px;
+  margin-inline: auto;
+  padding: 2rem;
+}
+
+.screen.fade-out {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}

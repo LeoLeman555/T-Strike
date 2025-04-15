@@ -1,0 +1,14 @@
+/* Root CSS entry point */
+@import url("./base/reset.css");
+@import url("./base/typography.css");
+
+@import url("./layout/containers.css");
+
+@import url("./components/buttons.css");
+@import url("./components/menu.css");
+@import url("./components/timer.css");
+
+@import url("./screens/game.css");
+@import url("./screens/mode-selection.css");
+
+@import url("./utils/helpers.css");

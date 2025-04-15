@@ -1,0 +1,29 @@
+/* Mode selection screen */
+.mode-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.mode-option {
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mode-option.selected {
+  font-size: 2.5rem;
+  font-weight: bold;
+  transform: scale(1.05);
+}
+
+.mode-option.small {
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+.mode-instruction {
+  font-size: 0.9rem;
+  padding: 2rem;
+  color: #aaaaaa;
+}

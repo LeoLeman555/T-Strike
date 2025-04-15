@@ -1,0 +1,27 @@
+/* Global typography and body defaults */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  line-height: 1.6;
+  text-align: center;
+}
+
+h1,
+h2 {
+  text-decoration: underline;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 3.125rem; /* 50px */
+}
+
+h2 {
+  font-size: 2.5rem; /* 40px */
+}
+
+ol {
+  list-style: none;
+  padding-left: 0;
+}

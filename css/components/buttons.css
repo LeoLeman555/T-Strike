@@ -1,0 +1,49 @@
+/* Button components */
+button {
+  padding: 0.625rem 1.25rem;
+  font-size: 1.2rem;
+  background-color: #00c853;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #00e676;
+}
+
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 0.5rem 0.875rem;
+  font-size: 1rem;
+  z-index: 1000;
+}
+
+#start-stop-btn {
+  background-color: #67e535;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+#start-stop-btn.restart {
+  background-color: #e5d035;
+}
+
+#start-stop-btn.stop {
+  background-color: #e53935;
+}
+
+#start-stop-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
