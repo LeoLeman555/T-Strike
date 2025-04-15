@@ -92,12 +92,12 @@ button.addEventListener("click", () => {
   if (!isRunning) {
     resetGame();
     startTimer();
-    button.textContent = "Stop";
+    button.textContent = "STOP";
     button.classList.add("stop");
     button.classList.remove("restart");
   } else {
     stopTimer();
-    button.textContent = "Restart";
+    button.textContent = "RESTART";
     button.classList.add("restart");
     button.classList.remove("stop");
   }
@@ -110,7 +110,7 @@ window.resetGame = function () {
   timer.style.color = "#ffffff";
   resultMsg.textContent = "";
   diffMsg.textContent = "";
-  button.textContent = "Start";
+  button.textContent = "START";
   button.classList.remove("stop");
   button.classList.remove("restart");
   circle.setAttribute("stroke", "#ffffff");

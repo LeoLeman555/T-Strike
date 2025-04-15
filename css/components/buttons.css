@@ -21,6 +21,12 @@ button:hover {
   padding: 0.5rem 0.875rem;
   font-size: 1rem;
   z-index: 1000;
+  transition: transform 0.2s ease-in-out;
+}
+
+.back-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
 
 #start-stop-btn {
@@ -32,7 +38,7 @@ button:hover {
   border-radius: 8px;
   cursor: pointer;
   margin-top: 20px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 #start-stop-btn.restart {
