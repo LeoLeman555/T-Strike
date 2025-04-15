@@ -93,9 +93,13 @@ button.addEventListener("click", () => {
     resetGame();
     startTimer();
     button.textContent = "Stop";
+    button.classList.add("stop");
+    button.classList.remove("restart");
   } else {
     stopTimer();
-    button.textContent = "Start";
+    button.textContent = "Restart";
+    button.classList.add("restart");
+    button.classList.remove("stop");
   }
 });
 
@@ -107,6 +111,8 @@ window.resetGame = function () {
   resultMsg.textContent = "";
   diffMsg.textContent = "";
   button.textContent = "Start";
+  button.classList.remove("stop");
+  button.classList.remove("restart");
   circle.setAttribute("stroke", "#ffffff");
   setProgress(0);
 };
