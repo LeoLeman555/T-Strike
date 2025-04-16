@@ -1,0 +1,58 @@
+import { resetTimerUI } from "./timer-ui.js";
+
+const backBtn = document.getElementById("back-to-menu-btn");
+const screens = document.querySelectorAll(".screen");
+
+/** Displays one screen with transitions */
+export function showScreen(screenId) {
+  const targetScreen = document.getElementById(screenId);
+
+  const currentScreen = Array.from(screens).find(
+    (screen) => screen.style.display === "block"
+  );
+
+  if (currentScreen && currentScreen !== targetScreen) {
+    currentScreen.classList.remove("active");
+    currentScreen.classList.add("fade-out");
+
+    setTimeout(() => {
+      currentScreen.style.display = "none";
+      currentScreen.classList.remove("fade-out");
+
+      targetScreen.style.display = "block";
+      if (screenId === "menu") {
+        void targetScreen.offsetWidth;
+        requestAnimationFrame(() => targetScreen.classList.add("active"));
+      }
+
+      backBtn.style.display = screenId !== "menu" ? "block" : "none";
+    }, 300);
+  } else {
+    screens.forEach((s) => {
+      s.style.display = "none";
+      s.classList.remove("active");
+    });
+    targetScreen.style.display = "block";
+    if (screenId === "menu") {
+      requestAnimationFrame(() => targetScreen.classList.add("active"));
+    }
+    backBtn.style.display = screenId !== "menu" ? "block" : "none";
+  }
+}
+
+/** Handles UI navigation buttons */
+export function setupNavigation() {
+  document.getElementById("tutorial-btn").addEventListener("click", () => {
+    showScreen("tutorial");
+  });
+
+  document.getElementById("modes-btn").addEventListener("click", () => {
+    showScreen("mode-selection");
+    if (typeof window.renderModes === "function") window.renderModes();
+  });
+
+  backBtn.addEventListener("click", () => {
+    showScreen("menu");
+    resetTimerUI();
+  });
+}
