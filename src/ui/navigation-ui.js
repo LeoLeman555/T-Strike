@@ -1,9 +1,10 @@
-import { resetTimerUI } from "./timer-ui.js";
+import { resetStreak } from "../core/timer-core.js";
+import { updateStreak, resetTimerUI } from "./timer-ui.js";
 
 const backBtn = document.getElementById("back-to-menu-btn");
 const screens = document.querySelectorAll(".screen");
 
-/** Displays one screen with transitions */
+/** Display one screen with transitions */
 export function showScreen(screenId) {
   const targetScreen = document.getElementById(screenId);
 
@@ -40,7 +41,7 @@ export function showScreen(screenId) {
   }
 }
 
-/** Handles UI navigation buttons */
+/** Handle UI navigation buttons */
 export function setupNavigation() {
   document.getElementById("tutorial-btn").addEventListener("click", () => {
     showScreen("tutorial");
@@ -54,5 +55,7 @@ export function setupNavigation() {
   backBtn.addEventListener("click", () => {
     showScreen("menu");
     resetTimerUI();
+    resetStreak();
+    updateStreak();
   });
 }

@@ -5,7 +5,9 @@ let isRunning = false;
 let startTime = 0;
 let animationFrameId = null;
 
-/** Starts the timer and updates state */
+let currentStreak = 0;
+
+/** Start the timer and updates state */
 export function start(onUpdate) {
   isRunning = true;
   startTime = performance.now();
@@ -17,20 +19,20 @@ export function start(onUpdate) {
   });
 }
 
-/** Stops the timer and returns elapsed time */
+/** Stop the timer and returns elapsed time */
 export function stop() {
   isRunning = false;
   cancelAnimationFrame(animationFrameId);
   return (performance.now() - startTime) / 1000;
 }
 
-/** Resets internal state */
+/** Reset internal state */
 export function reset() {
   isRunning = false;
   cancelAnimationFrame(animationFrameId);
 }
 
-/** Returns whether the timer is running */
+/** Return whether the timer is running */
 export function isTimerRunning() {
   return isRunning;
 }
@@ -43,4 +45,19 @@ export function getTargetTime() {
 /** Precision to use for display */
 export function getPrecision() {
   return precision;
+}
+
+/** Return current streak count */
+export function getStreak() {
+  return currentStreak;
+}
+
+/** Increment streak by 1 */
+export function incrementStreak() {
+  currentStreak++;
+}
+
+/** Reset the streak to zero */
+export function resetStreak() {
+  currentStreak = 0;
 }
