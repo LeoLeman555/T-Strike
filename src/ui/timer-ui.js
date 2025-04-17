@@ -8,6 +8,9 @@ import {
   getStreak,
   incrementStreak,
   resetStreak,
+  getScore,
+  updateScore,
+  resetScore,
 } from "../core/timer-core.js";
 import { triggerShake } from "../utils/effects.js";
 
@@ -16,6 +19,7 @@ const button = document.getElementById("start-stop-btn");
 const resultMsg = document.getElementById("result-msg");
 const diffMsg = document.getElementById("diff-msg");
 const streak = document.getElementById("current-streak");
+const scoreDisplay = document.getElementById("current-score");
 const target = document.getElementById("target");
 const circle = document.querySelector(".progress-ring__circle");
 
@@ -59,8 +63,11 @@ function showResult(elapsed) {
     displayFeedback("❌ Missed!", "#ff5252");
     triggerShake(timer);
     resetStreak();
+    resetScore();
   }
-  updateStreak();
+  updateStreakUI();
+  updateScore(diff);
+  updateScoreUI();
 }
 
 /** Update UI colors and result message */
@@ -72,8 +79,13 @@ function displayFeedback(message, color) {
 }
 
 /** Update score streak display.*/
-export function updateStreak() {
+export function updateStreakUI() {
   streak.textContent = getStreak();
+}
+
+/** Update score display */
+export function updateScoreUI() {
+  scoreDisplay.textContent = getScore();
 }
 
 /** Reset the timer UI */

@@ -1,5 +1,5 @@
-import { resetStreak } from "../core/timer-core.js";
-import { updateStreak, resetTimerUI } from "./timer-ui.js";
+import { resetStreak, resetScore } from "../core/timer-core.js";
+import { updateStreakUI, resetTimerUI, updateScoreUI } from "./timer-ui.js";
 
 const backBtn = document.getElementById("back-to-menu-btn");
 const screens = document.querySelectorAll(".screen");
@@ -56,6 +56,8 @@ export function setupNavigation() {
     showScreen("menu");
     resetTimerUI();
     resetStreak();
-    updateStreak();
+    updateStreakUI();
+    resetScore();
+    updateScoreUI();
   });
 }

@@ -6,6 +6,7 @@ let startTime = 0;
 let animationFrameId = null;
 
 let currentStreak = 0;
+let currentScore = 0;
 
 /** Start the timer and updates state */
 export function start(onUpdate) {
@@ -69,6 +70,25 @@ function computeScore(diff, streak) {
 
   const multiplier = 1 + Math.log2(streak + 1) * 0.1;
   return Math.round(base * multiplier);
+}
+
+/**
+ * Update score with a new value.
+ * @param {number} diff - Absolute time difference from target.
+ */
+export function updateScore(diff) {
+  const scoreToAdd = computeScore(diff, getStreak());
+  currentScore += scoreToAdd;
+}
+
+/** Return current score of the player. */
+export function getScore() {
+  return currentScore;
+}
+
+/** Reset the player score to zero. */
+export function resetScore() {
+  currentScore = 0;
 }
 
 /** Return current streak count */
