@@ -1,0 +1,47 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+#chart {
+  width: 70%;
+  height: 600px;
+  min-height: 400px;
+  border: 1px solid #ccc;
+}
+
+.legend {
+  width: 25%;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.legend h3 {
+  margin-top: 0;
+}
+
+.legend ul {
+  list-style: none;
+  padding: 0;
+}
+
+.legend label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.legend input {
+  margin-right: 10px;
+}

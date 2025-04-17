@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Scoring Function Comparison</title>
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container" class="container">
+      <section class="legend">
+        <p>
+          This visualization compares different scoring functions that combine
+          time precision (<code>diff</code>) and performance streaks
+          (<code>streak</code>). Each surface shows how the score behaves for
+          different inputs.
+        </p>
+
+        <h3>Models description</h3>
+        <ul>
+          <li>
+            <strong>Linear</strong>: Linear decay with time. Bonus increases
+            linearly with streak.
+          </li>
+          <li>
+            <strong>ExpLog</strong>: Exponential drop with time, logarithmic
+            bonus with streak.
+          </li>
+          <li>
+            <strong>QuadExp</strong>: Quadratic boost near perfect precision,
+            exponential tail.
+          </li>
+          <li>
+            <strong>SmoothExp</strong>: Smooth transition near ideal range, then
+            exponential decay.
+          </li>
+          <li>
+            <strong>HardDrop</strong>: Strong reward for perfect input, then
+            sharp decay.
+          </li>
+        </ul>
+        <section>
+          <h3>Select models to display</h3>
+          <form id="model-selector">
+            <label
+              ><input type="checkbox" value="Linear" checked /> Linear</label
+            >
+            <label
+              ><input type="checkbox" value="ExpLog" checked /> ExpLog</label
+            >
+            <label
+              ><input type="checkbox" value="QuadExp" checked /> QuadExp</label
+            >
+            <label
+              ><input type="checkbox" value="SmoothExp" checked />
+              SmoothExp</label
+            >
+            <label
+              ><input type="checkbox" value="HardDrop" checked />
+              HardDrop</label
+            >
+          </form>
+        </section>
+      </section>
+      <div id="chart"></div>
+    </div>
+
+    <script src="plot.js"></script>
+  </body>
+</html>
