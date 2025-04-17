@@ -47,6 +47,30 @@ export function getPrecision() {
   return precision;
 }
 
+/**
+ * Compute score based on streak and precision.
+ * @param {number} diff - Absolute time difference from target.
+ * @param {number} streak - Current successful streak.
+ * @returns {number} Computed score for the round.
+ */
+function computeScore(diff, streak) {
+  if (diff < 0 || streak < 0) throw new Error("Invalid input values.");
+
+  let base;
+  if (diff <= 0.015) {
+    // Smoothstep from 500 to 150 between 0 and 0.015s
+    const t = diff / 0.015;
+    const smooth = t * t * (3 - 2 * t); // smoothstep
+    base = 150 + (500 - 150) * (1 - smooth);
+  } else {
+    // Exponential decay from 150
+    base = 150 * Math.exp(-5 * (diff - 0.015));
+  }
+
+  const multiplier = 1 + Math.log2(streak + 1) * 0.1;
+  return Math.round(base * multiplier);
+}
+
 /** Return current streak count */
 export function getStreak() {
   return currentStreak;
