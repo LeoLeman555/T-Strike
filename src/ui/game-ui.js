@@ -14,7 +14,7 @@ import {
   resetScore,
   getGain,
   updateGain,
-} from "../core/timer-core.js";
+} from "../core/game-core.js";
 import { triggerShake } from "../utils/effects.js";
 
 const timer = document.getElementById("timer");

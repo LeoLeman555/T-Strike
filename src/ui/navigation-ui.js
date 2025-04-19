@@ -1,10 +1,10 @@
-import { resetStreak, resetScore, resetGain } from "../core/timer-core.js";
+import { resetStreak, resetScore, resetGain } from "../core/game-core.js";
 import {
   updateStreakUI,
   resetTimerUI,
   updateScoreUI,
   updateGainUI,
-} from "./timer-ui.js";
+} from "./game-ui.js";
 
 const backBtn = document.getElementById("back-to-menu-btn");
 const screens = document.querySelectorAll(".screen");

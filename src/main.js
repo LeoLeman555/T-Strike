@@ -1,4 +1,4 @@
-import { setupTimerUI } from "./ui/timer-ui.js";
+import { setupTimerUI } from "./ui/game-ui.js";
 import { setupModeUI, renderModes } from "./ui/mode-ui.js";
 import { setupNavigation, showScreen } from "./ui/navigation-ui.js";
 
