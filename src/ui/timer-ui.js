@@ -8,9 +8,12 @@ import {
   getStreak,
   incrementStreak,
   resetStreak,
+  computeScore,
   getScore,
   updateScore,
   resetScore,
+  getGain,
+  updateGain,
 } from "../core/timer-core.js";
 import { triggerShake } from "../utils/effects.js";
 
@@ -20,6 +23,7 @@ const resultMsg = document.getElementById("result-msg");
 const diffMsg = document.getElementById("diff-msg");
 const streak = document.getElementById("current-streak");
 const scoreDisplay = document.getElementById("current-score");
+const gainDisplay = document.getElementById("score-gain");
 const target = document.getElementById("target");
 const circle = document.querySelector(".progress-ring__circle");
 
@@ -65,9 +69,11 @@ function showResult(elapsed) {
     resetStreak();
     resetScore();
   }
+  updateGain(computeScore(diff, getStreak()));
+  updateScore(getGain());
   updateStreakUI();
-  updateScore(diff);
   updateScoreUI();
+  updateGainUI();
 }
 
 /** Update UI colors and result message */
@@ -86,6 +92,11 @@ export function updateStreakUI() {
 /** Update score display */
 export function updateScoreUI() {
   scoreDisplay.textContent = getScore();
+}
+
+/** Update score gain display */
+export function updateGainUI() {
+  gainDisplay.textContent = `+${getGain()}`;
 }
 
 /** Reset the timer UI */

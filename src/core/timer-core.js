@@ -7,6 +7,7 @@ let animationFrameId = null;
 
 let currentStreak = 0;
 let currentScore = 0;
+let scoreGain = 0;
 
 /** Start the timer and updates state */
 export function start(onUpdate) {
@@ -54,7 +55,7 @@ export function getPrecision() {
  * @param {number} streak - Current successful streak.
  * @returns {number} Computed score for the round.
  */
-function computeScore(diff, streak) {
+export function computeScore(diff, streak) {
   if (diff < 0 || streak < 0) throw new Error("Invalid input values.");
 
   let base;
@@ -73,11 +74,10 @@ function computeScore(diff, streak) {
 }
 
 /**
- * Update score with a new value.
- * @param {number} diff - Absolute time difference from target.
+ * Update the player's score by adding the given value.
+ * @param {number} scoreToAdd - The value to add to the current score.
  */
-export function updateScore(diff) {
-  const scoreToAdd = computeScore(diff, getStreak());
+export function updateScore(scoreToAdd) {
   currentScore += scoreToAdd;
 }
 
@@ -89,6 +89,24 @@ export function getScore() {
 /** Reset the player score to zero. */
 export function resetScore() {
   currentScore = 0;
+}
+
+/** Return current gain of the player. */
+export function getGain() {
+  return scoreGain;
+}
+
+/**
+ * Update the gain with a new score value.
+ * @param {number} score - The new gain value.
+ */
+export function updateGain(score) {
+  scoreGain = score;
+}
+
+/** Reset the gain value to zero. */
+export function resetGain() {
+  scoreGain = 0;
 }
 
 /** Return current streak count */
