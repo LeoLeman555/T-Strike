@@ -1,0 +1,32 @@
+.score-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#current-score {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  transition: transform 0.2s ease-in-out;
+}
+
+.score-gain {
+  position: absolute;
+  right: -5rem;
+  top: 50%;
+  transform: translateY(-50%) translateX(1rem);
+  opacity: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  pointer-events: none;
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+  z-index: 2;
+}
+
+.score-gain.animate {
+  transform: translateY(-50%) translateX(-2.5rem);
+  opacity: 1;
+}

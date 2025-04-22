@@ -6,6 +6,7 @@
 
 @import url("./components/buttons.css");
 @import url("./components/menu.css");
+@import url("./components/score.css");
 @import url("./components/timer.css");
 
 @import url("./screens/game.css");

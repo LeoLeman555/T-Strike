@@ -54,17 +54,23 @@ function showResult(elapsed) {
   diffMsg.textContent = `Difference: ${diff.toFixed(getPrecision())}s`;
   timer.textContent = rounded.toFixed(getPrecision()) + "s";
 
+  let feedbackColor;
+
   if (diff <= 0.01) {
-    displayFeedback("🎯 Perfect!", "#00e676");
+    feedbackColor = "#00e676";
+    displayFeedback("🎯 Perfect!", feedbackColor);
     incrementStreak();
   } else if (diff <= 0.2) {
-    displayFeedback("👍 Good job!", "#00e676");
+    feedbackColor = "#67e535";
+    displayFeedback("👍 Good job!", feedbackColor);
     incrementStreak();
   } else if (diff <= 0.5) {
-    displayFeedback("💪 You can do better!", "#ffeb3b");
+    feedbackColor = "#ffeb3b";
+    displayFeedback("💪 You can do better!", feedbackColor);
     triggerShake(timer);
   } else {
-    displayFeedback("❌ Missed!", "#ff5252");
+    feedbackColor = "#ff5252";
+    displayFeedback("❌ Missed!", feedbackColor);
     triggerShake(timer);
     resetStreak();
     resetScore();
@@ -72,8 +78,7 @@ function showResult(elapsed) {
   updateGain(computeScore(diff, getStreak()));
   updateScore(getGain());
   updateStreakUI();
-  updateScoreUI();
-  updateGainUI();
+  updateGainUI(feedbackColor);
 }
 
 /** Update UI colors and result message */
@@ -92,11 +97,32 @@ export function updateStreakUI() {
 /** Update score display */
 export function updateScoreUI() {
   scoreDisplay.textContent = getScore();
+  scoreDisplay.classList.add("pulse");
+  scoreDisplay.addEventListener(
+    "animationend",
+    () => {
+      scoreDisplay.classList.remove("pulse");
+    },
+    { once: true }
+  );
 }
 
 /** Update score gain display */
-export function updateGainUI() {
+export function updateGainUI(color) {
   gainDisplay.textContent = `+${getGain()}`;
+  gainDisplay.classList.remove("hidden");
+  gainDisplay.style.color = color;
+  void gainDisplay.offsetWidth;
+  gainDisplay.classList.add("animate");
+  gainDisplay.addEventListener(
+    "transitionend",
+    () => {
+      gainDisplay.classList.remove("animate");
+      gainDisplay.classList.add("hidden");
+      updateScoreUI();
+    },
+    { once: true }
+  );
 }
 
 /** Reset the timer UI */
