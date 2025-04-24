@@ -59,13 +59,21 @@
       <!-- Game Screen -->
       <section id="game" class="game-container screen" hidden>
         <h2 id="game-title">Game</h2>
-        <p class="player-streak">
-          Your current streak: <span id="current-streak">0</span>
-        </p>
-        <div class="score-wrapper">
-          <span id="current-score">0</span>
-          <span id="score-gain" class="score-gain hidden">+0</span>
+        <div id="score-streak-container">
+          <div class="streak-container">
+            <span id="current-streak">0</span>
+          </div>
+          <div class="separator-container">
+            <span class="separator">|</span>
+          </div>
+          <div class="score-container">
+            <div class="score-wrapper">
+              <span id="current-score">0</span>
+              <span id="score-gain" class="score-gain hidden">+0</span>
+            </div>
+          </div>
         </div>
+
         <p class="target-time">Target Time: <span id="target">5.00</span>s</p>
         <div class="timer-container">
           <div class="timer-wrapper" id="timer-wrapper">

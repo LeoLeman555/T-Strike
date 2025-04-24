@@ -3,6 +3,15 @@ main {
   padding: 2rem 1rem;
 }
 
+#score-streak-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* ou fixe comme 300px si souhaité */
+  max-width: 320px;
+  margin: 0 auto;
+}
+
 .container,
 .tutorial-container,
 .game-container,
@@ -10,6 +19,15 @@ main {
   max-width: 600px;
   margin-inline: auto;
   padding: 2rem;
+}
+
+.streak-container,
+.separator-container,
+.score-container {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .screen.fade-out {

@@ -9,7 +9,8 @@
   font-size: 2rem;
   font-weight: bold;
   color: white;
-  transition: transform 0.2s ease-in-out;
+  min-width: 3ch;
+  text-align: center;
 }
 
 .score-gain {
@@ -29,4 +30,20 @@
 .score-gain.animate {
   transform: translateY(-50%) translateX(-2.5rem);
   opacity: 1;
+}
+
+.separator {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.4);
+  user-select: none;
+  pointer-events: none;
+  line-height: 1;
+}
+
+#current-streak {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  min-width: 3ch;
+  text-align: center;
 }
