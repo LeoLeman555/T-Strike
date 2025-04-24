@@ -77,8 +77,7 @@ function showResult(elapsed) {
   }
   updateGain(computeScore(diff, getStreak()));
   updateScore(getGain());
-  updateStreakUI();
-  updateGainUI(feedbackColor);
+  updateStreakUI(feedbackColor);
 }
 
 /** Update UI colors and result message */
@@ -90,8 +89,33 @@ function displayFeedback(message, color) {
 }
 
 /** Update score streak display.*/
-export function updateStreakUI() {
-  streak.textContent = getStreak();
+export function updateStreakUI(feedbackColor) {
+  streak.classList.remove("roll-up", "pulse");
+  void streak.offsetWidth;
+  streak.classList.add("roll-up");
+  setTimeout(() => {
+    streak.textContent = getStreak();
+  }, 250);
+  streak.addEventListener(
+    "animationend",
+    (e) => {
+      if (e.animationName === "roll-up") {
+        streak.classList.remove("roll-up");
+        streak.classList.add("pulse");
+        streak.addEventListener(
+          "animationend",
+          (e) => {
+            if (e.animationName === "pulse") {
+              streak.classList.remove("pulse");
+              updateGainUI(feedbackColor);
+            }
+          },
+          { once: true }
+        );
+      }
+    },
+    { once: true }
+  );
 }
 
 /** Update score display */
