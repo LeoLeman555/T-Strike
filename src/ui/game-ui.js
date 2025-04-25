@@ -20,12 +20,12 @@ import { triggerShake } from "../utils/effects.js";
 const timer = document.getElementById("timer");
 const button = document.getElementById("start-stop-btn");
 const resultMsg = document.getElementById("result-msg");
-const diffMsg = document.getElementById("diff-msg");
+const diffMsg = document.getElementById("time-difference-msg");
 const streak = document.getElementById("current-streak");
 const scoreDisplay = document.getElementById("current-score");
 const gainDisplay = document.getElementById("score-gain");
 const target = document.getElementById("target");
-const circle = document.querySelector(".progress-ring__circle");
+const circle = document.querySelector(".progress-ring-circle");
 
 const radius = circle.r.baseVal.value;
 const circumference = 2 * Math.PI * radius;
