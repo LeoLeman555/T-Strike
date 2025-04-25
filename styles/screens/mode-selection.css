@@ -11,13 +11,13 @@
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.mode-option.selected {
+.mode-option-selected {
   font-size: 2.5rem;
   font-weight: bold;
   transform: scale(1.05);
 }
 
-.mode-option.small {
+.mode-option-small {
   font-size: 1.2rem;
   opacity: 0.6;
 }

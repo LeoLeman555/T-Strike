@@ -3,7 +3,7 @@ main {
   padding: 2rem 1rem;
 }
 
-#score-streak-container {
+.score-streak-container {
   display: flex;
   justify-content: space-between;
   align-items: center;

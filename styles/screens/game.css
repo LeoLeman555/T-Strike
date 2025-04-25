@@ -4,13 +4,13 @@
   font-weight: bold;
 }
 
-.target-time .player-streak {
+.target-time .score-streak-container {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
 
-.result,
-.diff {
+.result-msg,
+.time-difference-msg {
   font-size: 1.1rem;
   margin-top: 1rem;
 }

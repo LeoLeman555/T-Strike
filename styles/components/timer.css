@@ -19,7 +19,7 @@
   font-weight: bold;
 }
 
-.progress-ring__circle {
+.progress-ring-circle {
   transition: stroke-dashoffset 0.05s linear;
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
