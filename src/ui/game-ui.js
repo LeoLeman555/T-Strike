@@ -15,7 +15,14 @@ import {
   getGain,
   updateGain,
 } from "../core/game-core.js";
-import { triggerShake } from "../utils/effects.js";
+
+import {
+  triggerShake,
+  triggerPulse,
+  triggerRollUp,
+  triggerGainAnimation,
+  applyFeedbackColor,
+} from "../utils/effects.js";
 
 const timer = document.getElementById("timer");
 const button = document.getElementById("start-stop-btn");
@@ -82,71 +89,37 @@ function showResult(elapsed) {
 
 /** Update UI colors and result message */
 function displayFeedback(message, color) {
-  resultMsg.textContent = message;
-  resultMsg.style.color = color;
-  timer.style.color = color;
-  circle.setAttribute("stroke", color);
+  applyFeedbackColor(timer, resultMsg, circle, color, message);
 }
 
-/** Update score streak display.*/
+/** Update score streak display */
 export function updateStreakUI(feedbackColor) {
   streak.classList.remove("roll-up", "pulse");
   void streak.offsetWidth;
-  streak.classList.add("roll-up");
-  setTimeout(() => {
-    streak.textContent = getStreak();
-  }, 250);
-  streak.addEventListener(
-    "animationend",
-    (e) => {
-      if (e.animationName === "roll-up") {
-        streak.classList.remove("roll-up");
-        streak.classList.add("pulse");
-        streak.addEventListener(
-          "animationend",
-          (e) => {
-            if (e.animationName === "pulse") {
-              streak.classList.remove("pulse");
-              updateGainUI(feedbackColor);
-            }
-          },
-          { once: true }
-        );
-      }
+  triggerRollUp(
+    streak,
+    () => {
+      streak.textContent = getStreak();
     },
-    { once: true }
+    () => {
+      triggerPulse(streak);
+      updateGainUI(feedbackColor);
+    },
+    250
   );
 }
 
 /** Update score display */
 export function updateScoreUI() {
   scoreDisplay.textContent = getScore();
-  scoreDisplay.classList.add("pulse");
-  scoreDisplay.addEventListener(
-    "animationend",
-    () => {
-      scoreDisplay.classList.remove("pulse");
-    },
-    { once: true }
-  );
+  triggerPulse(scoreDisplay);
 }
 
 /** Update score gain display */
 export function updateGainUI(color) {
   gainDisplay.textContent = `+${getGain()}`;
-  gainDisplay.classList.remove("hidden");
   gainDisplay.style.color = color;
-  void gainDisplay.offsetWidth;
-  gainDisplay.classList.add("animate");
-  gainDisplay.addEventListener(
-    "transitionend",
-    () => {
-      gainDisplay.classList.remove("animate");
-      gainDisplay.classList.add("hidden");
-      updateScoreUI();
-    },
-    { once: true }
-  );
+  triggerGainAnimation(gainDisplay, updateScoreUI);
 }
 
 /** Reset the timer UI */
