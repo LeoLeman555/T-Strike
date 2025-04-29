@@ -9,13 +9,16 @@ let currentStreak = 0;
 let currentScore = 0;
 let scoreGain = 0;
 
+let chronoSpeed = 1;
+let precisionMargin = 10;
+
 /** Start the timer and updates state */
 export function start(onUpdate) {
   isRunning = true;
   startTime = performance.now();
   animationFrameId = requestAnimationFrame(function update() {
     const now = performance.now();
-    const elapsed = (now - startTime) / 1000;
+    const elapsed = ((now - startTime) / 1000) * chronoSpeed;
     onUpdate(elapsed);
     animationFrameId = requestAnimationFrame(update);
   });
@@ -25,7 +28,7 @@ export function start(onUpdate) {
 export function stop() {
   isRunning = false;
   cancelAnimationFrame(animationFrameId);
-  return (performance.now() - startTime) / 1000;
+  return ((performance.now() - startTime) / 1000) * chronoSpeed;
 }
 
 /** Reset internal state */
@@ -122,4 +125,40 @@ export function incrementStreak() {
 /** Reset the streak to zero */
 export function resetStreak() {
   currentStreak = 0;
+}
+
+/** Return current chrono speed */
+export function getChronoSpeed() {
+  return chronoSpeed;
+}
+
+/**
+ * Update the chrono speed with a new value.
+ * @param {number} value - The new value.
+ */
+export function updateChronoSpeed(value) {
+  chronoSpeed = value;
+}
+
+/** Resets the chrono speed to its default value. */
+export function resetChronoSpeed() {
+  chronoSpeed = 1;
+}
+
+/** Return current precision margin */
+export function getPrecisionMargin() {
+  return precisionMargin;
+}
+
+/**
+ * Update the precision margin with a new value.
+ * @param {number} value - The new value.
+ */
+export function updatePrecisionMargin(value) {
+  precisionMargin = value;
+}
+
+/** Reset the precision margin to its default value. */
+export function resetPrecisionMargin() {
+  precisionMargin = 10.0;
 }

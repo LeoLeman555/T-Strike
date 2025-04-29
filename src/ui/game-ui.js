@@ -14,6 +14,7 @@ import {
   resetScore,
   getGain,
   updateGain,
+  getPrecisionMargin,
 } from "../core/game-core.js";
 
 import {
@@ -56,22 +57,30 @@ function updateDisplay(elapsed) {
 /** Display result at the end */
 function showResult(elapsed) {
   const rounded = Number(elapsed.toFixed(getPrecision()));
-  const diff = Math.abs(rounded - getTargetTime());
+  const timeDeviation = Math.abs(rounded - getTargetTime());
+  const precisionMargin = getPrecisionMargin();
 
-  diffMsg.textContent = `Difference: ${diff.toFixed(getPrecision())}s`;
-  timer.textContent = rounded.toFixed(getPrecision()) + "s";
+  diffMsg.textContent = `Difference: ${timeDeviation.toFixed(getPrecision())}s`;
+
+  const precisionPercentage = Math.max(
+    0,
+    100 - (timeDeviation / getTargetTime()) * 100
+  );
+  updateDisplay(elapsed);
 
   let feedbackColor;
 
-  if (diff <= 0.01) {
+  console.log(`Precision: ${precisionPercentage.toFixed(getPrecision())}%`);
+
+  if (precisionPercentage >= 100 - precisionMargin * 0.01) {
     feedbackColor = "#00e676";
     displayFeedback("🎯 Perfect!", feedbackColor);
     incrementStreak();
-  } else if (diff <= 0.2) {
+  } else if (precisionPercentage >= 100 - precisionMargin * 0.2) {
     feedbackColor = "#67e535";
     displayFeedback("👍 Good job!", feedbackColor);
     incrementStreak();
-  } else if (diff <= 0.5) {
+  } else if (precisionPercentage >= 100 - precisionMargin) {
     feedbackColor = "#ffeb3b";
     displayFeedback("💪 You can do better!", feedbackColor);
     triggerShake(timer);
@@ -82,7 +91,8 @@ function showResult(elapsed) {
     resetStreak();
     resetScore();
   }
-  updateGain(computeScore(diff, getStreak()));
+
+  updateGain(computeScore(timeDeviation, getStreak()));
   updateScore(getGain());
   updateStreakUI(feedbackColor);
 }
