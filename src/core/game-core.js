@@ -1,3 +1,5 @@
+import { getDifficultyParams } from "./difficulty-config.js";
+
 const targetTime = 5.0;
 
 let isRunning = false;
@@ -9,8 +11,8 @@ let currentScore = 0;
 let scoreGain = 0;
 
 let chronoSpeed = 1;
-let precisionMargin = 10;
-let decimalCount = 3;
+let precisionMargin = 20;
+let decimalCount = 1;
 
 /** Start the timer and updates state */
 export function start(onUpdate) {
@@ -35,6 +37,7 @@ export function stop() {
 export function reset() {
   isRunning = false;
   cancelAnimationFrame(animationFrameId);
+  applyDifficultySettings();
 }
 
 /** Return whether the timer is running */
@@ -45,6 +48,15 @@ export function isTimerRunning() {
 /** Target time for the game */
 export function getTargetTime() {
   return targetTime;
+}
+
+function applyDifficultySettings() {
+  const params = getDifficultyParams(currentScore);
+  if (!params) return;
+
+  decimalCount = params.decimalCount;
+  chronoSpeed = params.chronoSpeed;
+  precisionMargin = params.precisionMargin;
 }
 
 /**
@@ -77,6 +89,7 @@ export function computeScore(diff, streak) {
  */
 export function updateScore(scoreToAdd) {
   currentScore += scoreToAdd;
+  applyDifficultySettings();
 }
 
 /** Return current score of the player. */
@@ -87,6 +100,7 @@ export function getScore() {
 /** Reset the player score to zero. */
 export function resetScore() {
   currentScore = 0;
+  applyDifficultySettings();
 }
 
 /** Return current gain of the player. */
@@ -170,5 +184,5 @@ export function updatePrecisionMargin(value) {
 
 /** Reset the precision margin to its default value. */
 export function resetPrecisionMargin() {
-  precisionMargin = 10.0;
+  precisionMargin = 20;
 }
