@@ -3,7 +3,6 @@ import {
   stop,
   reset,
   getTargetTime,
-  getPrecision,
   isTimerRunning,
   getStreak,
   incrementStreak,
@@ -15,6 +14,7 @@ import {
   getGain,
   updateGain,
   getPrecisionMargin,
+  getDecimalCount,
 } from "../core/game-core.js";
 
 import {
@@ -39,7 +39,7 @@ const radius = circle.r.baseVal.value;
 const circumference = 2 * Math.PI * radius;
 circle.style.strokeDasharray = `${circumference} ${circumference}`;
 circle.style.strokeDashoffset = `${circumference}`;
-target.textContent = getTargetTime().toFixed(getPrecision());
+target.textContent = getTargetTime().toFixed(getDecimalCount());
 
 /** Set the circular progress indicator */
 function setProgress(progress) {
@@ -50,17 +50,19 @@ function setProgress(progress) {
 /** Update the timer text and progress circle */
 function updateDisplay(elapsed) {
   const capped = elapsed;
-  timer.textContent = capped.toFixed(getPrecision()) + "s";
+  timer.textContent = capped.toFixed(getDecimalCount()) + "s";
   setProgress(capped / getTargetTime());
 }
 
 /** Display result at the end */
 function showResult(elapsed) {
-  const rounded = Number(elapsed.toFixed(getPrecision()));
+  const rounded = Number(elapsed.toFixed(getDecimalCount()));
   const timeDeviation = Math.abs(rounded - getTargetTime());
   const precisionMargin = getPrecisionMargin();
 
-  diffMsg.textContent = `Difference: ${timeDeviation.toFixed(getPrecision())}s`;
+  diffMsg.textContent = `Difference: ${timeDeviation.toFixed(
+    getDecimalCount()
+  )}s`;
 
   const precisionPercentage = Math.max(
     0,
@@ -70,7 +72,7 @@ function showResult(elapsed) {
 
   let feedbackColor;
 
-  console.log(`Precision: ${precisionPercentage.toFixed(getPrecision())}%`);
+  console.log(`Precision: ${precisionPercentage.toFixed(getDecimalCount())}%`);
 
   if (precisionPercentage >= 100 - precisionMargin * 0.01) {
     feedbackColor = "#00e676";

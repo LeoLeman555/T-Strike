@@ -1,4 +1,3 @@
-const precision = 3;
 const targetTime = 5.0;
 
 let isRunning = false;
@@ -11,6 +10,7 @@ let scoreGain = 0;
 
 let chronoSpeed = 1;
 let precisionMargin = 10;
+let decimalCount = 3;
 
 /** Start the timer and updates state */
 export function start(onUpdate) {
@@ -45,11 +45,6 @@ export function isTimerRunning() {
 /** Target time for the game */
 export function getTargetTime() {
   return targetTime;
-}
-
-/** Precision to use for display */
-export function getPrecision() {
-  return precision;
 }
 
 /**
@@ -125,6 +120,21 @@ export function incrementStreak() {
 /** Reset the streak to zero */
 export function resetStreak() {
   currentStreak = 0;
+}
+
+/** Return the current decimal count */
+export function getDecimalCount() {
+  return decimalCount;
+}
+
+/** Increment the decimal count by 1 */
+export function incrementDecimalCount() {
+  decimalCount++;
+}
+
+/** Reset the decimal count to its default value. */
+export function resetDecimalCount() {
+  decimalCount = 1;
 }
 
 /** Return current chrono speed */
