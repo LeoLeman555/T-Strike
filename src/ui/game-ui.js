@@ -39,7 +39,7 @@ const radius = circle.r.baseVal.value;
 const circumference = 2 * Math.PI * radius;
 circle.style.strokeDasharray = `${circumference} ${circumference}`;
 circle.style.strokeDashoffset = `${circumference}`;
-target.textContent = getTargetTime().toFixed(getDecimalCount());
+updateDisplay(0);
 
 /** Set the circular progress indicator */
 function setProgress(progress) {
@@ -52,6 +52,7 @@ function updateDisplay(elapsed) {
   const capped = elapsed;
   timer.textContent = capped.toFixed(getDecimalCount()) + "s";
   setProgress(capped / getTargetTime());
+  target.textContent = getTargetTime().toFixed(getDecimalCount());
 }
 
 /** Display result at the end */

@@ -1,7 +1,5 @@
 import { getDifficultyParams } from "./difficulty-config.js";
 
-const targetTime = 5.0;
-
 let isRunning = false;
 let startTime = 0;
 let animationFrameId = null;
@@ -13,6 +11,9 @@ let scoreGain = 0;
 let chronoSpeed = 1;
 let precisionMargin = 20;
 let decimalCount = 1;
+let minTargetTime = 5;
+let maxTargetTime = 5;
+let targetTime = getRandomTarget();
 
 /** Start the timer and updates state */
 export function start(onUpdate) {
@@ -50,13 +51,20 @@ export function getTargetTime() {
   return targetTime;
 }
 
-function applyDifficultySettings() {
+export function getRandomTarget() {
+  return Math.random() * (maxTargetTime - minTargetTime) + minTargetTime;
+}
+
+export function applyDifficultySettings() {
   const params = getDifficultyParams(currentScore);
   if (!params) return;
 
   decimalCount = params.decimalCount;
   chronoSpeed = params.chronoSpeed;
   precisionMargin = params.precisionMargin;
+  minTargetTime = params.minTargetTime;
+  maxTargetTime = params.maxTargetTime;
+  targetTime = getRandomTarget();
 }
 
 /**

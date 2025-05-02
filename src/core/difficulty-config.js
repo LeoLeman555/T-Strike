@@ -6,6 +6,8 @@ export const difficultyLevels = [
     decimalCount: 1,
     chronoSpeed: 1.0,
     precisionMargin: 20,
+    minTargetTime: 5,
+    maxTargetTime: 5,
   },
   {
     level: 2,
@@ -14,6 +16,8 @@ export const difficultyLevels = [
     decimalCount: 2,
     chronoSpeed: 1.2,
     precisionMargin: 15,
+    minTargetTime: 3,
+    maxTargetTime: 3,
   },
   {
     level: 3,
@@ -22,6 +26,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 1.4,
     precisionMargin: 12,
+    minTargetTime: 4,
+    maxTargetTime: 6,
   },
   {
     level: 4,
@@ -30,6 +36,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 1.6,
     precisionMargin: 10,
+    minTargetTime: 4,
+    maxTargetTime: 6,
   },
   {
     level: 5,
@@ -38,6 +46,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 1.8,
     precisionMargin: 9,
+    minTargetTime: 4,
+    maxTargetTime: 6,
   },
   {
     level: 6,
@@ -46,6 +56,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 2.0,
     precisionMargin: 8.5,
+    minTargetTime: 3,
+    maxTargetTime: 8,
   },
   {
     level: 7,
@@ -54,6 +66,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 2.3,
     precisionMargin: 8,
+    minTargetTime: 3,
+    maxTargetTime: 8,
   },
   {
     level: 8,
@@ -62,6 +76,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 2.6,
     precisionMargin: 7.5,
+    minTargetTime: 3,
+    maxTargetTime: 8,
   },
   {
     level: 9,
@@ -70,6 +86,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 2.9,
     precisionMargin: 7,
+    minTargetTime: 3,
+    maxTargetTime: 8,
   },
   {
     level: 10,
@@ -78,6 +96,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 3.2,
     precisionMargin: 6.5,
+    minTargetTime: 3,
+    maxTargetTime: 8,
   },
   {
     level: 11,
@@ -86,6 +106,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 3.6,
     precisionMargin: 6,
+    minTargetTime: 2.5,
+    maxTargetTime: 10,
   },
   {
     level: 12,
@@ -94,6 +116,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 4.0,
     precisionMargin: 5.5,
+    minTargetTime: 2.5,
+    maxTargetTime: 10,
   },
   {
     level: 13,
@@ -102,6 +126,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 4.5,
     precisionMargin: 5,
+    minTargetTime: 2.5,
+    maxTargetTime: 10,
   },
   {
     level: 14,
@@ -110,6 +136,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 5.0,
     precisionMargin: 4.5,
+    minTargetTime: 2.5,
+    maxTargetTime: 10,
   },
   {
     level: 15,
@@ -118,6 +146,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 5.6,
     precisionMargin: 4,
+    minTargetTime: 2.5,
+    maxTargetTime: 10,
   },
   {
     level: 16,
@@ -126,6 +156,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 6.2,
     precisionMargin: 3.5,
+    minTargetTime: 2.5,
+    maxTargetTime: 10,
   },
   {
     level: 17,
@@ -134,6 +166,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 7.0,
     precisionMargin: 3,
+    minTargetTime: 2.5,
+    maxTargetTime: 10,
   },
   {
     level: 18,
@@ -142,6 +176,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 7.8,
     precisionMargin: 2.5,
+    minTargetTime: 2,
+    maxTargetTime: 20,
   },
   {
     level: 19,
@@ -150,6 +186,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 8.7,
     precisionMargin: 2,
+    minTargetTime: 2,
+    maxTargetTime: 20,
   },
   {
     level: 20,
@@ -158,6 +196,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 9.7,
     precisionMargin: 1.5,
+    minTargetTime: 2,
+    maxTargetTime: 20,
   },
   {
     level: 21,
@@ -166,6 +206,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 10.7,
     precisionMargin: 1,
+    minTargetTime: 2,
+    maxTargetTime: 20,
   },
   {
     level: 22,
@@ -174,6 +216,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 11.7,
     precisionMargin: 0.9,
+    minTargetTime: 2,
+    maxTargetTime: 20,
   },
   {
     level: 23,
@@ -182,6 +226,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 12.8,
     precisionMargin: 0.8,
+    minTargetTime: 2,
+    maxTargetTime: 20,
   },
   {
     level: 24,
@@ -190,6 +236,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 13.9,
     precisionMargin: 0.7,
+    minTargetTime: 2,
+    maxTargetTime: 20,
   },
   {
     level: 25,
@@ -198,6 +246,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 15.0,
     precisionMargin: 0.6,
+    minTargetTime: 2,
+    maxTargetTime: 60,
   },
   {
     level: 26,
@@ -206,6 +256,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 16.0,
     precisionMargin: 0.5,
+    minTargetTime: 2,
+    maxTargetTime: 60,
   },
   {
     level: 27,
@@ -214,6 +266,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 17.0,
     precisionMargin: 0.4,
+    minTargetTime: 2,
+    maxTargetTime: 60,
   },
   {
     level: 28,
@@ -222,6 +276,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 18.0,
     precisionMargin: 0.3,
+    minTargetTime: 2,
+    maxTargetTime: 60,
   },
   {
     level: 29,
@@ -230,6 +286,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 19.0,
     precisionMargin: 0.2,
+    minTargetTime: 2,
+    maxTargetTime: 60,
   },
   {
     level: 30,
@@ -238,6 +296,8 @@ export const difficultyLevels = [
     decimalCount: 3,
     chronoSpeed: 20.0,
     precisionMargin: 0.1,
+    minTargetTime: 2,
+    maxTargetTime: 60,
   },
 ];
 
