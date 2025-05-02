@@ -15,6 +15,9 @@ let minTargetTime = 5;
 let maxTargetTime = 5;
 let targetTime = getRandomTarget();
 
+let circleVisibility = true;
+let circleMargin = 0;
+
 /** Start the timer and updates state */
 export function start(onUpdate) {
   isRunning = true;
@@ -55,6 +58,14 @@ export function getRandomTarget() {
   return Math.random() * (maxTargetTime - minTargetTime) + minTargetTime;
 }
 
+export function getCircleVisibility() {
+  return circleVisibility;
+}
+
+export function getCircleMargin() {
+  return circleMargin;
+}
+
 export function applyDifficultySettings() {
   const params = getDifficultyParams(currentScore);
   if (!params) return;
@@ -65,6 +76,8 @@ export function applyDifficultySettings() {
   minTargetTime = params.minTargetTime;
   maxTargetTime = params.maxTargetTime;
   targetTime = getRandomTarget();
+  circleVisibility = params.circleVisibility;
+  circleMargin = params.circleMargin;
 }
 
 /**

@@ -15,6 +15,8 @@ import {
   updateGain,
   getPrecisionMargin,
   getDecimalCount,
+  getCircleMargin,
+  getCircleVisibility,
 } from "../core/game-core.js";
 
 import {
@@ -37,14 +39,26 @@ const circle = document.querySelector(".progress-ring-circle");
 
 const radius = circle.r.baseVal.value;
 const circumference = 2 * Math.PI * radius;
+let circleOffsetBias = 0;
+
 circle.style.strokeDasharray = `${circumference} ${circumference}`;
 circle.style.strokeDashoffset = `${circumference}`;
 updateDisplay(0);
 
 /** Set the circular progress indicator */
 function setProgress(progress) {
-  const offset = circumference - progress * circumference;
+  const interpolatedBias = circleOffsetBias * progress;
+  const visualProgress = progress + interpolatedBias;
+  const fullRotations = Math.floor(visualProgress);
+  const fractionalProgress = visualProgress % 1;
+  const effectiveProgress =
+    fullRotations % 2 === 0 ? fractionalProgress : 1 - fractionalProgress;
+  const offset = circumference - effectiveProgress * circumference;
   circle.style.strokeDashoffset = offset;
+}
+
+function setCircleVisibility() {
+  circle.style.display = getCircleVisibility() ? "block" : "none";
 }
 
 /** Update the timer text and progress circle */
@@ -144,7 +158,14 @@ export function resetTimerUI() {
   diffMsg.textContent = "";
   button.textContent = "START";
   button.classList.remove("stop", "restart");
+
+  const circleMargin = getCircleMargin();
+  setCircleVisibility();
   circle.setAttribute("stroke", "#ffffff");
+  circleOffsetBias = Math.min(
+    Math.max((Math.random() * 2 - 1) * circleMargin, -circleMargin),
+    circleMargin
+  );
   setProgress(0);
 }
 

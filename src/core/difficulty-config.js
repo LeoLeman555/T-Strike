@@ -8,6 +8,8 @@ export const difficultyLevels = [
     precisionMargin: 20,
     minTargetTime: 5,
     maxTargetTime: 5,
+    circleVisibility: true,
+    circleMargin: 0,
   },
   {
     level: 2,
@@ -18,6 +20,8 @@ export const difficultyLevels = [
     precisionMargin: 15,
     minTargetTime: 3,
     maxTargetTime: 3,
+    circleVisibility: true,
+    circleMargin: 0,
   },
   {
     level: 3,
@@ -28,6 +32,8 @@ export const difficultyLevels = [
     precisionMargin: 12,
     minTargetTime: 4,
     maxTargetTime: 6,
+    circleVisibility: true,
+    circleMargin: 0,
   },
   {
     level: 4,
@@ -38,6 +44,8 @@ export const difficultyLevels = [
     precisionMargin: 10,
     minTargetTime: 4,
     maxTargetTime: 6,
+    circleVisibility: false,
+    circleMargin: 0,
   },
   {
     level: 5,
@@ -48,6 +56,8 @@ export const difficultyLevels = [
     precisionMargin: 9,
     minTargetTime: 4,
     maxTargetTime: 6,
+    circleVisibility: false,
+    circleMargin: 0,
   },
   {
     level: 6,
@@ -58,6 +68,8 @@ export const difficultyLevels = [
     precisionMargin: 8.5,
     minTargetTime: 3,
     maxTargetTime: 8,
+    circleVisibility: false,
+    circleMargin: 0,
   },
   {
     level: 7,
@@ -68,6 +80,8 @@ export const difficultyLevels = [
     precisionMargin: 8,
     minTargetTime: 3,
     maxTargetTime: 8,
+    circleVisibility: false,
+    circleMargin: 0,
   },
   {
     level: 8,
@@ -78,6 +92,8 @@ export const difficultyLevels = [
     precisionMargin: 7.5,
     minTargetTime: 3,
     maxTargetTime: 8,
+    circleVisibility: false,
+    circleMargin: 0,
   },
   {
     level: 9,
@@ -88,6 +104,8 @@ export const difficultyLevels = [
     precisionMargin: 7,
     minTargetTime: 3,
     maxTargetTime: 8,
+    circleVisibility: false,
+    circleMargin: 0,
   },
   {
     level: 10,
@@ -98,6 +116,8 @@ export const difficultyLevels = [
     precisionMargin: 6.5,
     minTargetTime: 3,
     maxTargetTime: 8,
+    circleVisibility: true,
+    circleMargin: 0.01,
   },
   {
     level: 11,
@@ -108,6 +128,8 @@ export const difficultyLevels = [
     precisionMargin: 6,
     minTargetTime: 2.5,
     maxTargetTime: 10,
+    circleVisibility: true,
+    circleMargin: 0.015,
   },
   {
     level: 12,
@@ -118,6 +140,8 @@ export const difficultyLevels = [
     precisionMargin: 5.5,
     minTargetTime: 2.5,
     maxTargetTime: 10,
+    circleVisibility: true,
+    circleMargin: 0.02,
   },
   {
     level: 13,
@@ -128,6 +152,8 @@ export const difficultyLevels = [
     precisionMargin: 5,
     minTargetTime: 2.5,
     maxTargetTime: 10,
+    circleVisibility: true,
+    circleMargin: 0.03,
   },
   {
     level: 14,
@@ -138,6 +164,8 @@ export const difficultyLevels = [
     precisionMargin: 4.5,
     minTargetTime: 2.5,
     maxTargetTime: 10,
+    circleVisibility: true,
+    circleMargin: 0.04,
   },
   {
     level: 15,
@@ -148,6 +176,8 @@ export const difficultyLevels = [
     precisionMargin: 4,
     minTargetTime: 2.5,
     maxTargetTime: 10,
+    circleVisibility: true,
+    circleMargin: 0.05,
   },
   {
     level: 16,
@@ -158,6 +188,8 @@ export const difficultyLevels = [
     precisionMargin: 3.5,
     minTargetTime: 2.5,
     maxTargetTime: 10,
+    circleVisibility: true,
+    circleMargin: 0.06,
   },
   {
     level: 17,
@@ -168,6 +200,8 @@ export const difficultyLevels = [
     precisionMargin: 3,
     minTargetTime: 2.5,
     maxTargetTime: 10,
+    circleVisibility: true,
+    circleMargin: 0.07,
   },
   {
     level: 18,
@@ -178,6 +212,8 @@ export const difficultyLevels = [
     precisionMargin: 2.5,
     minTargetTime: 2,
     maxTargetTime: 20,
+    circleVisibility: true,
+    circleMargin: 0.08,
   },
   {
     level: 19,
@@ -188,6 +224,8 @@ export const difficultyLevels = [
     precisionMargin: 2,
     minTargetTime: 2,
     maxTargetTime: 20,
+    circleVisibility: true,
+    circleMargin: 0.09,
   },
   {
     level: 20,
@@ -198,6 +236,8 @@ export const difficultyLevels = [
     precisionMargin: 1.5,
     minTargetTime: 2,
     maxTargetTime: 20,
+    circleVisibility: true,
+    circleMargin: 0.1,
   },
   {
     level: 21,
@@ -208,6 +248,8 @@ export const difficultyLevels = [
     precisionMargin: 1,
     minTargetTime: 2,
     maxTargetTime: 20,
+    circleVisibility: true,
+    circleMargin: 0.11,
   },
   {
     level: 22,
@@ -218,6 +260,8 @@ export const difficultyLevels = [
     precisionMargin: 0.9,
     minTargetTime: 2,
     maxTargetTime: 20,
+    circleVisibility: true,
+    circleMargin: 0.12,
   },
   {
     level: 23,
@@ -228,6 +272,8 @@ export const difficultyLevels = [
     precisionMargin: 0.8,
     minTargetTime: 2,
     maxTargetTime: 20,
+    circleVisibility: true,
+    circleMargin: 0.13,
   },
   {
     level: 24,
@@ -238,6 +284,8 @@ export const difficultyLevels = [
     precisionMargin: 0.7,
     minTargetTime: 2,
     maxTargetTime: 20,
+    circleVisibility: true,
+    circleMargin: 0.14,
   },
   {
     level: 25,
@@ -248,6 +296,8 @@ export const difficultyLevels = [
     precisionMargin: 0.6,
     minTargetTime: 2,
     maxTargetTime: 60,
+    circleVisibility: true,
+    circleMargin: 0.15,
   },
   {
     level: 26,
@@ -258,6 +308,8 @@ export const difficultyLevels = [
     precisionMargin: 0.5,
     minTargetTime: 2,
     maxTargetTime: 60,
+    circleVisibility: true,
+    circleMargin: 0.17,
   },
   {
     level: 27,
@@ -268,6 +320,8 @@ export const difficultyLevels = [
     precisionMargin: 0.4,
     minTargetTime: 2,
     maxTargetTime: 60,
+    circleVisibility: true,
+    circleMargin: 0.19,
   },
   {
     level: 28,
@@ -278,6 +332,8 @@ export const difficultyLevels = [
     precisionMargin: 0.3,
     minTargetTime: 2,
     maxTargetTime: 60,
+    circleVisibility: true,
+    circleMargin: 0.21,
   },
   {
     level: 29,
@@ -288,6 +344,8 @@ export const difficultyLevels = [
     precisionMargin: 0.2,
     minTargetTime: 2,
     maxTargetTime: 60,
+    circleVisibility: true,
+    circleMargin: 0.23,
   },
   {
     level: 30,
@@ -298,6 +356,8 @@ export const difficultyLevels = [
     precisionMargin: 0.1,
     minTargetTime: 2,
     maxTargetTime: 60,
+    circleVisibility: true,
+    circleMargin: 0.25,
   },
 ];
 
