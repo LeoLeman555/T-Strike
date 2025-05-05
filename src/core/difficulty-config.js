@@ -10,6 +10,9 @@ export const difficultyLevels = [
     maxTargetTime: 5,
     circleVisibility: true,
     circleMargin: 0,
+    chronoHideCycles: 0,
+    minHideDuration: 0,
+    maxHideDuration: 0,
   },
   {
     level: 2,
@@ -22,6 +25,9 @@ export const difficultyLevels = [
     maxTargetTime: 3,
     circleVisibility: true,
     circleMargin: 0,
+    chronoHideCycles: 0,
+    minHideDuration: 0,
+    maxHideDuration: 0,
   },
   {
     level: 3,
@@ -34,6 +40,9 @@ export const difficultyLevels = [
     maxTargetTime: 6,
     circleVisibility: true,
     circleMargin: 0,
+    chronoHideCycles: 0,
+    minHideDuration: 0,
+    maxHideDuration: 0,
   },
   {
     level: 4,
@@ -46,6 +55,9 @@ export const difficultyLevels = [
     maxTargetTime: 6,
     circleVisibility: false,
     circleMargin: 0,
+    chronoHideCycles: 0,
+    minHideDuration: 0,
+    maxHideDuration: 0,
   },
   {
     level: 5,
@@ -58,6 +70,9 @@ export const difficultyLevels = [
     maxTargetTime: 6,
     circleVisibility: false,
     circleMargin: 0,
+    chronoHideCycles: 0,
+    minHideDuration: 0,
+    maxHideDuration: 0,
   },
   {
     level: 6,
@@ -70,6 +85,9 @@ export const difficultyLevels = [
     maxTargetTime: 8,
     circleVisibility: false,
     circleMargin: 0,
+    chronoHideCycles: 0,
+    minHideDuration: 0,
+    maxHideDuration: 0,
   },
   {
     level: 7,
@@ -82,6 +100,9 @@ export const difficultyLevels = [
     maxTargetTime: 8,
     circleVisibility: false,
     circleMargin: 0,
+    chronoHideCycles: 0,
+    minHideDuration: 0,
+    maxHideDuration: 0,
   },
   {
     level: 8,
@@ -94,6 +115,9 @@ export const difficultyLevels = [
     maxTargetTime: 8,
     circleVisibility: false,
     circleMargin: 0,
+    chronoHideCycles: 1,
+    minHideDuration: 0.5,
+    maxHideDuration: 0.7,
   },
   {
     level: 9,
@@ -106,6 +130,9 @@ export const difficultyLevels = [
     maxTargetTime: 8,
     circleVisibility: false,
     circleMargin: 0,
+    chronoHideCycles: 1,
+    minHideDuration: 0.5,
+    maxHideDuration: 0.7,
   },
   {
     level: 10,
@@ -118,6 +145,9 @@ export const difficultyLevels = [
     maxTargetTime: 8,
     circleVisibility: true,
     circleMargin: 0.01,
+    chronoHideCycles: 2,
+    minHideDuration: 0.7,
+    maxHideDuration: 1.5,
   },
   {
     level: 11,
@@ -130,6 +160,9 @@ export const difficultyLevels = [
     maxTargetTime: 10,
     circleVisibility: true,
     circleMargin: 0.015,
+    chronoHideCycles: 2,
+    minHideDuration: 0.7,
+    maxHideDuration: 1.5,
   },
   {
     level: 12,
@@ -142,6 +175,9 @@ export const difficultyLevels = [
     maxTargetTime: 10,
     circleVisibility: true,
     circleMargin: 0.02,
+    chronoHideCycles: 2,
+    minHideDuration: 0.7,
+    maxHideDuration: 1.5,
   },
   {
     level: 13,
@@ -154,6 +190,9 @@ export const difficultyLevels = [
     maxTargetTime: 10,
     circleVisibility: true,
     circleMargin: 0.03,
+    chronoHideCycles: 2,
+    minHideDuration: 0.7,
+    maxHideDuration: 1.5,
   },
   {
     level: 14,
@@ -166,6 +205,9 @@ export const difficultyLevels = [
     maxTargetTime: 10,
     circleVisibility: true,
     circleMargin: 0.04,
+    chronoHideCycles: 2,
+    minHideDuration: 0.7,
+    maxHideDuration: 1.5,
   },
   {
     level: 15,
@@ -178,6 +220,9 @@ export const difficultyLevels = [
     maxTargetTime: 10,
     circleVisibility: true,
     circleMargin: 0.05,
+    chronoHideCycles: 3,
+    minHideDuration: 1,
+    maxHideDuration: 2,
   },
   {
     level: 16,
@@ -190,6 +235,9 @@ export const difficultyLevels = [
     maxTargetTime: 10,
     circleVisibility: true,
     circleMargin: 0.06,
+    chronoHideCycles: 3,
+    minHideDuration: 1,
+    maxHideDuration: 2,
   },
   {
     level: 17,
@@ -202,6 +250,9 @@ export const difficultyLevels = [
     maxTargetTime: 10,
     circleVisibility: true,
     circleMargin: 0.07,
+    chronoHideCycles: 3,
+    minHideDuration: 1,
+    maxHideDuration: 2,
   },
   {
     level: 18,
@@ -214,6 +265,9 @@ export const difficultyLevels = [
     maxTargetTime: 20,
     circleVisibility: true,
     circleMargin: 0.08,
+    chronoHideCycles: 3,
+    minHideDuration: 1,
+    maxHideDuration: 2,
   },
   {
     level: 19,
@@ -226,6 +280,9 @@ export const difficultyLevels = [
     maxTargetTime: 20,
     circleVisibility: true,
     circleMargin: 0.09,
+    chronoHideCycles: 3,
+    minHideDuration: 1,
+    maxHideDuration: 2,
   },
   {
     level: 20,
@@ -238,6 +295,9 @@ export const difficultyLevels = [
     maxTargetTime: 20,
     circleVisibility: true,
     circleMargin: 0.1,
+    chronoHideCycles: 4,
+    minHideDuration: 1.5,
+    maxHideDuration: 5,
   },
   {
     level: 21,
@@ -250,6 +310,9 @@ export const difficultyLevels = [
     maxTargetTime: 20,
     circleVisibility: true,
     circleMargin: 0.11,
+    chronoHideCycles: 4,
+    minHideDuration: 1.5,
+    maxHideDuration: 5,
   },
   {
     level: 22,
@@ -262,6 +325,9 @@ export const difficultyLevels = [
     maxTargetTime: 20,
     circleVisibility: true,
     circleMargin: 0.12,
+    chronoHideCycles: 4,
+    minHideDuration: 1.5,
+    maxHideDuration: 5,
   },
   {
     level: 23,
@@ -274,6 +340,9 @@ export const difficultyLevels = [
     maxTargetTime: 20,
     circleVisibility: true,
     circleMargin: 0.13,
+    chronoHideCycles: 4,
+    minHideDuration: 1.5,
+    maxHideDuration: 5,
   },
   {
     level: 24,
@@ -286,6 +355,9 @@ export const difficultyLevels = [
     maxTargetTime: 20,
     circleVisibility: true,
     circleMargin: 0.14,
+    chronoHideCycles: 4,
+    minHideDuration: 1.5,
+    maxHideDuration: 5,
   },
   {
     level: 25,
@@ -298,6 +370,9 @@ export const difficultyLevels = [
     maxTargetTime: 60,
     circleVisibility: true,
     circleMargin: 0.15,
+    chronoHideCycles: 4,
+    minHideDuration: 1.5,
+    maxHideDuration: 5,
   },
   {
     level: 26,
@@ -310,6 +385,9 @@ export const difficultyLevels = [
     maxTargetTime: 60,
     circleVisibility: true,
     circleMargin: 0.17,
+    chronoHideCycles: 5,
+    minHideDuration: 2,
+    maxHideDuration: 10,
   },
   {
     level: 27,
@@ -322,6 +400,9 @@ export const difficultyLevels = [
     maxTargetTime: 60,
     circleVisibility: true,
     circleMargin: 0.19,
+    chronoHideCycles: 5,
+    minHideDuration: 2,
+    maxHideDuration: 10,
   },
   {
     level: 28,
@@ -334,6 +415,9 @@ export const difficultyLevels = [
     maxTargetTime: 60,
     circleVisibility: true,
     circleMargin: 0.21,
+    chronoHideCycles: 5,
+    minHideDuration: 2,
+    maxHideDuration: 10,
   },
   {
     level: 29,
@@ -346,6 +430,9 @@ export const difficultyLevels = [
     maxTargetTime: 60,
     circleVisibility: true,
     circleMargin: 0.23,
+    chronoHideCycles: 5,
+    minHideDuration: 2,
+    maxHideDuration: 10,
   },
   {
     level: 30,
@@ -358,6 +445,9 @@ export const difficultyLevels = [
     maxTargetTime: 60,
     circleVisibility: true,
     circleMargin: 0.25,
+    chronoHideCycles: 5,
+    minHideDuration: 2,
+    maxHideDuration: 10,
   },
 ];
 

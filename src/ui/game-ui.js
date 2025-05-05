@@ -17,6 +17,7 @@ import {
   getDecimalCount,
   getCircleMargin,
   getCircleVisibility,
+  isChronoVisible,
 } from "../core/game-core.js";
 
 import {
@@ -64,7 +65,15 @@ function setCircleVisibility() {
 /** Update the timer text and progress circle */
 function updateDisplay(elapsed) {
   const capped = elapsed;
-  timer.textContent = capped.toFixed(getDecimalCount()) + "s";
+  const chronoVisible = isChronoVisible();
+
+  if (chronoVisible) {
+    timer.textContent = capped.toFixed(getDecimalCount()) + "s";
+    timer.style.opacity = 1;
+  } else {
+    timer.style.opacity = 0;
+  }
+
   setProgress(capped / getTargetTime());
   target.textContent = getTargetTime().toFixed(getDecimalCount());
 }
@@ -84,6 +93,9 @@ function showResult(elapsed) {
     100 - (timeDeviation / getTargetTime()) * 100
   );
   updateDisplay(elapsed);
+
+  timer.style.opacity = 1;
+  timer.textContent = elapsed.toFixed(getDecimalCount()) + "s";
 
   let feedbackColor;
 

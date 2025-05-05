@@ -18,9 +18,16 @@ let targetTime = getRandomTarget();
 let circleVisibility = true;
 let circleMargin = 0;
 
+let chronoVisibility = true;
+let hideTimeoutId = null;
+let chronoHideCycles = 0;
+let minHideDuration = 0;
+let maxHideDuration = 0;
+
 /** Start the timer and updates state */
 export function start(onUpdate) {
   isRunning = true;
+  scheduleChronoHide();
   startTime = performance.now();
   animationFrameId = requestAnimationFrame(function update() {
     const now = performance.now();
@@ -42,6 +49,27 @@ export function reset() {
   isRunning = false;
   cancelAnimationFrame(animationFrameId);
   applyDifficultySettings();
+  clearTimeout(hideTimeoutId);
+  chronoVisibility = true;
+}
+
+function scheduleChronoHide() {
+  if (chronoHideCycles <= 0) return;
+
+  const delay =
+    Math.random() * (maxHideDuration - minHideDuration) + minHideDuration;
+  hideTimeoutId = setTimeout(() => {
+    chronoVisibility = false;
+    setTimeout(() => {
+      chronoVisibility = true;
+      chronoHideCycles--;
+      scheduleChronoHide();
+    }, delay * 1000);
+  }, Math.random() * 2000 + 500);
+}
+
+export function isChronoVisible() {
+  return chronoVisibility;
 }
 
 /** Return whether the timer is running */
@@ -78,6 +106,9 @@ export function applyDifficultySettings() {
   targetTime = getRandomTarget();
   circleVisibility = params.circleVisibility;
   circleMargin = params.circleMargin;
+  chronoHideCycles = params.chronoHideCycles;
+  minHideDuration = params.minHideDuration;
+  maxHideDuration = params.maxHideDuration;
 }
 
 /**
