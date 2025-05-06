@@ -33,22 +33,44 @@ let maxPauseDuration = 0;
 let pauseTimeTotal = 0;
 let pauseStartTime = 0;
 
+let isChronoInverted = false;
+let invertTimeoutId = null;
+let chronoInvertCycles = 0;
+let minInvertDuration = 0;
+let maxInvertDuration = 0;
+
+let currentElapsedTime = 0;
+let lastFrameTime = 0;
+
 /** Start the timer and updates state */
 export function start(onUpdate) {
   isRunning = true;
   chronoRun = true;
   scheduleChronoHide();
   scheduleChronoPause();
-  startTime = performance.now();
+  scheduleChronoInvert();
+
+  currentElapsedTime = 0;
   pauseTimeTotal = 0;
   pauseStartTime = 0;
+  startTime = performance.now();
+  lastFrameTime = startTime;
+
   animationFrameId = requestAnimationFrame(function update() {
     const now = performance.now();
-    const adjustedElapsed =
-      ((now - startTime - pauseTimeTotal) / 1000) * chronoSpeed;
+
     if (chronoRun) {
-      onUpdate(adjustedElapsed);
+      const deltaSeconds = (now - lastFrameTime) / 1000;
+      const signedDelta =
+        deltaSeconds * chronoSpeed * (isChronoInverted ? -1 : 1);
+      currentElapsedTime += signedDelta;
+      if (currentElapsedTime < 0) {
+        currentElapsedTime = 0;
+      }
+      onUpdate(currentElapsedTime);
     }
+
+    lastFrameTime = now;
     animationFrameId = requestAnimationFrame(update);
   });
 }
@@ -61,9 +83,7 @@ export function stop() {
     const now = performance.now();
     pauseTimeTotal += now - pauseStartTime;
   }
-  return (
-    ((performance.now() - startTime - pauseTimeTotal) / 1000) * chronoSpeed
-  );
+  return currentElapsedTime;
 }
 
 /** Reset internal state */
@@ -75,7 +95,11 @@ export function reset() {
   cancelAnimationFrame(animationFrameId);
   clearTimeout(hideTimeoutId);
   clearTimeout(pauseTimeoutId);
+  clearTimeout(invertTimeoutId);
   chronoVisibility = true;
+  isChronoInverted = false;
+  currentElapsedTime = 0;
+  lastFrameTime = 0;
 }
 
 function scheduleChronoHide() {
@@ -114,6 +138,26 @@ function scheduleChronoPause() {
   }, delay);
 }
 
+function scheduleChronoInvert() {
+  if (chronoInvertCycles <= 0) return;
+
+  const delay = Math.random() * 2000 + 500;
+
+  invertTimeoutId = setTimeout(() => {
+    isChronoInverted = true;
+
+    const invertDuration =
+      Math.random() * (maxInvertDuration - minInvertDuration) +
+      minInvertDuration;
+
+    setTimeout(() => {
+      isChronoInverted = false;
+      chronoInvertCycles--;
+      scheduleChronoInvert();
+    }, invertDuration * 1000);
+  }, delay);
+}
+
 export function isChronoVisible() {
   return chronoVisibility;
 }
@@ -121,6 +165,10 @@ export function isChronoVisible() {
 /** Return whether the timer is running */
 export function isTimerRunning() {
   return isRunning;
+}
+
+export function isChronoInvertedActive() {
+  return isChronoInverted;
 }
 
 /** Target time for the game */
@@ -158,6 +206,9 @@ export function applyDifficultySettings() {
   chronoPauseCycles = params.chronoPauseCycles;
   minPauseDuration = params.minPauseDuration;
   maxPauseDuration = params.maxPauseDuration;
+  chronoInvertCycles = params.chronoInvertCycles;
+  minInvertDuration = params.minInvertDuration;
+  maxInvertDuration = params.maxInvertDuration;
 }
 
 /**
