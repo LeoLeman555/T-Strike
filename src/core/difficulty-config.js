@@ -13,6 +13,9 @@ export const difficultyLevels = [
     chronoHideCycles: 0,
     minHideDuration: 0,
     maxHideDuration: 0,
+    chronoPauseCycles: 0,
+    minPauseDuration: 0,
+    maxPauseDuration: 0,
   },
   {
     level: 2,
@@ -28,6 +31,9 @@ export const difficultyLevels = [
     chronoHideCycles: 0,
     minHideDuration: 0,
     maxHideDuration: 0,
+    chronoPauseCycles: 0,
+    minPauseDuration: 0,
+    maxPauseDuration: 0,
   },
   {
     level: 3,
@@ -43,6 +49,9 @@ export const difficultyLevels = [
     chronoHideCycles: 0,
     minHideDuration: 0,
     maxHideDuration: 0,
+    chronoPauseCycles: 0,
+    minPauseDuration: 0,
+    maxPauseDuration: 0,
   },
   {
     level: 4,
@@ -58,6 +67,9 @@ export const difficultyLevels = [
     chronoHideCycles: 0,
     minHideDuration: 0,
     maxHideDuration: 0,
+    chronoPauseCycles: 0,
+    minPauseDuration: 0,
+    maxPauseDuration: 0,
   },
   {
     level: 5,
@@ -73,6 +85,9 @@ export const difficultyLevels = [
     chronoHideCycles: 0,
     minHideDuration: 0,
     maxHideDuration: 0,
+    chronoPauseCycles: 0,
+    minPauseDuration: 0,
+    maxPauseDuration: 0,
   },
   {
     level: 6,
@@ -88,6 +103,9 @@ export const difficultyLevels = [
     chronoHideCycles: 0,
     minHideDuration: 0,
     maxHideDuration: 0,
+    chronoPauseCycles: 0,
+    minPauseDuration: 0,
+    maxPauseDuration: 0,
   },
   {
     level: 7,
@@ -103,6 +121,9 @@ export const difficultyLevels = [
     chronoHideCycles: 0,
     minHideDuration: 0,
     maxHideDuration: 0,
+    chronoPauseCycles: 1,
+    minPauseDuration: 2,
+    maxPauseDuration: 2,
   },
   {
     level: 8,
@@ -118,6 +139,9 @@ export const difficultyLevels = [
     chronoHideCycles: 1,
     minHideDuration: 0.5,
     maxHideDuration: 0.7,
+    chronoPauseCycles: 1,
+    minPauseDuration: 3,
+    maxPauseDuration: 3,
   },
   {
     level: 9,
@@ -133,6 +157,9 @@ export const difficultyLevels = [
     chronoHideCycles: 1,
     minHideDuration: 0.5,
     maxHideDuration: 0.7,
+    chronoPauseCycles: 1,
+    minPauseDuration: 2,
+    maxPauseDuration: 3,
   },
   {
     level: 10,
@@ -148,6 +175,9 @@ export const difficultyLevels = [
     chronoHideCycles: 2,
     minHideDuration: 0.7,
     maxHideDuration: 1.5,
+    chronoPauseCycles: 1,
+    minPauseDuration: 2,
+    maxPauseDuration: 3,
   },
   {
     level: 11,
@@ -163,6 +193,9 @@ export const difficultyLevels = [
     chronoHideCycles: 2,
     minHideDuration: 0.7,
     maxHideDuration: 1.5,
+    chronoPauseCycles: 1,
+    minPauseDuration: 2,
+    maxPauseDuration: 3,
   },
   {
     level: 12,
@@ -178,6 +211,9 @@ export const difficultyLevels = [
     chronoHideCycles: 2,
     minHideDuration: 0.7,
     maxHideDuration: 1.5,
+    chronoPauseCycles: 1,
+    minPauseDuration: 2,
+    maxPauseDuration: 3,
   },
   {
     level: 13,
@@ -193,6 +229,9 @@ export const difficultyLevels = [
     chronoHideCycles: 2,
     minHideDuration: 0.7,
     maxHideDuration: 1.5,
+    chronoPauseCycles: 2,
+    minPauseDuration: 2,
+    maxPauseDuration: 3,
   },
   {
     level: 14,
@@ -208,6 +247,9 @@ export const difficultyLevels = [
     chronoHideCycles: 2,
     minHideDuration: 0.7,
     maxHideDuration: 1.5,
+    chronoPauseCycles: 2,
+    minPauseDuration: 2,
+    maxPauseDuration: 4,
   },
   {
     level: 15,
@@ -223,6 +265,9 @@ export const difficultyLevels = [
     chronoHideCycles: 3,
     minHideDuration: 1,
     maxHideDuration: 2,
+    chronoPauseCycles: 2,
+    minPauseDuration: 1,
+    maxPauseDuration: 4,
   },
   {
     level: 16,
@@ -238,6 +283,9 @@ export const difficultyLevels = [
     chronoHideCycles: 3,
     minHideDuration: 1,
     maxHideDuration: 2,
+    chronoPauseCycles: 2,
+    minPauseDuration: 1,
+    maxPauseDuration: 4,
   },
   {
     level: 17,
@@ -253,6 +301,9 @@ export const difficultyLevels = [
     chronoHideCycles: 3,
     minHideDuration: 1,
     maxHideDuration: 2,
+    chronoPauseCycles: 2,
+    minPauseDuration: 1,
+    maxPauseDuration: 4,
   },
   {
     level: 18,
@@ -268,6 +319,9 @@ export const difficultyLevels = [
     chronoHideCycles: 3,
     minHideDuration: 1,
     maxHideDuration: 2,
+    chronoPauseCycles: 2,
+    minPauseDuration: 1,
+    maxPauseDuration: 5,
   },
   {
     level: 19,
@@ -283,6 +337,9 @@ export const difficultyLevels = [
     chronoHideCycles: 3,
     minHideDuration: 1,
     maxHideDuration: 2,
+    chronoPauseCycles: 3,
+    minPauseDuration: 1,
+    maxPauseDuration: 5,
   },
   {
     level: 20,
@@ -298,6 +355,9 @@ export const difficultyLevels = [
     chronoHideCycles: 4,
     minHideDuration: 1.5,
     maxHideDuration: 5,
+    chronoPauseCycles: 3,
+    minPauseDuration: 1,
+    maxPauseDuration: 6,
   },
   {
     level: 21,
@@ -313,6 +373,9 @@ export const difficultyLevels = [
     chronoHideCycles: 4,
     minHideDuration: 1.5,
     maxHideDuration: 5,
+    chronoPauseCycles: 3,
+    minPauseDuration: 1,
+    maxPauseDuration: 7,
   },
   {
     level: 22,
@@ -328,6 +391,9 @@ export const difficultyLevels = [
     chronoHideCycles: 4,
     minHideDuration: 1.5,
     maxHideDuration: 5,
+    chronoPauseCycles: 3,
+    minPauseDuration: 1,
+    maxPauseDuration: 8,
   },
   {
     level: 23,
@@ -343,6 +409,9 @@ export const difficultyLevels = [
     chronoHideCycles: 4,
     minHideDuration: 1.5,
     maxHideDuration: 5,
+    chronoPauseCycles: 3,
+    minPauseDuration: 1,
+    maxPauseDuration: 9,
   },
   {
     level: 24,
@@ -358,6 +427,9 @@ export const difficultyLevels = [
     chronoHideCycles: 4,
     minHideDuration: 1.5,
     maxHideDuration: 5,
+    chronoPauseCycles: 3,
+    minPauseDuration: 1,
+    maxPauseDuration: 10,
   },
   {
     level: 25,
@@ -373,6 +445,9 @@ export const difficultyLevels = [
     chronoHideCycles: 4,
     minHideDuration: 1.5,
     maxHideDuration: 5,
+    chronoPauseCycles: 3,
+    minPauseDuration: 1,
+    maxPauseDuration: 12,
   },
   {
     level: 26,
@@ -388,6 +463,9 @@ export const difficultyLevels = [
     chronoHideCycles: 5,
     minHideDuration: 2,
     maxHideDuration: 10,
+    chronoPauseCycles: 4,
+    minPauseDuration: 1,
+    maxPauseDuration: 14,
   },
   {
     level: 27,
@@ -403,6 +481,9 @@ export const difficultyLevels = [
     chronoHideCycles: 5,
     minHideDuration: 2,
     maxHideDuration: 10,
+    chronoPauseCycles: 4,
+    minPauseDuration: 1,
+    maxPauseDuration: 15,
   },
   {
     level: 28,
@@ -418,6 +499,9 @@ export const difficultyLevels = [
     chronoHideCycles: 5,
     minHideDuration: 2,
     maxHideDuration: 10,
+    chronoPauseCycles: 4,
+    minPauseDuration: 1,
+    maxPauseDuration: 17,
   },
   {
     level: 29,
@@ -433,6 +517,9 @@ export const difficultyLevels = [
     chronoHideCycles: 5,
     minHideDuration: 2,
     maxHideDuration: 10,
+    chronoPauseCycles: 4,
+    minPauseDuration: 1,
+    maxPauseDuration: 19,
   },
   {
     level: 30,
@@ -448,6 +535,9 @@ export const difficultyLevels = [
     chronoHideCycles: 5,
     minHideDuration: 2,
     maxHideDuration: 10,
+    chronoPauseCycles: 5,
+    minPauseDuration: 1,
+    maxPauseDuration: 20,
   },
 ];
 

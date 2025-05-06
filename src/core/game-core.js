@@ -24,15 +24,31 @@ let chronoHideCycles = 0;
 let minHideDuration = 0;
 let maxHideDuration = 0;
 
+let chronoRun = true;
+let pauseTimeoutId = null;
+let chronoPauseCycles = 0;
+let minPauseDuration = 0;
+let maxPauseDuration = 0;
+
+let pauseTimeTotal = 0;
+let pauseStartTime = 0;
+
 /** Start the timer and updates state */
 export function start(onUpdate) {
   isRunning = true;
+  chronoRun = true;
   scheduleChronoHide();
+  scheduleChronoPause();
   startTime = performance.now();
+  pauseTimeTotal = 0;
+  pauseStartTime = 0;
   animationFrameId = requestAnimationFrame(function update() {
     const now = performance.now();
-    const elapsed = ((now - startTime) / 1000) * chronoSpeed;
-    onUpdate(elapsed);
+    const adjustedElapsed =
+      ((now - startTime - pauseTimeTotal) / 1000) * chronoSpeed;
+    if (chronoRun) {
+      onUpdate(adjustedElapsed);
+    }
     animationFrameId = requestAnimationFrame(update);
   });
 }
@@ -41,15 +57,24 @@ export function start(onUpdate) {
 export function stop() {
   isRunning = false;
   cancelAnimationFrame(animationFrameId);
-  return ((performance.now() - startTime) / 1000) * chronoSpeed;
+  if (!chronoRun) {
+    const now = performance.now();
+    pauseTimeTotal += now - pauseStartTime;
+  }
+  return (
+    ((performance.now() - startTime - pauseTimeTotal) / 1000) * chronoSpeed
+  );
 }
 
 /** Reset internal state */
 export function reset() {
   isRunning = false;
+  pauseTimeTotal = 0;
+  pauseStartTime = 0;
+  chronoRun = true;
   cancelAnimationFrame(animationFrameId);
-  applyDifficultySettings();
   clearTimeout(hideTimeoutId);
+  clearTimeout(pauseTimeoutId);
   chronoVisibility = true;
 }
 
@@ -66,6 +91,27 @@ function scheduleChronoHide() {
       scheduleChronoHide();
     }, delay * 1000);
   }, Math.random() * 2000 + 500);
+}
+
+function scheduleChronoPause() {
+  if (chronoPauseCycles <= 0) return;
+
+  const delay = Math.random() * 2000 + 500;
+  pauseTimeoutId = setTimeout(() => {
+    chronoRun = false;
+    pauseStartTime = performance.now();
+
+    const pauseDuration =
+      Math.random() * (maxPauseDuration - minPauseDuration) + minPauseDuration;
+
+    setTimeout(() => {
+      const pauseEndTime = performance.now();
+      pauseTimeTotal += pauseEndTime - pauseStartTime;
+      chronoRun = true;
+      chronoPauseCycles--;
+      scheduleChronoPause();
+    }, pauseDuration * 1000);
+  }, delay);
 }
 
 export function isChronoVisible() {
@@ -109,6 +155,9 @@ export function applyDifficultySettings() {
   chronoHideCycles = params.chronoHideCycles;
   minHideDuration = params.minHideDuration;
   maxHideDuration = params.maxHideDuration;
+  chronoPauseCycles = params.chronoPauseCycles;
+  minPauseDuration = params.minPauseDuration;
+  maxPauseDuration = params.maxPauseDuration;
 }
 
 /**
