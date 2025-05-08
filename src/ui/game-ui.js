@@ -32,7 +32,7 @@ const timer = document.getElementById("timer");
 const button = document.getElementById("start-stop-btn");
 const resultMsg = document.getElementById("result-msg");
 const diffMsg = document.getElementById("time-difference-msg");
-const streak = document.getElementById("current-streak");
+const streakDisplay = document.getElementById("current-streak");
 const scoreDisplay = document.getElementById("current-score");
 const gainDisplay = document.getElementById("score-gain");
 const target = document.getElementById("target");
@@ -123,7 +123,7 @@ function showResult(elapsed) {
 
   updateGain(computeScore(timeDeviation, getStreak()));
   updateScore(getGain());
-  updateStreakUI(feedbackColor);
+  updateStreakUI(feedbackColor, true);
 }
 
 /** Update UI colors and result message */
@@ -132,33 +132,41 @@ function displayFeedback(message, color) {
 }
 
 /** Update score streak display */
-export function updateStreakUI(feedbackColor) {
-  streak.classList.remove("roll-up", "pulse");
-  void streak.offsetWidth;
-  triggerRollUp(
-    streak,
-    () => {
-      streak.textContent = getStreak();
-    },
-    () => {
-      triggerPulse(streak);
-      updateGainUI(feedbackColor);
-    },
-    250
-  );
+export function updateStreakUI(feedbackColor, shouldAnimate) {
+  streakDisplay.classList.remove("roll-up", "pulse");
+  void streakDisplay.offsetWidth;
+  if (shouldAnimate) {
+    triggerRollUp(
+      streakDisplay,
+      () => {
+        streakDisplay.textContent = getStreak();
+      },
+      () => {
+        triggerPulse(streakDisplay);
+        updateGainUI(feedbackColor, shouldAnimate);
+      },
+      250
+    );
+  } else {
+    streakDisplay.textContent = getStreak();
+  }
 }
 
 /** Update score display */
-export function updateScoreUI() {
+export function updateScoreUI(shouldAnimate) {
   scoreDisplay.textContent = getScore();
-  triggerPulse(scoreDisplay);
+  if (shouldAnimate) {
+    triggerPulse(scoreDisplay);
+  }
 }
 
 /** Update score gain display */
-export function updateGainUI(color) {
+export function updateGainUI(color, shouldAnimate) {
   gainDisplay.textContent = `+${getGain()}`;
   gainDisplay.style.color = color;
-  triggerGainAnimation(gainDisplay, updateScoreUI);
+  if (shouldAnimate) {
+    triggerGainAnimation(gainDisplay, () => updateScoreUI(shouldAnimate));
+  }
 }
 
 /** Reset the timer UI */
@@ -170,6 +178,11 @@ export function resetTimerUI() {
   diffMsg.textContent = "";
   button.textContent = "START";
   button.classList.remove("stop", "restart");
+  scoreDisplay.classList.remove("pulse");
+  streakDisplay.classList.remove("pulse");
+  streakDisplay.classList.remove("roll-up");
+  gainDisplay.classList.remove("animate");
+  gainDisplay.classList.add("hidden");
 
   const circleMargin = getCircleMargin();
   setCircleVisibility();

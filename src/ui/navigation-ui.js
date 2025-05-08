@@ -63,8 +63,8 @@ export function setupNavigation() {
     resetStreak();
     resetScore();
     resetGain();
-    updateStreakUI();
-    updateScoreUI();
-    updateGainUI();
+    updateStreakUI("#ff5252", false);
+    updateScoreUI(false);
+    updateGainUI(false);
   });
 }
