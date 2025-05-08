@@ -76,6 +76,8 @@ function updateDisplay(elapsed) {
 
   setProgress(capped / getTargetTime());
   target.textContent = getTargetTime().toFixed(getDecimalCount());
+  streakDisplay.style.color = "#ffffff";
+  scoreDisplay.style.color = "#ffffff";
 }
 
 /** Display result at the end */
@@ -98,32 +100,45 @@ function showResult(elapsed) {
   timer.textContent = elapsed.toFixed(getDecimalCount()) + "s";
 
   let feedbackColor;
-
-  console.log(`Precision: ${precisionPercentage.toFixed(getDecimalCount())}%`);
+  let scored = false;
 
   if (precisionPercentage >= 100 - precisionMargin * 0.01) {
     feedbackColor = "#00e676";
     displayFeedback("🎯 Perfect!", feedbackColor);
     incrementStreak();
+    scored = true;
   } else if (precisionPercentage >= 100 - precisionMargin * 0.2) {
     feedbackColor = "#67e535";
     displayFeedback("👍 Good job!", feedbackColor);
     incrementStreak();
+    scored = true;
   } else if (precisionPercentage >= 100 - precisionMargin) {
     feedbackColor = "#ffeb3b";
     displayFeedback("💪 You can do better!", feedbackColor);
     triggerShake(timer);
+    scored = true;
   } else {
     feedbackColor = "#ff5252";
+    streakDisplay.style.color = feedbackColor;
+    scoreDisplay.style.color = feedbackColor;
     displayFeedback("❌ Missed!", feedbackColor);
     triggerShake(timer);
     resetStreak();
     resetScore();
+    updateStreakUI(feedbackColor, false);
+    updateScoreUI(false);
+    triggerShake(scoreDisplay);
+    triggerShake(streakDisplay);
+    gainDisplay.classList.add("hidden");
   }
 
-  updateGain(computeScore(timeDeviation, getStreak()));
-  updateScore(getGain());
-  updateStreakUI(feedbackColor, true);
+  if (scored) {
+    updateGain(computeScore(timeDeviation, getStreak()));
+    updateScore(getGain());
+    updateGainUI(feedbackColor, true);
+  }
+
+  updateStreakUI(feedbackColor, scored);
 }
 
 /** Update UI colors and result message */
@@ -192,6 +207,7 @@ export function resetTimerUI() {
     circleMargin
   );
   setProgress(0);
+  updateScoreUI(false);
 }
 
 /** Start or stop timer on button click */
