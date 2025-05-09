@@ -7,8 +7,8 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%; /* ou fixe comme 300px si souhaité */
-  max-width: 320px;
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -23,6 +23,7 @@ main {
 
 .streak-container,
 .separator-container,
+.precision-container,
 .score-container {
   flex: 1 1 0;
   display: flex;

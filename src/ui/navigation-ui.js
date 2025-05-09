@@ -4,6 +4,7 @@ import {
   resetTimerUI,
   updateScoreUI,
   updateGainUI,
+  updatePrecisionUI,
 } from "./game-ui.js";
 
 const backBtn = document.getElementById("back-to-menu-btn");
@@ -66,5 +67,6 @@ export function setupNavigation() {
     updateStreakUI("#ff5252", false);
     updateScoreUI(false);
     updateGainUI(false);
+    updatePrecisionUI(0);
   });
 }

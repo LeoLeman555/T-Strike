@@ -47,3 +47,11 @@
   min-width: 3ch;
   text-align: center;
 }
+
+#current-precision {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  min-width: 3ch;
+  text-align: center;
+}

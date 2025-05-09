@@ -37,6 +37,7 @@ const resultMsg = document.getElementById("result-msg");
 const diffMsg = document.getElementById("time-difference-msg");
 const streakDisplay = document.getElementById("current-streak");
 const scoreDisplay = document.getElementById("current-score");
+const precisionDisplay = document.getElementById("current-precision");
 const gainDisplay = document.getElementById("score-gain");
 const target = document.getElementById("target");
 const targetTimeDisplay = document.querySelector(".target-time");
@@ -96,6 +97,7 @@ function updateDisplay(elapsed) {
   target.textContent = getTargetTime().toFixed(getDecimalCount());
   streakDisplay.style.color = "#ffffff";
   scoreDisplay.style.color = "#ffffff";
+  precisionDisplay.style.color = "#ffffff";
 }
 
 /** Display result at the end */
@@ -139,6 +141,7 @@ function showResult(elapsed) {
     feedbackColor = "#ff5252";
     streakDisplay.style.color = feedbackColor;
     scoreDisplay.style.color = feedbackColor;
+    precisionDisplay.style.color = feedbackColor;
     displayFeedback("❌ Missed!", feedbackColor);
     triggerShake(timer);
     resetStreak();
@@ -147,6 +150,7 @@ function showResult(elapsed) {
     updateScoreUI(false);
     triggerShake(scoreDisplay);
     triggerShake(streakDisplay);
+    triggerShake(precisionDisplay);
     gainDisplay.classList.add("hidden");
   }
 
@@ -157,11 +161,16 @@ function showResult(elapsed) {
   }
 
   updateStreakUI(feedbackColor, scored);
+  updatePrecisionUI(precisionPercentage);
 }
 
 /** Update UI colors and result message */
 function displayFeedback(message, color) {
   applyFeedbackColor(timer, resultMsg, circle, color, message);
+}
+
+export function updatePrecisionUI(percentage) {
+  precisionDisplay.textContent = `${percentage.toFixed(getDecimalCount())}%`;
 }
 
 /** Update score streak display */
