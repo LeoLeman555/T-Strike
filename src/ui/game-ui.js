@@ -26,6 +26,7 @@ import {
   triggerRollUp,
   triggerGainAnimation,
   applyFeedbackColor,
+  animateCircleVisibility,
 } from "../utils/effects.js";
 
 const timer = document.getElementById("timer");
@@ -36,6 +37,7 @@ const streakDisplay = document.getElementById("current-streak");
 const scoreDisplay = document.getElementById("current-score");
 const gainDisplay = document.getElementById("score-gain");
 const target = document.getElementById("target");
+const targetTimeDisplay = document.querySelector(".target-time");
 const circle = document.querySelector(".progress-ring-circle");
 
 const radius = circle.r.baseVal.value;
@@ -59,7 +61,13 @@ function setProgress(progress) {
 }
 
 function setCircleVisibility() {
-  circle.style.display = getCircleVisibility() ? "block" : "none";
+  if (!getCircleVisibility()) {
+    animateCircleVisibility(circle);
+  } else {
+    circle.classList.remove("circle-fade-out");
+    circle.style.display = "block";
+    circle.style.opacity = 1;
+  }
 }
 
 /** Update the timer text and progress circle */
@@ -215,6 +223,7 @@ export function setupTimerUI() {
   button.addEventListener("click", () => {
     if (!isTimerRunning()) {
       resetTimerUI();
+      triggerPulse(targetTimeDisplay);
       start(updateDisplay);
       button.textContent = "STOP";
       button.classList.add("stop");

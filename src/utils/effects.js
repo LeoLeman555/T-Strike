@@ -79,3 +79,12 @@ export function applyFeedbackColor(
   timerElement.style.color = color;
   circleElement.setAttribute("stroke", color);
 }
+
+export function animateCircleVisibility(element) {
+  element.classList.remove("circle-fade-out");
+  void element.offsetWidth;
+  element.classList.add("circle-fade-out");
+  setTimeout(() => {
+    element.style.display = "none";
+  }, 3000);
+}

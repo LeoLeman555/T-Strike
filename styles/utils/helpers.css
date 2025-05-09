@@ -58,6 +58,33 @@
   }
 }
 
+@keyframes blink-fade-out {
+  0% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /* Shake effect class */
 .shake {
   animation: shake 0.4s ease-in-out;
@@ -72,4 +99,9 @@
 .roll-up {
   animation: roll-up 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-block;
+}
+
+/* Fade out effect class */
+.circle-fade-out {
+  animation: blink-fade-out 3s forwards;
 }
