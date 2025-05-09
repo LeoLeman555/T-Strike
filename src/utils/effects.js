@@ -88,3 +88,9 @@ export function animateCircleVisibility(element) {
     element.style.display = "none";
   }, 3000);
 }
+
+export function triggerDirectionFlip(element) {
+  element.classList.remove("direction-change");
+  void element.offsetWidth;
+  element.classList.add("direction-change");
+}

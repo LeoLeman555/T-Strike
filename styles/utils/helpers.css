@@ -85,6 +85,18 @@
   }
 }
 
+@keyframes flip {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(-1);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
 /* Shake effect class */
 .shake {
   animation: shake 0.4s ease-in-out;
@@ -104,4 +116,8 @@
 /* Fade out effect class */
 .circle-fade-out {
   animation: blink-fade-out 3s forwards;
+}
+
+.direction-change {
+  animation: flip 0.5s ease;
 }

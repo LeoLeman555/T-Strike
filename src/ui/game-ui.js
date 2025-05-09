@@ -18,6 +18,7 @@ import {
   getCircleMargin,
   getCircleVisibility,
   isChronoVisible,
+  isChronoInvertedActive,
 } from "../core/game-core.js";
 
 import {
@@ -27,6 +28,7 @@ import {
   triggerGainAnimation,
   applyFeedbackColor,
   animateCircleVisibility,
+  triggerDirectionFlip,
 } from "../utils/effects.js";
 
 const timer = document.getElementById("timer");
@@ -43,6 +45,8 @@ const circle = document.querySelector(".progress-ring-circle");
 const radius = circle.r.baseVal.value;
 const circumference = 2 * Math.PI * radius;
 let circleOffsetBias = 0;
+
+let previousDirection = 1; // 1 = normal, -1 = reverse
 
 circle.style.strokeDasharray = `${circumference} ${circumference}`;
 circle.style.strokeDashoffset = `${circumference}`;
@@ -80,6 +84,12 @@ function updateDisplay(elapsed) {
     timer.style.opacity = 1;
   } else {
     timer.style.opacity = 0;
+  }
+
+  const currentDirection = Math.sign(!isChronoInvertedActive());
+  if (currentDirection !== previousDirection) {
+    triggerDirectionFlip(timer);
+    previousDirection = currentDirection;
   }
 
   setProgress(capped / getTargetTime());
@@ -206,6 +216,8 @@ export function resetTimerUI() {
   streakDisplay.classList.remove("roll-up");
   gainDisplay.classList.remove("animate");
   gainDisplay.classList.add("hidden");
+
+  previousDirection = 1;
 
   const circleMargin = getCircleMargin();
   setCircleVisibility();
