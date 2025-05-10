@@ -161,7 +161,7 @@ function showResult(elapsed) {
   }
 
   updateStreakUI(feedbackColor, scored);
-  updatePrecisionUI(precisionPercentage);
+  updatePrecisionUI(feedbackColor, precisionPercentage, true);
 }
 
 /** Update UI colors and result message */
@@ -169,8 +169,12 @@ function displayFeedback(message, color) {
   applyFeedbackColor(timer, resultMsg, circle, color, message);
 }
 
-export function updatePrecisionUI(percentage) {
+export function updatePrecisionUI(feedbackColor, percentage, shouldAnimate) {
   precisionDisplay.textContent = `${percentage.toFixed(getDecimalCount())}%`;
+  if (shouldAnimate) {
+    precisionDisplay.style.color = feedbackColor;
+    triggerPulse(precisionDisplay);
+  }
 }
 
 /** Update score streak display */
@@ -225,6 +229,9 @@ export function resetTimerUI() {
   streakDisplay.classList.remove("roll-up");
   gainDisplay.classList.remove("animate");
   gainDisplay.classList.add("hidden");
+  precisionDisplay.style.color = "#ffffff";
+  streakDisplay.style.color = "#ffffff";
+  scoreDisplay.style.color = "#ffffff";
 
   previousDirection = 1;
 

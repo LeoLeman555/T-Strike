@@ -67,6 +67,6 @@ export function setupNavigation() {
     updateStreakUI("#ff5252", false);
     updateScoreUI(false);
     updateGainUI(false);
-    updatePrecisionUI(0);
+    updatePrecisionUI("#ffffff", 0, false);
   });
 }
