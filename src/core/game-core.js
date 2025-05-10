@@ -42,6 +42,8 @@ let maxInvertDuration = 0;
 let currentElapsedTime = 0;
 let lastFrameTime = 0;
 
+const precisionHistory = [];
+
 /** Start the timer and updates state */
 export function start(onUpdate) {
   isRunning = true;
@@ -233,6 +235,50 @@ export function computeScore(diff, streak) {
 
   const multiplier = 1 + Math.log2(streak + 1) * 0.1;
   return Math.round(base * multiplier);
+}
+
+/**
+ * Return the precision percentage based on the deviation from target
+ * @param {number} actualTime - The time measured
+ * @param {number} targetTime - The target time to reach
+ * @returns {number} - Precision in percentage (0–100)
+ */
+export function computePrecision(actualTime, targetTime) {
+  const deviation = Math.abs(actualTime - targetTime);
+  const precision = 100 - (deviation / targetTime) * 100;
+  return Math.max(0, Number(precision.toFixed(getDecimalCount())));
+}
+
+/**
+ * Add a precision entry to the history
+ * @param {number} value - The precision percentage to store
+ */
+export function recordPrecision(value) {
+  precisionHistory.push(value);
+}
+
+/**
+ * Return the average of all recorded precision percentages
+ * @returns {number}
+ */
+export function getAveragePrecision() {
+  const sum = precisionHistory.reduce((acc, val) => acc + val, 0);
+  return Number((sum / precisionHistory.length).toFixed(getDecimalCount()));
+}
+
+/**
+ * Get the delta between the current precision and the average
+ * @param {number} current - The current attempt's precision
+ * @returns {number}
+ */
+export function getPrecisionDelta(current) {
+  if (precisionHistory.length < 2) return 0;
+  const average = getAveragePrecision();
+  return Number((current - average).toFixed(getDecimalCount()));
+}
+
+export function resetPrecisionHistory() {
+  precisionHistory.length = 0;
 }
 
 /**

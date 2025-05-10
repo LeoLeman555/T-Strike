@@ -19,6 +19,11 @@ import {
   getCircleVisibility,
   isChronoVisible,
   isChronoInvertedActive,
+  computePrecision,
+  recordPrecision,
+  getPrecisionDelta,
+  getAveragePrecision,
+  resetPrecisionHistory,
 } from "../core/game-core.js";
 
 import {
@@ -38,6 +43,9 @@ const diffMsg = document.getElementById("time-difference-msg");
 const streakDisplay = document.getElementById("current-streak");
 const scoreDisplay = document.getElementById("current-score");
 const precisionDisplay = document.getElementById("current-precision");
+export const differenceDisplay = document.getElementById(
+  "precision-difference"
+);
 const gainDisplay = document.getElementById("score-gain");
 const target = document.getElementById("target");
 const targetTimeDisplay = document.querySelector(".target-time");
@@ -102,18 +110,18 @@ function updateDisplay(elapsed) {
 
 /** Display result at the end */
 function showResult(elapsed) {
+  const targetTime = getTargetTime();
   const rounded = Number(elapsed.toFixed(getDecimalCount()));
-  const timeDeviation = Math.abs(rounded - getTargetTime());
+  const timeDeviation = Math.abs(rounded - targetTime);
   const precisionMargin = getPrecisionMargin();
 
   diffMsg.textContent = `Difference: ${timeDeviation.toFixed(
     getDecimalCount()
   )}s`;
 
-  const precisionPercentage = Math.max(
-    0,
-    100 - (timeDeviation / getTargetTime()) * 100
-  );
+  const precisionPercentage = computePrecision(rounded, targetTime);
+  recordPrecision(precisionPercentage);
+  const delta = getPrecisionDelta(precisionPercentage);
   updateDisplay(elapsed);
 
   timer.style.opacity = 1;
@@ -146,11 +154,13 @@ function showResult(elapsed) {
     triggerShake(timer);
     resetStreak();
     resetScore();
+    resetPrecisionHistory();
     updateStreakUI(feedbackColor, false);
     updateScoreUI(false);
     triggerShake(scoreDisplay);
     triggerShake(streakDisplay);
     triggerShake(precisionDisplay);
+    differenceDisplay.hidden = true;
     gainDisplay.classList.add("hidden");
   }
 
@@ -158,6 +168,7 @@ function showResult(elapsed) {
     updateGain(computeScore(timeDeviation, getStreak()));
     updateScore(getGain());
     updateGainUI(feedbackColor, true);
+    updatePrecisionDifferenceUI(delta, true);
   }
 
   updateStreakUI(feedbackColor, scored);
@@ -167,6 +178,17 @@ function showResult(elapsed) {
 /** Update UI colors and result message */
 function displayFeedback(message, color) {
   applyFeedbackColor(timer, resultMsg, circle, color, message);
+}
+
+export function updatePrecisionDifferenceUI(delta, shouldAnimate) {
+  differenceDisplay.hidden = false;
+  if (Math.abs(delta) < 0.01) {
+    differenceDisplay.textContent = `±0%`;
+    differenceDisplay.style.color = "#ffffff";
+  } else {
+    differenceDisplay.textContent = delta > 0 ? `+${delta}%` : `${delta}%`;
+    differenceDisplay.style.color = delta >= 0 ? "#67e535" : "#ff5252";
+  }
 }
 
 export function updatePrecisionUI(feedbackColor, percentage, shouldAnimate) {
@@ -232,6 +254,7 @@ export function resetTimerUI() {
   precisionDisplay.style.color = "#ffffff";
   streakDisplay.style.color = "#ffffff";
   scoreDisplay.style.color = "#ffffff";
+  differenceDisplay.hidden = true;
 
   previousDirection = 1;
 

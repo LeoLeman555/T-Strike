@@ -55,3 +55,19 @@
   min-width: 3ch;
   text-align: center;
 }
+.precision-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#precision-difference {
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+}
