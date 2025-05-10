@@ -22,7 +22,6 @@ import {
   computePrecision,
   recordPrecision,
   getPrecisionDelta,
-  getAveragePrecision,
   resetPrecisionHistory,
 } from "../core/game-core.js";
 
@@ -34,6 +33,7 @@ import {
   applyFeedbackColor,
   animateCircleVisibility,
   triggerDirectionFlip,
+  triggerFloatUp,
 } from "../utils/effects.js";
 
 const timer = document.getElementById("timer");
@@ -183,11 +183,14 @@ function displayFeedback(message, color) {
 export function updatePrecisionDifferenceUI(delta, shouldAnimate) {
   differenceDisplay.hidden = false;
   if (Math.abs(delta) < 0.01) {
-    differenceDisplay.textContent = `±0%`;
+    differenceDisplay.textContent = ``;
     differenceDisplay.style.color = "#ffffff";
   } else {
     differenceDisplay.textContent = delta > 0 ? `+${delta}%` : `${delta}%`;
     differenceDisplay.style.color = delta >= 0 ? "#67e535" : "#ff5252";
+  }
+  if (shouldAnimate) {
+    triggerFloatUp(differenceDisplay);
   }
 }
 

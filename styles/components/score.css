@@ -64,8 +64,7 @@
 
 #precision-difference {
   position: absolute;
-  bottom: 100%;
-  margin-bottom: 0.25rem;
+  bottom: calc(100% - 0.75rem);
   font-size: 1rem;
   font-weight: bold;
   color: white;

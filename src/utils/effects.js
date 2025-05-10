@@ -94,3 +94,14 @@ export function triggerDirectionFlip(element) {
   void element.offsetWidth;
   element.classList.add("direction-change");
 }
+
+export function triggerFloatUp(element) {
+  element.hidden = false;
+  element.classList.remove("float-up");
+  void element.offsetWidth;
+  element.classList.add("float-up");
+  setTimeout(() => {
+    element.classList.remove("float-up");
+    element.hidden = true;
+  }, 800);
+}
