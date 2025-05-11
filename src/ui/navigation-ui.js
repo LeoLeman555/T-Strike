@@ -1,18 +1,4 @@
-import {
-  resetStreak,
-  resetScore,
-  resetGain,
-  resetPrecisionHistory,
-} from "../core/game-core.js";
-import {
-  updateStreakUI,
-  resetTimerUI,
-  updateScoreUI,
-  updateGainUI,
-  updatePrecisionUI,
-  updatePrecisionDifferenceUI,
-  differenceDisplay,
-} from "./game-ui.js";
+import { resetGameUI } from "./game-ui.js";
 
 const backBtn = document.getElementById("back-to-menu-btn");
 const screens = document.querySelectorAll(".screen");
@@ -67,16 +53,6 @@ export function setupNavigation() {
 
   backBtn.addEventListener("click", () => {
     showScreen("menu");
-    resetTimerUI();
-    resetStreak();
-    resetScore();
-    resetGain();
-    resetPrecisionHistory();
-    updateStreakUI("#ff5252", false);
-    updateScoreUI(false);
-    updateGainUI(false);
-    updatePrecisionUI("#ffffff", 0, false);
-    updatePrecisionDifferenceUI(0, false);
-    differenceDisplay.hidden = true;
+    resetGameUI();
   });
 }

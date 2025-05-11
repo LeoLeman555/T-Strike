@@ -23,6 +23,7 @@ import {
   recordPrecision,
   getPrecisionDelta,
   resetPrecisionHistory,
+  resetGain,
 } from "../core/game-core.js";
 
 import {
@@ -240,27 +241,38 @@ export function updateGainUI(color, shouldAnimate) {
   }
 }
 
-/** Reset the timer UI */
-export function resetTimerUI() {
+/** Reset only the current round state (UI + timer logic) */
+export function resetRoundUI() {
+  console.log("[INFO] Round reset");
+
+  // Core logic reset
   reset();
+
+  // Timer display
   timer.textContent = "0.00s";
   timer.style.color = "#ffffff";
+
+  // UI text & button
   resultMsg.textContent = "";
   diffMsg.textContent = "";
   button.textContent = "START";
   button.classList.remove("stop", "restart");
+
+  // UI states cleanup
   scoreDisplay.classList.remove("pulse");
-  streakDisplay.classList.remove("pulse");
-  streakDisplay.classList.remove("roll-up");
+  streakDisplay.classList.remove("pulse", "roll-up");
   gainDisplay.classList.remove("animate");
   gainDisplay.classList.add("hidden");
+
+  // Reset text colors
   precisionDisplay.style.color = "#ffffff";
   streakDisplay.style.color = "#ffffff";
   scoreDisplay.style.color = "#ffffff";
-  differenceDisplay.hidden = true;
 
+  differenceDisplay.hidden = true;
   previousDirection = 1;
 
+  // Circular progress reset
   const circleMargin = getCircleMargin();
   setCircleVisibility();
   circle.setAttribute("stroke", "#ffffff");
@@ -269,14 +281,39 @@ export function resetTimerUI() {
     circleMargin
   );
   setProgress(0);
+
+  // Update static score display
   updateScoreUI(false);
+}
+
+/** Fully reset the game session (UI + core state) */
+export function resetGameUI() {
+  console.log("[INFO] Game session reset");
+
+  // Reset core game stats
+  resetScore();
+  resetStreak();
+  resetGain();
+  resetPrecisionHistory();
+
+  // Reset round-specific UI
+  resetRoundUI();
+
+  // Reset feedback-related UI components
+  updateStreakUI("#ffffff", false);
+  updateScoreUI(false);
+  updateGainUI("#ffffff", false);
+  updatePrecisionUI("#ffffff", 0, false);
+  updatePrecisionDifferenceUI(0, false);
+
+  differenceDisplay.hidden = true;
 }
 
 /** Start or stop timer on button click */
 export function setupTimerUI() {
   button.addEventListener("click", () => {
     if (!isTimerRunning()) {
-      resetTimerUI();
+      resetRoundUI();
       triggerPulse(targetTimeDisplay);
       start(updateDisplay);
       button.textContent = "STOP";
