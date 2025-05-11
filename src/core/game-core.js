@@ -44,6 +44,8 @@ let lastFrameTime = 0;
 
 const precisionHistory = [];
 
+let maxGain = 0;
+
 /** Start the timer and updates state */
 export function start(onUpdate) {
   isRunning = true;
@@ -262,8 +264,14 @@ export function recordPrecision(value) {
  * @returns {number}
  */
 export function getAveragePrecision() {
+  if (precisionHistory.length === 0) return 0;
   const sum = precisionHistory.reduce((acc, val) => acc + val, 0);
   return Number((sum / precisionHistory.length).toFixed(getDecimalCount()));
+}
+
+export function getAverageScore() {
+  if (precisionHistory.length === 0) return 0;
+  return getScore() / precisionHistory.length;
 }
 
 /**
@@ -306,17 +314,25 @@ export function getGain() {
   return scoreGain;
 }
 
+export function getMaxGain() {
+  return maxGain;
+}
+
 /**
  * Update the gain with a new score value.
  * @param {number} score - The new gain value.
  */
 export function updateGain(score) {
   scoreGain = score;
+  if (scoreGain > maxGain) {
+    maxGain = scoreGain;
+  }
 }
 
 /** Reset the gain value to zero. */
 export function resetGain() {
   scoreGain = 0;
+  maxGain = 0;
 }
 
 /** Return current streak count */

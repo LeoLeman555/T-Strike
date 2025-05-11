@@ -24,6 +24,9 @@ import {
   getPrecisionDelta,
   resetPrecisionHistory,
   resetGain,
+  getMaxGain,
+  getAveragePrecision,
+  getAverageScore,
 } from "../core/game-core.js";
 
 import {
@@ -36,9 +39,11 @@ import {
   triggerDirectionFlip,
   triggerFloatUp,
 } from "../utils/effects.js";
+import { showScreen } from "./navigation-ui.js";
 
 const timer = document.getElementById("timer");
 const button = document.getElementById("start-stop-btn");
+const newGameButton = document.getElementById("btn-restart");
 const resultMsg = document.getElementById("result-msg");
 const diffMsg = document.getElementById("time-difference-msg");
 const streakDisplay = document.getElementById("current-streak");
@@ -152,17 +157,17 @@ function showResult(elapsed) {
     scoreDisplay.style.color = feedbackColor;
     precisionDisplay.style.color = feedbackColor;
     displayFeedback("❌ Missed!", feedbackColor);
-    triggerShake(timer);
-    resetStreak();
-    resetScore();
-    resetPrecisionHistory();
     updateStreakUI(feedbackColor, false);
     updateScoreUI(false);
+    triggerShake(timer);
     triggerShake(scoreDisplay);
     triggerShake(streakDisplay);
     triggerShake(precisionDisplay);
     differenceDisplay.hidden = true;
     gainDisplay.classList.add("hidden");
+    setTimeout(() => {
+      showEndScreen();
+    }, 1500);
   }
 
   if (scored) {
@@ -251,6 +256,7 @@ export function resetRoundUI() {
   // Timer display
   timer.textContent = "0.00s";
   timer.style.color = "#ffffff";
+  target.textContent = getTargetTime().toFixed(getDecimalCount());
 
   // UI text & button
   resultMsg.textContent = "";
@@ -327,4 +333,26 @@ export function setupTimerUI() {
       button.classList.remove("stop");
     }
   });
+}
+
+function showEndScreen() {
+  console.log("[INFO] Game Over");
+  document.getElementById("stat-precision").textContent = getAveragePrecision();
+  document.getElementById("stat-score").textContent = getScore() + " PTS";
+  document.getElementById("stat-avg-score").textContent =
+    getAverageScore().toFixed(0) + " PTS";
+  document.getElementById("stat-streak").textContent = getStreak();
+  document.getElementById("stat-best-score").textContent =
+    getMaxGain() + " PTS";
+
+  showScreen("end-screen");
+
+  newGameButton.addEventListener(
+    "click",
+    () => {
+      resetGameUI();
+      showScreen("game");
+    },
+    { once: true }
+  );
 }

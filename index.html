@@ -109,6 +109,18 @@
         ></p>
         <p class="result-msg" id="result-msg" aria-live="polite"></p>
       </section>
+
+      <section id="end-screen" class="screen" hidden>
+        <h2>Game Over</h2>
+        <ul>
+          <li>Average Precision: <span id="stat-precision"></span>%</li>
+          <li>Total Score: <span id="stat-score"></span></li>
+          <li>Average Score: <span id="stat-avg-score"></span></li>
+          <li>Streak: <span id="stat-streak"></span></li>
+          <li>Best Round Score: <span id="stat-best-score"></span></li>
+        </ul>
+        <button id="btn-restart">New Game</button>
+      </section>
     </main>
 
     <script type="module" src="src/main.js"></script>
