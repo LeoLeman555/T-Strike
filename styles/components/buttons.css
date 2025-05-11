@@ -53,3 +53,19 @@ button:hover {
   transform: scale(1.1);
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
+
+#btn-restart {
+  background-color: #67e535;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+#btn-restart:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
