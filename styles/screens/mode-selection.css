@@ -46,4 +46,5 @@
   padding: 2rem;
   color: #39ff14;
   text-shadow: 0 0 3px #39ff14, 0 0 6px #39ff14;
+  animation: neon-blink 0.9s infinite steps(1);
 }
