@@ -17,8 +17,17 @@ h2 {
 }
 
 h1 {
+  margin: 4rem;
   font-size: 3.125rem;
   color: #39ff14;
+  text-align: center;
+  animation: neon-glow 2s infinite ease-in-out;
+  transition: transform 0.3s ease;
+}
+
+h1:hover {
+  transform: scale(1.08);
+  text-shadow: 0 0 15px #39ff14, 0 0 30px #39ff14, 0 0 60px #0f0;
 }
 
 h2 {

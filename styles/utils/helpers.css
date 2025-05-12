@@ -154,6 +154,24 @@
   }
 }
 
+@keyframes neon-glow {
+  0% {
+    text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14,
+      0 0 40px #0f0;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14,
+      0 0 80px #0f0;
+    transform: scale(1.1);
+  }
+  100% {
+    text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14,
+      0 0 40px #0f0;
+    transform: scale(1);
+  }
+}
+
 /* Shake effect class */
 .shake {
   animation: shake 0.4s ease-in-out;
