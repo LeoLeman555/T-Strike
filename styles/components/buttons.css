@@ -1,19 +1,24 @@
-/* Button components */
 button {
   padding: 0.625rem 1.25rem;
   font-size: 1.2rem;
-  background-color: #00c853;
-  color: #ffffff;
-  border: none;
+  background-color: transparent;
+  color: #39ff14;
+  border: 2px solid #39ff14;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
 }
 
 button:hover {
-  background-color: #00e676;
+  color: #39ff14;
+  border-color: #39ff14;
+  box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14;
 }
 
+/* Back button */
 .back-btn {
   position: absolute;
   top: 20px;
@@ -21,51 +26,63 @@ button:hover {
   padding: 0.5rem 0.875rem;
   font-size: 1rem;
   z-index: 1000;
-  transition: transform 0.2s ease-in-out;
+  background-color: transparent;
+  border: 2px solid #39ff14;
+  color: #39ff14;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+  box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14;
 }
 
 .back-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
 }
 
+/* Start/Stop Button */
 #start-stop-btn {
-  background-color: #67e535;
-  color: white;
+  background-color: transparent;
+  color: #39ff14;
+  border: 2px solid #39ff14;
   padding: 12px 24px;
   font-size: 1.2rem;
-  border: none;
   border-radius: 8px;
   cursor: pointer;
   margin-top: 20px;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
 }
 
+/* States */
 #start-stop-btn.restart {
-  background-color: #e5d035;
+  border-color: #ffff00;
+  color: #ffff00;
+  box-shadow: 0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00;
 }
 
 #start-stop-btn.stop {
-  background-color: #e53935;
+  border-color: #ff1e1e;
+  color: #ff1e1e;
+  box-shadow: 0 0 5px #ff1e1e, 0 0 10px #ff1e1e, 0 0 20px #ff1e1e;
 }
 
 #start-stop-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
 
+/* Restart Button */
 #btn-restart {
-  background-color: #67e535;
-  color: white;
+  background-color: transparent;
+  color: #39ff14;
+  border: 2px solid #39ff14;
   padding: 12px 24px;
   font-size: 1rem;
-  border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14;
 }
 
 #btn-restart:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
 }

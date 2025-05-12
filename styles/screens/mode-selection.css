@@ -1,29 +1,49 @@
-/* Mode selection screen */
 .mode-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  font-family: "Orbitron", sans-serif;
+  color: #ffffff;
 }
 
 .mode-option {
   cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  border-radius: 8px;
+  text-shadow: 0 0 4px #39ff14, 0 0 8px #39ff14;
 }
 
 .mode-option-selected {
   font-size: 2.5rem;
   font-weight: bold;
   transform: scale(1.05);
+  color: #39ff14;
+  text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14;
+}
+
+.mode-option-selected:hover {
+  transform: scale(1.3);
+  text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14 0 0 20px #39ff14;
 }
 
 .mode-option-small {
   font-size: 1.2rem;
-  opacity: 0.6;
+  opacity: 0.5;
+  color: #888;
+  text-shadow: none;
+}
+
+.mode-option-small:hover {
+  transform: scale(1.2);
+  opacity: 1;
+  color: #39ff14;
+  text-shadow: 0 0 6px #39ff14, 0 0 12px #39ff14, 0 0 20px #39ff14;
 }
 
 .mode-instruction {
   font-size: 0.9rem;
   padding: 2rem;
-  color: #aaaaaa;
+  color: #39ff14;
+  text-shadow: 0 0 3px #39ff14, 0 0 6px #39ff14;
 }

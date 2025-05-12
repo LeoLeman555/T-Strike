@@ -5,15 +5,13 @@
   align-items: center;
   padding: 2rem;
   text-align: center;
-  color: #ffffff;
+  color: #39ff14;
+  font-family: "Orbitron", sans-serif;
   border-radius: 12px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
   min-height: 100vh;
 }
 
 #end-screen h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
   animation: fade-in-down 0.8s ease-out forwards;
 }
 
@@ -30,14 +28,17 @@
 #end-screen li {
   font-size: 1.1rem;
   margin: 0.6rem 0;
-  background-color: #333;
+  background-color: rgba(0, 0, 0, 0.6);
   padding: 0.8rem 1rem;
   border-radius: 8px;
+  color: #39ff14;
+  text-shadow: 0 0 4px #39ff14, 0 0 10px #39ff14;
+  border: 1px solid #39ff14;
   animation: fade-in-up 0.6s ease-out forwards;
   opacity: 0;
 }
 
-/* Staggered animation delays */
+/* Staggered animation delays conservées */
 #end-screen li:nth-child(1) {
   animation-delay: 0.3s;
 }

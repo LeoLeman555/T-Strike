@@ -13,12 +13,21 @@ main {
 }
 
 .container,
-.tutorial-container,
 .game-container,
 .mode-selection-container {
   max-width: 600px;
   margin-inline: auto;
   padding: 2rem;
+  color: #ffffff;
+  text-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff;
+}
+
+.tutorial-container {
+  max-width: 700px;
+  margin-inline: auto;
+  padding: 2rem;
+  color: #ffffff;
+  text-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff;
 }
 
 .streak-container,

@@ -110,8 +110,11 @@ function updateDisplay(elapsed) {
   setProgress(capped / getTargetTime());
   target.textContent = getTargetTime().toFixed(getDecimalCount());
   streakDisplay.style.color = "#ffffff";
+  streakDisplay.style.textShadow = "0 0 5px #ffffff, 0 0 10px #ffffff";
   scoreDisplay.style.color = "#ffffff";
+  scoreDisplay.style.textShadow = "0 0 5px #ffffff, 0 0 10px #ffffff";
   precisionDisplay.style.color = "#ffffff";
+  precisionDisplay.style.textShadow = "0 0 5px #ffffff, 0 0 10px #ffffff";
 }
 
 /** Display result at the end */
@@ -138,17 +141,17 @@ function showResult(elapsed) {
 
   if (precisionPercentage >= 100 - precisionMargin * 0.01) {
     feedbackColor = "#00e676";
-    displayFeedback("🎯 Perfect!", feedbackColor);
+    displayFeedback("Perfect!", feedbackColor);
     incrementStreak();
     scored = true;
   } else if (precisionPercentage >= 100 - precisionMargin * 0.2) {
     feedbackColor = "#67e535";
-    displayFeedback("👍 Good job!", feedbackColor);
+    displayFeedback("Good job!", feedbackColor);
     incrementStreak();
     scored = true;
   } else if (precisionPercentage >= 100 - precisionMargin) {
     feedbackColor = "#ffeb3b";
-    displayFeedback("💪 You can do better!", feedbackColor);
+    displayFeedback("You can do better!", feedbackColor);
     triggerShake(timer);
     scored = true;
   } else {
@@ -156,7 +159,10 @@ function showResult(elapsed) {
     streakDisplay.style.color = feedbackColor;
     scoreDisplay.style.color = feedbackColor;
     precisionDisplay.style.color = feedbackColor;
-    displayFeedback("❌ Missed!", feedbackColor);
+    streakDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
+    scoreDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
+    precisionDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
+    displayFeedback("Missed!", feedbackColor);
     updateStreakUI(feedbackColor, false);
     updateScoreUI(false);
     triggerShake(timer);
@@ -187,13 +193,17 @@ function displayFeedback(message, color) {
 }
 
 export function updatePrecisionDifferenceUI(delta, shouldAnimate) {
+  let color = "#ffffff";
   differenceDisplay.hidden = false;
   if (Math.abs(delta) < 0.01) {
     differenceDisplay.textContent = ``;
     differenceDisplay.style.color = "#ffffff";
+    differenceDisplay.style.textShadow = `0 0 4px ${color}, 0 0 8px ${color}`;
   } else {
+    color = delta >= 0 ? "#67e535" : "#ff5252";
     differenceDisplay.textContent = delta > 0 ? `+${delta}%` : `${delta}%`;
-    differenceDisplay.style.color = delta >= 0 ? "#67e535" : "#ff5252";
+    differenceDisplay.style.color = color;
+    differenceDisplay.style.textShadow = `0 0 4px ${color}, 0 0 8px ${color}`;
   }
   if (shouldAnimate) {
     triggerFloatUp(differenceDisplay);
@@ -204,6 +214,7 @@ export function updatePrecisionUI(feedbackColor, percentage, shouldAnimate) {
   precisionDisplay.textContent = `${percentage.toFixed(getDecimalCount())}%`;
   if (shouldAnimate) {
     precisionDisplay.style.color = feedbackColor;
+    precisionDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
     triggerPulse(precisionDisplay);
   }
 }
@@ -241,6 +252,7 @@ export function updateScoreUI(shouldAnimate) {
 export function updateGainUI(color, shouldAnimate) {
   gainDisplay.textContent = `+${getGain()}`;
   gainDisplay.style.color = color;
+  gainDisplay.style.textShadow = `0 0 4px ${color}, 0 0 8px ${color}`;
   if (shouldAnimate) {
     triggerGainAnimation(gainDisplay, () => updateScoreUI(shouldAnimate));
   }
@@ -256,6 +268,7 @@ export function resetRoundUI() {
   // Timer display
   timer.textContent = "0.00s";
   timer.style.color = "#ffffff";
+  timer.style.textShadow = `0 0 6px #ffffff, 0 0 12px #ffffff`;
   target.textContent = getTargetTime().toFixed(getDecimalCount());
 
   // UI text & button
@@ -272,8 +285,11 @@ export function resetRoundUI() {
 
   // Reset text colors
   precisionDisplay.style.color = "#ffffff";
+  precisionDisplay.style.textShadow = `0 0 4px #ffffff, 0 0 8px #ffffff`;
   streakDisplay.style.color = "#ffffff";
+  streakDisplay.style.textShadow = `0 0 4px #ffffff, 0 0 8px #ffffff`;
   scoreDisplay.style.color = "#ffffff";
+  scoreDisplay.style.textShadow = `0 0 4px #ffffff, 0 0 8px #ffffff`;
 
   differenceDisplay.hidden = true;
   previousDirection = 1;

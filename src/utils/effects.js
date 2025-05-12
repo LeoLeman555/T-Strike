@@ -76,7 +76,9 @@ export function applyFeedbackColor(
 ) {
   resultMsgElement.textContent = message;
   resultMsgElement.style.color = color;
+  resultMsgElement.style.textShadow = `0 0 5px ${color}, 0 0 10px ${color}`;
   timerElement.style.color = color;
+  timerElement.style.textShadow = `0 0 5px ${color}, 0 0 10px ${color}`;
   circleElement.setAttribute("stroke", color);
 }
 

@@ -1,4 +1,3 @@
-/* Timer circle and wrapper */
 .timer-container {
   position: relative;
   width: 160px;
@@ -15,14 +14,23 @@
 }
 
 #timer {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
-  opacity: 1;
+  color: #ffffff;
+  font-family: "Orbitron", sans-serif;
+  text-shadow: 0 0 6px #ffffff, 0 0 12px #ffffff;
   transition: opacity 0.3s ease-in-out;
+  opacity: 1;
 }
 
 .progress-ring-circle {
   transition: stroke-dashoffset 0.05s linear;
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
+}
+
+.result-msg,
+.time-difference-msg {
+  font-size: 1rem;
+  margin-top: 1rem;
 }
