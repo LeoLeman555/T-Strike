@@ -40,7 +40,9 @@ import {
   triggerFloatUp,
 } from "../utils/effects.js";
 import { showScreen } from "./navigation-ui.js";
+import { getMode } from "../core/mode-core.js";
 
+const modeTitle = document.getElementById("mode-title");
 const timer = document.getElementById("timer");
 const button = document.getElementById("start-stop-btn");
 const newGameButton = document.getElementById("btn-restart");
@@ -66,6 +68,10 @@ let previousDirection = 1; // 1 = normal, -1 = reverse
 circle.style.strokeDasharray = `${circumference} ${circumference}`;
 circle.style.strokeDashoffset = `${circumference}`;
 updateDisplay(0);
+
+function isPerfectionMode() {
+  return getMode() === "Perfection";
+}
 
 /** Set the circular progress indicator */
 function setProgress(progress) {
@@ -156,33 +162,39 @@ function showResult(elapsed) {
     scored = true;
   } else {
     feedbackColor = "#ff5252";
-    streakDisplay.style.color = feedbackColor;
-    scoreDisplay.style.color = feedbackColor;
-    precisionDisplay.style.color = feedbackColor;
-    streakDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
-    scoreDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
-    precisionDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
-    displayFeedback("Missed!", feedbackColor);
-    updateStreakUI(feedbackColor, false);
-    updateScoreUI(false);
-    triggerShake(timer);
-    triggerShake(scoreDisplay);
-    triggerShake(streakDisplay);
-    triggerShake(precisionDisplay);
-    differenceDisplay.hidden = true;
-    gainDisplay.classList.add("hidden");
-    setTimeout(() => {
-      showEndScreen();
-    }, 1500);
+    if (!isPerfectionMode()) {
+      streakDisplay.style.color = feedbackColor;
+      scoreDisplay.style.color = feedbackColor;
+      precisionDisplay.style.color = feedbackColor;
+      streakDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
+      scoreDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
+      precisionDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
+      displayFeedback("Missed!", feedbackColor);
+      updateStreakUI(feedbackColor, false);
+      updateScoreUI(false);
+      triggerShake(timer);
+      triggerShake(scoreDisplay);
+      triggerShake(streakDisplay);
+      differenceDisplay.hidden = true;
+      gainDisplay.classList.add("hidden");
+      setTimeout(() => {
+        showEndScreen();
+      }, 1500);
+    } else {
+      precisionDisplay.style.color = feedbackColor;
+      precisionDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
+      differenceDisplay.hidden = true;
+      displayFeedback("Missed!", feedbackColor);
+      triggerShake(timer);
+    }
   }
 
-  if (scored) {
+  if (!isPerfectionMode() && scored) {
     updateGain(computeScore(timeDeviation, getStreak()));
     updateScore(getGain());
     updateGainUI(feedbackColor, true);
     updatePrecisionDifferenceUI(delta, true);
   }
-
   updateStreakUI(feedbackColor, scored);
   updatePrecisionUI(feedbackColor, precisionPercentage, true);
 }
@@ -261,6 +273,17 @@ export function updateGainUI(color, shouldAnimate) {
 /** Reset only the current round state (UI + timer logic) */
 export function resetRoundUI() {
   console.log("[INFO] Round reset");
+  if (isPerfectionMode()) {
+    scoreDisplay.style.display = "none";
+    streakDisplay.style.display = "none";
+    gainDisplay.style.display = "none";
+    differenceDisplay.hidden = true;
+  } else {
+    scoreDisplay.style.display = "block";
+    streakDisplay.style.display = "block";
+    gainDisplay.style.display = "block";
+    differenceDisplay.hidden = false;
+  }
 
   // Core logic reset
   reset();
@@ -312,6 +335,7 @@ export function resetRoundUI() {
 export function resetGameUI() {
   console.log("[INFO] Game session reset");
 
+  modeTitle.textContent = getMode();
   // Reset core game stats
   resetScore();
   resetStreak();
@@ -352,6 +376,7 @@ export function setupTimerUI() {
 }
 
 function showEndScreen() {
+  if (isPerfectionMode()) return;
   console.log("[INFO] Game Over");
   document.getElementById("stat-precision").textContent = getAveragePrecision();
   document.getElementById("stat-score").textContent = getScore() + " PTS";

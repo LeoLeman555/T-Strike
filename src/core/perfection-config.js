@@ -1,0 +1,18 @@
+export const perfectionParams = {
+  decimalCount: 3,
+  chronoSpeed: 1.0,
+  precisionMargin: 0,
+  minTargetTime: 5,
+  maxTargetTime: 5,
+  circleVisibility: true,
+  circleMargin: 0,
+  chronoHideCycles: 0,
+  minHideDuration: 0,
+  maxHideDuration: 0,
+  chronoPauseCycles: 0,
+  minPauseDuration: 0,
+  maxPauseDuration: 0,
+  chronoInvertCycles: 0,
+  minInvertDuration: 0,
+  maxInvertDuration: 0,
+};

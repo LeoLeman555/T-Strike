@@ -1,7 +1,9 @@
 import {
   getAdjacentModes,
   getCurrentMode,
+  getMode,
   shiftMode,
+  updateMode,
 } from "../core/mode-core.js";
 import { isVisible } from "../utils/dom-utils.js";
 
@@ -21,7 +23,9 @@ export function renderModes() {
 /** Handles interaction setup for mode selection */
 export function setupModeUI(onSelectMode) {
   currentEl.addEventListener("click", () => {
-    onSelectMode(getCurrentMode());
+    updateMode(getCurrentMode());
+    console.log(`[INFO] Mode ${getMode()}`);
+    onSelectMode(getMode());
   });
 
   prevEl.addEventListener("click", () => {
@@ -43,7 +47,9 @@ export function setupModeUI(onSelectMode) {
       shiftMode(1);
       renderModes();
     } else if (e.key === "Enter") {
-      onSelectMode(getCurrentMode());
+      updateMode(getCurrentMode());
+      console.log(`[INFO] Mode ${getMode()}`);
+      onSelectMode(getMode());
     }
   });
 }

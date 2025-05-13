@@ -1,5 +1,6 @@
-const modes = ["Classic", "Endless", "Multiplayer"];
+const modes = ["Perfection", "Endless", "Multiplayer"];
 let currentModeIndex = 0;
+let mode = null;
 
 export function getCurrentMode() {
   return modes[currentModeIndex];
@@ -20,4 +21,12 @@ export function getAdjacentModes() {
     current: modes[currentModeIndex],
     next: modes[next],
   };
+}
+
+export function getMode() {
+  return mode;
+}
+
+export function updateMode(newMode) {
+  mode = newMode;
 }

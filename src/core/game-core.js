@@ -1,4 +1,6 @@
 import { getDifficultyParams } from "./difficulty-config.js";
+import { getMode } from "./mode-core.js";
+import { perfectionParams } from "./perfection-config.js";
 
 let isRunning = false;
 let startTime = 0;
@@ -192,10 +194,16 @@ export function getCircleMargin() {
   return circleMargin;
 }
 
-export function applyDifficultySettings() {
-  const params = getDifficultyParams(currentScore);
-  if (!params) return;
+export function applyModeSettings() {
+  let params = null;
+  const mode = getMode();
+  if (mode === "Endless") {
+    params = getDifficultyParams(currentScore);
+  } else if (mode === "Perfection") {
+    params = perfectionParams;
+  }
 
+  if (!params) return;
   decimalCount = params.decimalCount;
   chronoSpeed = params.chronoSpeed;
   precisionMargin = params.precisionMargin;
@@ -203,7 +211,6 @@ export function applyDifficultySettings() {
   maxTargetTime = params.maxTargetTime;
   targetTime = getRandomTarget();
   circleVisibility = params.circleVisibility;
-  circleMargin = params.circleMargin;
   chronoHideCycles = params.chronoHideCycles;
   minHideDuration = params.minHideDuration;
   maxHideDuration = params.maxHideDuration;
@@ -295,7 +302,7 @@ export function resetPrecisionHistory() {
  */
 export function updateScore(scoreToAdd) {
   currentScore += scoreToAdd;
-  applyDifficultySettings();
+  applyModeSettings();
 }
 
 /** Return current score of the player. */
@@ -306,7 +313,7 @@ export function getScore() {
 /** Reset the player score to zero. */
 export function resetScore() {
   currentScore = 0;
-  applyDifficultySettings();
+  applyModeSettings();
 }
 
 /** Return current gain of the player. */
