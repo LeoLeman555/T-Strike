@@ -107,3 +107,41 @@ export function triggerFloatUp(element) {
     element.hidden = true;
   }, 800);
 }
+
+let rainContainer = null;
+
+export function startInfiniteParticleRain() {
+  if (!rainContainer) rainContainer = createParticleContainer();
+
+  const PARTICLE_COUNT = 100;
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const particle = document.createElement("div");
+    particle.classList.add("particle");
+
+    const size = Math.random() * 5 + 6;
+    const left = Math.random() * 100;
+    const duration = Math.random() * 5 + 4;
+    const delay = Math.random() * 6;
+
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${left}%`;
+    particle.style.animation = `fall ${duration}s linear ${delay}s infinite`;
+    rainContainer.appendChild(particle);
+  }
+}
+
+export function stopInfiniteParticleRain() {
+  if (rainContainer) {
+    rainContainer.remove();
+    rainContainer = null;
+  }
+}
+
+function createParticleContainer() {
+  const container = document.createElement("div");
+  container.id = "particle-rain";
+  document.body.appendChild(container);
+  return container;
+}

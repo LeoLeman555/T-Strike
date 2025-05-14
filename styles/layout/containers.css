@@ -3,6 +3,14 @@ main {
   padding: 2rem 1rem;
 }
 
+#restart-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
 .score-streak-container {
   display: flex;
   justify-content: space-between;

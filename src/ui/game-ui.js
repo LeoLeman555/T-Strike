@@ -38,6 +38,8 @@ import {
   animateCircleVisibility,
   triggerDirectionFlip,
   triggerFloatUp,
+  startInfiniteParticleRain,
+  stopInfiniteParticleRain,
 } from "../utils/effects.js";
 import { showScreen } from "./navigation-ui.js";
 import { getMode } from "../core/mode-core.js";
@@ -58,6 +60,7 @@ const gainDisplay = document.getElementById("score-gain");
 const target = document.getElementById("target");
 const targetTimeDisplay = document.querySelector(".target-time");
 const circle = document.querySelector(".progress-ring-circle");
+const congratsMsg = document.getElementById("congrats-msg");
 
 const radius = circle.r.baseVal.value;
 const circumference = 2 * Math.PI * radius;
@@ -147,17 +150,24 @@ function showResult(elapsed) {
 
   if (precisionPercentage >= 100 - precisionMargin * 0.01) {
     feedbackColor = "#00e676";
-    displayFeedback("Perfect!", feedbackColor);
+    displayFeedback("PERFECT!", feedbackColor);
     incrementStreak();
     scored = true;
+    if (isPerfectionMode()) {
+      precisionDisplay.classList.add("perfection-pulse");
+      startInfiniteParticleRain();
+      button.classList.add("hidden");
+      congratsMsg.classList.remove("hidden");
+      congratsMsg.classList.add("visible");
+    }
   } else if (precisionPercentage >= 100 - precisionMargin * 0.2) {
     feedbackColor = "#67e535";
-    displayFeedback("Good job!", feedbackColor);
+    displayFeedback("GOOD JOB!", feedbackColor);
     incrementStreak();
     scored = true;
   } else if (precisionPercentage >= 100 - precisionMargin) {
     feedbackColor = "#ffeb3b";
-    displayFeedback("You can do better!", feedbackColor);
+    displayFeedback("YOU CAN DO BETTER!", feedbackColor);
     triggerShake(timer);
     scored = true;
   } else {
@@ -169,7 +179,7 @@ function showResult(elapsed) {
       streakDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
       scoreDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
       precisionDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
-      displayFeedback("Missed!", feedbackColor);
+      displayFeedback("MISSED!", feedbackColor);
       updateStreakUI(feedbackColor, false);
       updateScoreUI(false);
       triggerShake(timer);
@@ -184,7 +194,7 @@ function showResult(elapsed) {
       precisionDisplay.style.color = feedbackColor;
       precisionDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
       differenceDisplay.hidden = true;
-      displayFeedback("Missed!", feedbackColor);
+      displayFeedback("MISSED!", feedbackColor);
       triggerShake(timer);
     }
   }
@@ -287,6 +297,7 @@ export function resetRoundUI() {
 
   // Core logic reset
   reset();
+  stopInfiniteParticleRain();
 
   // Timer display
   timer.textContent = "0.00s";
@@ -305,6 +316,7 @@ export function resetRoundUI() {
   streakDisplay.classList.remove("pulse", "roll-up");
   gainDisplay.classList.remove("animate");
   gainDisplay.classList.add("hidden");
+  precisionDisplay.classList.remove("perfection-pulse");
 
   // Reset text colors
   precisionDisplay.style.color = "#ffffff";
@@ -344,6 +356,10 @@ export function resetGameUI() {
 
   // Reset round-specific UI
   resetRoundUI();
+  console.log("GO");
+  button.classList.remove("hidden");
+  congratsMsg.classList.remove("visible");
+  congratsMsg.classList.add("hidden");
 
   // Reset feedback-related UI components
   updateStreakUI("#ffffff", false);

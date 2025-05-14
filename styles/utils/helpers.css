@@ -172,6 +172,26 @@
   }
 }
 
+@keyframes pulse-infinite {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 4px #00e676, 0 0 8px #00e676;
+  }
+  50% {
+    transform: scale(1.1);
+    text-shadow: 0 0 10px #00e676, 0 0 20px #00e676;
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 4px #00e676, 0 0 8px #00e676;
+  }
+}
+
+.perfection-pulse {
+  animation: pulse-infinite 1.2s ease-in-out infinite;
+  color: #00e676 !important;
+}
+
 /* Shake effect class */
 .shake {
   animation: shake 0.4s ease-in-out;

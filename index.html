@@ -96,14 +96,17 @@
             />
           </svg>
         </div>
-
-        <button id="start-stop-btn">START</button>
+        <div id="restart-container">
+          <button id="start-stop-btn">START</button>
+          <div id="congrats-msg" class="hidden">CONGRATULATIONS, YOU WIN!</div>
+        </div>
         <p
           class="time-difference-msg"
           id="time-difference-msg"
           aria-live="polite"
         ></p>
         <p class="result-msg" id="result-msg" aria-live="polite"></p>
+        <div id="particle-rain"></div>
       </section>
 
       <section id="end-screen" class="screen" hidden>

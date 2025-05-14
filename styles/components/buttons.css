@@ -69,6 +69,21 @@ button:hover {
   transform: scale(1.1);
 }
 
+#congrats-msg {
+  position: absolute;
+  font-size: 1.6rem;
+  color: #00e676;
+  text-shadow: 0 0 5px #00e676, 0 0 10px #00e676;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+
+#congrats-msg.visible {
+  opacity: 1;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
 /* Restart Button */
 #btn-restart {
   background-color: transparent;

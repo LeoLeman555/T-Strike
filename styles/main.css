@@ -4,6 +4,7 @@
 
 @import url("./layout/containers.css");
 
+@import url("./components/particle.css");
 @import url("./components/buttons.css");
 @import url("./components/menu.css");
 @import url("./components/score.css");
