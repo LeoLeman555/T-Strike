@@ -12,5 +12,6 @@
 
 @import url("./screens/end-screen.css");
 @import url("./screens/mode-selection.css");
+@import url("./screens/multiplayer.css");
 
 @import url("./utils/helpers.css");

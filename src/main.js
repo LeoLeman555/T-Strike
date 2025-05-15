@@ -10,6 +10,9 @@ setupModeUI((mode) => {
     applyModeSettings();
     resetGameUI();
   }
+  if (mode === "Multiplayer") {
+    showScreen("multiplayer");
+  }
 });
 setupNavigation();
 renderModes();

@@ -356,7 +356,6 @@ export function resetGameUI() {
 
   // Reset round-specific UI
   resetRoundUI();
-  console.log("GO");
   button.classList.remove("hidden");
   congratsMsg.classList.remove("visible");
   congratsMsg.classList.add("hidden");
