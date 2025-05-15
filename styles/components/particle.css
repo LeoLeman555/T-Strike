@@ -1,35 +1,19 @@
 #particle-rain {
-  position: fixed;
+  position: fixed; /* Fixed position to cover entire viewport */
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  pointer-events: none;
+  pointer-events: none; /* Allow clicks through the element */
   z-index: 1000;
-  overflow: hidden;
+  overflow: hidden; /* Hide overflowing particles */
 }
 
 .particle {
   position: absolute;
   background-color: #00e676;
-  border-radius: 50%;
-  opacity: 0;
+  border-radius: 50%; /* Circular shape */
+  opacity: 0; /* Initially hidden */
   animation-fill-mode: forwards;
   will-change: transform, opacity;
-}
-@keyframes fall {
-  0% {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.25;
-  }
-  70% {
-    opacity: 0.2;
-  }
-  100% {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
 }

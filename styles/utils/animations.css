@@ -4,7 +4,42 @@
   display: none !important;
 }
 
-/* --- Animations --- */
+/* Animations */
+
+@keyframes fall {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.25;
+  }
+  70% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+@keyframes neon-glow-red {
+  0% {
+    text-shadow: 0 0 5px #ff1a1a, 0 0 10px #ff1a1a, 0 0 20px #ff1a1a,
+      0 0 40px #ff0000;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 10px #ff1a1a, 0 0 20px #ff1a1a, 0 0 40px #ff1a1a,
+      0 0 80px #ff0000;
+    transform: scale(1.1);
+  }
+  100% {
+    text-shadow: 0 0 5px #ff1a1a, 0 0 10px #ff1a1a, 0 0 20px #ff1a1a,
+      0 0 40px #ff0000;
+    transform: scale(1);
+  }
+}
 
 @keyframes shake {
   0% {
@@ -192,23 +227,19 @@
   color: #00e676 !important;
 }
 
-/* Shake effect class */
 .shake {
   animation: shake 0.4s ease-in-out;
 }
 
-/* Pulse effect class */
 .pulse {
   animation: pulse 0.4s ease-in-out;
 }
 
-/* Roll up effect class */
 .roll-up {
   animation: roll-up 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-block;
 }
 
-/* Fade out effect class */
 .circle-fade-out {
   animation: blink-fade-out 3s forwards;
 }

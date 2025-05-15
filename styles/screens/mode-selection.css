@@ -9,7 +9,7 @@
 
 .mode-option {
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease; /* Smooth interaction feedback */
   border-radius: 8px;
   text-shadow: 0 0 4px #39ff14, 0 0 8px #39ff14;
 }
@@ -17,25 +17,25 @@
 .mode-option-selected {
   font-size: 2.5rem;
   font-weight: bold;
-  transform: scale(1.05);
+  transform: scale(1.05); /* Slightly enlarge selected option */
   color: #39ff14;
   text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14;
 }
 
 .mode-option-selected:hover {
-  transform: scale(1.3);
-  text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14 0 0 20px #39ff14;
+  transform: scale(1.3); /* Emphasize selection on hover */
+  text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
 }
 
 .mode-option-small {
   font-size: 1.2rem;
-  opacity: 0.5;
+  opacity: 0.5; /* De-emphasized style */
   color: #888;
   text-shadow: none;
 }
 
 .mode-option-small:hover {
-  transform: scale(1.2);
+  transform: scale(1.2); /* Enlarge on hover */
   opacity: 1;
   color: #39ff14;
   text-shadow: 0 0 6px #39ff14, 0 0 12px #39ff14, 0 0 20px #39ff14;
@@ -46,5 +46,5 @@
   padding: 2rem;
   color: #39ff14;
   text-shadow: 0 0 3px #39ff14, 0 0 6px #39ff14;
-  animation: neon-blink 0.9s infinite steps(1);
+  animation: neon-blink 0.9s infinite steps(1); /* Blinking effect for instructions */
 }

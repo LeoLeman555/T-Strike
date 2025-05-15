@@ -1,0 +1,29 @@
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.05s linear; /* Smooth transition for progress updates */
+  transform: rotate(-90deg); /* Rotate to start progress from top */
+  transform-origin: 50% 50%; /* Center the transform */
+}
+
+.result-msg,
+.time-difference-msg {
+  font-size: 1rem;
+  margin-top: 1rem; /* Space above message */
+}
+
+#multiplayer {
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+
+#coming-soon {
+  margin: 4rem;
+  font-size: 4rem;
+  font-weight: bold;
+  color: #ff0000;
+  text-align: center;
+  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000,
+    0 0 40px #ff0033, 0 0 80px #ff0066; /* Intense red neon glow */
+  animation: neon-glow-red 2s infinite ease-in-out; /* Looping glow animation */
+  transition: transform 0.3s ease; /* Smooth hover scaling */
+}

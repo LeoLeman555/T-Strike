@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+
+/* Reset and box-sizing setup */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Orbitron", sans-serif;
+  background-color: #0d0d0d; /* Dark background for contrast with neon text */
+  color: #39ff14; /* Neon green text */
+  line-height: 1.6;
+  text-align: center;
+  text-shadow: 0 0 2px #39ff14, 0 0 5px #39ff14; /* Subtle glowing effect */
+}
+
+h1,
+h2 {
+  margin-bottom: 1.3rem;
+  text-decoration-color: #39ff14;
+  text-shadow: 0 0 4px #39ff14, 0 0 8px #39ff14; /* Enhanced glow for headings */
+}
+
+h1 {
+  margin: 4rem;
+  font-size: 3.125rem;
+  color: #39ff14;
+  text-align: center;
+  animation: neon-glow 2s infinite ease-in-out; /* Looping neon glow effect */
+  transition: transform 0.3s ease; /* Smooth hover scaling */
+}
+
+h1:hover {
+  transform: scale(1.08); /* Slight zoom on hover */
+  text-shadow: 0 0 15px #39ff14, 0 0 30px #39ff14, 0 0 60px #0f0; /* Stronger glow on hover */
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  color: #39ff14;
+}
+
+ol {
+  list-style: none; /* Remove default numbering */
+  padding-left: 0;
+}

@@ -7,15 +7,15 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
+  box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14; /* Neon glow effect */
   font-family: "Orbitron", sans-serif;
-  text-transform: uppercase;
+  text-transform: uppercase; /* Make button text uppercase */
 }
 
 button:hover {
   color: #39ff14;
   border-color: #39ff14;
-  box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14;
+  box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14; /* Stronger glow on hover */
 }
 
 /* Back button */
@@ -25,7 +25,7 @@ button:hover {
   left: 20px;
   padding: 0.5rem 0.875rem;
   font-size: 1rem;
-  z-index: 1000;
+  z-index: 1000; /* Ensure it's above other elements */
   background-color: transparent;
   border: 2px solid #39ff14;
   color: #39ff14;
@@ -34,7 +34,7 @@ button:hover {
 }
 
 .back-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Slight zoom on hover */
   box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
 }
 
@@ -54,19 +54,19 @@ button:hover {
 
 /* States */
 #start-stop-btn.restart {
-  border-color: #ffff00;
+  border-color: #ffff00; /* Yellow for restart */
   color: #ffff00;
   box-shadow: 0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00;
 }
 
 #start-stop-btn.stop {
-  border-color: #ff1e1e;
+  border-color: #ff1e1e; /* Red for stop */
   color: #ff1e1e;
   box-shadow: 0 0 5px #ff1e1e, 0 0 10px #ff1e1e, 0 0 20px #ff1e1e;
 }
 
 #start-stop-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Scale effect on hover */
 }
 
 #congrats-msg {
@@ -74,14 +74,14 @@ button:hover {
   font-size: 1.6rem;
   color: #00e676;
   text-shadow: 0 0 5px #00e676, 0 0 10px #00e676;
-  opacity: 0;
+  opacity: 0; /* Hidden by default */
   transition: opacity 0.8s ease;
-  pointer-events: none;
+  pointer-events: none; /* Prevent user interaction */
 }
 
 #congrats-msg.visible {
-  opacity: 1;
-  animation: pulse 1.2s infinite ease-in-out;
+  opacity: 1; /* Shown when active */
+  animation: pulse 1.2s infinite ease-in-out; /* Pulsing animation when visible */
 }
 
 /* Restart Button */
@@ -100,4 +100,40 @@ button:hover {
 #btn-restart:hover {
   transform: scale(1.1);
   box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Spacing between buttons */
+  max-width: 300px;
+  margin-inline: auto; /* Center horizontally */
+}
+
+.menu-btn {
+  font-size: 1.1rem;
+  opacity: 0; /* Hidden by default */
+  transform: translateY(20px); /* Moved down initially */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  background-color: transparent;
+  border: 2px solid #39ff14;
+  color: #39ff14;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14;
+}
+
+.menu-btn:hover {
+  color: #39ff14;
+  border-color: #39ff14;
+  box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.menu-container.active .menu-btn {
+  opacity: 1; /* Make buttons visible when menu is active */
+  transform: translateY(0); /* Move back to original position */
 }

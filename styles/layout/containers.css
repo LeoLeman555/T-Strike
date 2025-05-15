@@ -1,37 +1,33 @@
 /* Page and section layout */
-main {
-  padding: 2rem 1rem;
-}
-
 #restart-container {
   position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
   height: 60px;
 }
 
 .score-streak-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Distribute child elements evenly */
   align-items: center;
   width: 100%;
   max-width: 500px;
-  margin: 0 auto;
+  margin: 0 auto; /* Center container */
 }
 
 .container,
 .game-container,
 .mode-selection-container {
   max-width: 600px;
-  margin-inline: auto;
+  margin-inline: auto; /* Horizontal centering */
   padding: 2rem;
   color: #ffffff;
-  text-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff;
+  text-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff; /* Text glow */
 }
 
 .tutorial-container {
-  max-width: 700px;
+  max-width: 700px; /* Slightly wider container */
   margin-inline: auto;
   padding: 2rem;
   color: #ffffff;
@@ -42,15 +38,48 @@ main {
 .separator-container,
 .precision-container,
 .score-container {
-  flex: 1 1 0;
+  flex: 1 1 0; /* Flexible items sharing available space */
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Center content */
   align-items: center;
 }
 
 .screen.fade-out {
-  opacity: 0;
-  transform: scale(0.95);
+  opacity: 0; /* Fade out effect */
+  transform: scale(0.95); /* Slight scale down */
   transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
+  pointer-events: none; /* Disable interactions */
+}
+
+.menu-container {
+  opacity: 0;
+  transform: translateY(-30px); /* Slide up initially */
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none; /* Disable interactions */
+}
+
+.menu-container.active {
+  opacity: 1;
+  transform: translateY(0); /* Slide in */
+  pointer-events: auto; /* Enable interactions */
+}
+
+/* Staggered transition delays for menu buttons */
+.menu-container.active .menu-btn:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.menu-container.active .menu-btn:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.menu-container.active .menu-btn:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.menu-container.active .menu-btn:nth-child(4) {
+  transition-delay: 0.4s;
+}
+.menu-container.active .menu-btn:nth-child(5) {
+  transition-delay: 0.5s;
+}
+.menu-container.active .menu-btn:nth-child(6) {
+  transition-delay: 0.6s;
 }

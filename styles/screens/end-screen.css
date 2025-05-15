@@ -1,44 +1,43 @@
 #end-screen.screen {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
   padding: 2rem;
   text-align: center;
   color: #39ff14;
-  font-family: "Orbitron", sans-serif;
   border-radius: 12px;
-  min-height: 100vh;
+  min-height: 100vh; /* Full viewport height */
 }
 
 #end-screen h2 {
-  animation: fade-in-down 0.8s ease-out forwards;
+  animation: fade-in-down 0.8s ease-out forwards; /* Header fade-in animation */
 }
 
 #end-screen ul {
-  list-style: none;
+  list-style: none; /* Remove default list style */
   padding: 0;
   margin: 0 0 2rem 0;
   width: 100%;
   max-width: 400px;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; /* Center the list */
 }
 
 #end-screen li {
   font-size: 1.1rem;
   margin: 0.6rem 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
   padding: 0.8rem 1rem;
   border-radius: 8px;
   color: #39ff14;
-  text-shadow: 0 0 4px #39ff14, 0 0 10px #39ff14;
+  text-shadow: 0 0 4px #39ff14, 0 0 10px #39ff14; /* Neon glow effect */
   border: 1px solid #39ff14;
-  animation: fade-in-up 0.6s ease-out forwards;
-  opacity: 0;
+  animation: fade-in-up 0.6s ease-out forwards; /* Fade-in with upward motion */
+  opacity: 0; /* Initially hidden */
 }
 
-/* Staggered animation delays conservées */
+/* Staggered animation delays for list items */
 #end-screen li:nth-child(1) {
   animation-delay: 0.3s;
 }
