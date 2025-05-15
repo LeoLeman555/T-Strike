@@ -8,21 +8,21 @@
   </head>
   <body>
     <main>
-      <!-- Global Back to Menu Button (shown dynamically) -->
+      <!-- Back to Menu button (dynamically shown/hidden) -->
       <button id="back-to-menu-btn" class="back-btn" hidden>
         Back to Menu
       </button>
 
-      <!-- Main Menu Screen -->
+      <!-- Main Menu -->
       <section id="menu" class="menu-container screen">
         <h1>T-Strike</h1>
         <div class="menu-buttons">
-          <button class="menu-btn" id="tutorial-btn">Instruction</button>
-          <button class="menu-btn" id="modes-btn">Play</button>
+          <button id="tutorial-btn" class="menu-btn">Instruction</button>
+          <button id="modes-btn" class="menu-btn">Play</button>
         </div>
       </section>
 
-      <!-- Tutorial Screen -->
+      <!-- Tutorial / Instructions Screen -->
       <section id="tutorial" class="tutorial-container screen" hidden>
         <h2>How to Play</h2>
         <ol class="tutorial-steps">
@@ -46,15 +46,17 @@
         <h2>Mode Selection</h2>
         <p class="mode-instruction">Click to select a mode or use ↑ / ↓</p>
         <div class="mode-wrapper">
-          <div class="mode-option mode-option-small" id="prev-mode"></div>
-          <div class="mode-option mode-option-selected" id="current-mode"></div>
-          <div class="mode-option mode-option-small" id="next-mode"></div>
+          <div id="prev-mode" class="mode-option mode-option-small"></div>
+          <div id="current-mode" class="mode-option mode-option-selected"></div>
+          <div id="next-mode" class="mode-option mode-option-small"></div>
         </div>
       </section>
 
       <!-- Game Screen -->
       <section id="game" class="game-container screen" hidden>
         <h2 id="mode-title">Perfection</h2>
+
+        <!-- Score + Precision Display -->
         <div class="score-streak-container">
           <div class="streak-container">
             <span id="current-streak">0</span>
@@ -79,10 +81,13 @@
           </div>
         </div>
 
+        <!-- Target Time -->
         <p class="target-time">Target Time: <span id="target">5.00</span>s</p>
+
+        <!-- Timer and Progress Circle -->
         <div class="timer-container">
-          <div class="timer-wrapper" id="timer-wrapper">
-            <div class="timer" id="timer" aria-live="polite">0s</div>
+          <div id="timer-wrapper" class="timer-wrapper">
+            <div id="timer" class="timer" aria-live="polite">0s</div>
           </div>
           <svg class="progress-ring" width="160" height="160">
             <circle
@@ -96,23 +101,31 @@
             />
           </svg>
         </div>
+
+        <!-- Start/Stop Button + Congratulation Message -->
         <div id="restart-container">
           <button id="start-stop-btn">START</button>
           <div id="congrats-msg" class="hidden">CONGRATULATIONS, YOU WIN!</div>
         </div>
+
+        <!-- Game Feedback -->
         <p
-          class="time-difference-msg"
           id="time-difference-msg"
+          class="time-difference-msg"
           aria-live="polite"
         ></p>
-        <p class="result-msg" id="result-msg" aria-live="polite"></p>
+        <p id="result-msg" class="result-msg" aria-live="polite"></p>
+
+        <!-- Effects Layer -->
         <div id="particle-rain"></div>
       </section>
 
+      <!-- Placeholder for future multiplayer feature -->
       <section id="multiplayer" class="multiplayer-container screen" hidden>
         <p id="coming-soon">Coming Soon</p>
       </section>
 
+      <!-- End Screen / Results Summary -->
       <section id="end-screen" class="screen" hidden>
         <h2>Game Over</h2>
         <ul>
@@ -126,6 +139,7 @@
       </section>
     </main>
 
+    <!-- Main JavaScript (ES module) -->
     <script type="module" src="src/main.js"></script>
   </body>
 </html>
