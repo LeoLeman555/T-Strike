@@ -40,43 +40,48 @@ import {
   triggerFloatUp,
   startInfiniteParticleRain,
   stopInfiniteParticleRain,
-} from "../utils/effects.js";
+} from "../utils/animations.js";
+
 import { showScreen } from "./navigation-ui.js";
 import { getMode } from "../core/mode-core.js";
 
-const modeTitle = document.getElementById("mode-title");
-const timer = document.getElementById("timer");
-const button = document.getElementById("start-stop-btn");
-const newGameButton = document.getElementById("btn-restart");
-const resultMsg = document.getElementById("result-msg");
-const diffMsg = document.getElementById("time-difference-msg");
-const streakDisplay = document.getElementById("current-streak");
-const scoreDisplay = document.getElementById("current-score");
-const precisionDisplay = document.getElementById("current-precision");
-export const differenceDisplay = document.getElementById(
-  "precision-difference"
+// UI Elements
+const modeTitle = document.querySelector("#mode-title");
+const timer = document.querySelector("#timer");
+const button = document.querySelector("#start-stop-btn");
+const newGameButton = document.querySelector("#btn-restart");
+const resultMsg = document.querySelector("#result-msg");
+const diffMsg = document.querySelector("#time-difference-msg");
+const streakDisplay = document.querySelector("#current-streak");
+const scoreDisplay = document.querySelector("#current-score");
+const precisionDisplay = document.querySelector("#current-precision");
+export const differenceDisplay = document.querySelector(
+  "#precision-difference"
 );
-const gainDisplay = document.getElementById("score-gain");
-const target = document.getElementById("target");
+const gainDisplay = document.querySelector("#score-gain");
+const target = document.querySelector("#target");
 const targetTimeDisplay = document.querySelector(".target-time");
 const circle = document.querySelector(".progress-ring-circle");
-const congratsMsg = document.getElementById("congrats-msg");
+const congratsMsg = document.querySelector("#congrats-msg");
 
 const radius = circle.r.baseVal.value;
 const circumference = 2 * Math.PI * radius;
 let circleOffsetBias = 0;
-
 let previousDirection = 1; // 1 = normal, -1 = reverse
 
 circle.style.strokeDasharray = `${circumference} ${circumference}`;
 circle.style.strokeDashoffset = `${circumference}`;
 updateDisplay(0);
 
+/** Return true if mode is 'Perfection' */
 function isPerfectionMode() {
   return getMode() === "Perfection";
 }
 
-/** Set the circular progress indicator */
+/**
+ * Update the circular progress bar
+ * @param {number} progress - Ratio of progress (0 to 1)
+ */
 function setProgress(progress) {
   const interpolatedBias = circleOffsetBias * progress;
   const visualProgress = progress + interpolatedBias;
@@ -88,6 +93,9 @@ function setProgress(progress) {
   circle.style.strokeDashoffset = offset;
 }
 
+/**
+ * Ensure the progress circle is visible
+ */
 function setCircleVisibility() {
   if (!getCircleVisibility()) {
     animateCircleVisibility(circle);
@@ -98,13 +106,14 @@ function setCircleVisibility() {
   }
 }
 
-/** Update the timer text and progress circle */
+/**
+ * Update the on-screen timer, progress, and style
+ * @param {number} elapsed - Elapsed time
+ */
 function updateDisplay(elapsed) {
-  const capped = elapsed;
   const chronoVisible = isChronoVisible();
-
   if (chronoVisible) {
-    timer.textContent = capped.toFixed(getDecimalCount()) + "s";
+    timer.textContent = elapsed.toFixed(getDecimalCount()) + "s";
     timer.style.opacity = 1;
   } else {
     timer.style.opacity = 0;
@@ -116,39 +125,40 @@ function updateDisplay(elapsed) {
     previousDirection = currentDirection;
   }
 
-  setProgress(capped / getTargetTime());
+  setProgress(elapsed / getTargetTime());
   target.textContent = getTargetTime().toFixed(getDecimalCount());
-  streakDisplay.style.color = "#ffffff";
-  streakDisplay.style.textShadow = "0 0 5px #ffffff, 0 0 10px #ffffff";
-  scoreDisplay.style.color = "#ffffff";
-  scoreDisplay.style.textShadow = "0 0 5px #ffffff, 0 0 10px #ffffff";
-  precisionDisplay.style.color = "#ffffff";
-  precisionDisplay.style.textShadow = "0 0 5px #ffffff, 0 0 10px #ffffff";
+
+  // UI consistent white glow
+  [streakDisplay, scoreDisplay, precisionDisplay].forEach((el) => {
+    el.style.color = "#ffffff";
+    el.style.textShadow = "0 0 5px #ffffff, 0 0 10px #ffffff";
+  });
 }
 
-/** Display result at the end */
+/**
+ * Display the feedback based on elapsed time
+ * @param {number} elapsed - Elapsed time when stopped
+ */
 function showResult(elapsed) {
   const targetTime = getTargetTime();
   const rounded = Number(elapsed.toFixed(getDecimalCount()));
   const timeDeviation = Math.abs(rounded - targetTime);
-  const precisionMargin = getPrecisionMargin();
+  const precisionPercentage = computePrecision(rounded, targetTime);
+  const delta = getPrecisionDelta(precisionPercentage);
 
+  recordPrecision(precisionPercentage);
   diffMsg.textContent = `Difference: ${timeDeviation.toFixed(
     getDecimalCount()
   )}s`;
-
-  const precisionPercentage = computePrecision(rounded, targetTime);
-  recordPrecision(precisionPercentage);
-  const delta = getPrecisionDelta(precisionPercentage);
   updateDisplay(elapsed);
 
-  timer.style.opacity = 1;
   timer.textContent = elapsed.toFixed(getDecimalCount()) + "s";
+  timer.style.opacity = 1;
 
   let feedbackColor;
   let scored = false;
 
-  if (precisionPercentage >= 100 - precisionMargin * 0.01) {
+  if (precisionPercentage >= 100 - getPrecisionMargin() * 0.01) {
     feedbackColor = "#00e676";
     displayFeedback("PERFECT!", feedbackColor);
     incrementStreak();
@@ -160,43 +170,19 @@ function showResult(elapsed) {
       congratsMsg.classList.remove("hidden");
       congratsMsg.classList.add("visible");
     }
-  } else if (precisionPercentage >= 100 - precisionMargin * 0.2) {
+  } else if (precisionPercentage >= 100 - getPrecisionMargin() * 0.2) {
     feedbackColor = "#67e535";
     displayFeedback("GOOD JOB!", feedbackColor);
     incrementStreak();
     scored = true;
-  } else if (precisionPercentage >= 100 - precisionMargin) {
+  } else if (precisionPercentage >= 100 - getPrecisionMargin()) {
     feedbackColor = "#ffeb3b";
     displayFeedback("YOU CAN DO BETTER!", feedbackColor);
     triggerShake(timer);
     scored = true;
   } else {
     feedbackColor = "#ff5252";
-    if (!isPerfectionMode()) {
-      streakDisplay.style.color = feedbackColor;
-      scoreDisplay.style.color = feedbackColor;
-      precisionDisplay.style.color = feedbackColor;
-      streakDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
-      scoreDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
-      precisionDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
-      displayFeedback("MISSED!", feedbackColor);
-      updateStreakUI(feedbackColor, false);
-      updateScoreUI(false);
-      triggerShake(timer);
-      triggerShake(scoreDisplay);
-      triggerShake(streakDisplay);
-      differenceDisplay.hidden = true;
-      gainDisplay.classList.add("hidden");
-      setTimeout(() => {
-        showEndScreen();
-      }, 1500);
-    } else {
-      precisionDisplay.style.color = feedbackColor;
-      precisionDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
-      differenceDisplay.hidden = true;
-      displayFeedback("MISSED!", feedbackColor);
-      triggerShake(timer);
-    }
+    handleMissedAttempt(feedbackColor);
   }
 
   if (!isPerfectionMode() && scored) {
@@ -205,46 +191,83 @@ function showResult(elapsed) {
     updateGainUI(feedbackColor, true);
     updatePrecisionDifferenceUI(delta, true);
   }
+
   updateStreakUI(feedbackColor, scored);
   updatePrecisionUI(feedbackColor, precisionPercentage, true);
 }
 
-/** Update UI colors and result message */
+/**
+ * Apply failure UI effects and transitions
+ * @param {string} color - Color hex for error state
+ */
+function handleMissedAttempt(color) {
+  if (!isPerfectionMode()) {
+    [streakDisplay, scoreDisplay, precisionDisplay].forEach((el) => {
+      el.style.color = color;
+      el.style.textShadow = `0 0 4px ${color}, 0 0 8px ${color}`;
+    });
+    displayFeedback("MISSED!", color);
+    updateStreakUI(color, false);
+    updateScoreUI(false);
+    triggerShake(timer);
+    triggerShake(scoreDisplay);
+    triggerShake(streakDisplay);
+    differenceDisplay.hidden = true;
+    gainDisplay.classList.add("hidden");
+    setTimeout(showEndScreen, 1500);
+  } else {
+    precisionDisplay.style.color = color;
+    precisionDisplay.style.textShadow = `0 0 4px ${color}, 0 0 8px ${color}`;
+    displayFeedback("MISSED!", color);
+    triggerShake(timer);
+    differenceDisplay.hidden = true;
+  }
+}
+
+/**
+ * Display feedback message with visual cues
+ * @param {string} message - Message to show
+ * @param {string} color - Color to apply
+ */
 function displayFeedback(message, color) {
   applyFeedbackColor(timer, resultMsg, circle, color, message);
 }
 
+/**
+ * Update precision difference with animation
+ */
 export function updatePrecisionDifferenceUI(delta, shouldAnimate) {
-  let color = "#ffffff";
   differenceDisplay.hidden = false;
+  let color = "#ffffff";
+
   if (Math.abs(delta) < 0.01) {
-    differenceDisplay.textContent = ``;
-    differenceDisplay.style.color = "#ffffff";
-    differenceDisplay.style.textShadow = `0 0 4px ${color}, 0 0 8px ${color}`;
+    differenceDisplay.textContent = "";
   } else {
     color = delta >= 0 ? "#67e535" : "#ff5252";
     differenceDisplay.textContent = delta > 0 ? `+${delta}%` : `${delta}%`;
-    differenceDisplay.style.color = color;
-    differenceDisplay.style.textShadow = `0 0 4px ${color}, 0 0 8px ${color}`;
   }
-  if (shouldAnimate) {
-    triggerFloatUp(differenceDisplay);
-  }
+
+  differenceDisplay.style.color = color;
+  differenceDisplay.style.textShadow = `0 0 4px ${color}, 0 0 8px ${color}`;
+  if (shouldAnimate) triggerFloatUp(differenceDisplay);
 }
 
-export function updatePrecisionUI(feedbackColor, percentage, shouldAnimate) {
+/**
+ * Update displayed precision value
+ */
+export function updatePrecisionUI(color, percentage, shouldAnimate) {
   precisionDisplay.textContent = `${percentage.toFixed(getDecimalCount())}%`;
   if (shouldAnimate) {
-    precisionDisplay.style.color = feedbackColor;
-    precisionDisplay.style.textShadow = `0 0 4px ${feedbackColor}, 0 0 8px ${feedbackColor}`;
+    precisionDisplay.style.color = color;
+    precisionDisplay.style.textShadow = `0 0 4px ${color}, 0 0 8px ${color}`;
     triggerPulse(precisionDisplay);
   }
 }
 
-/** Update score streak display */
-export function updateStreakUI(feedbackColor, shouldAnimate) {
+/** Update streak count visually */
+export function updateStreakUI(color, shouldAnimate) {
   streakDisplay.classList.remove("roll-up", "pulse");
-  void streakDisplay.offsetWidth;
+  void streakDisplay.offsetWidth; // Force reflow
   if (shouldAnimate) {
     triggerRollUp(
       streakDisplay,
@@ -253,7 +276,7 @@ export function updateStreakUI(feedbackColor, shouldAnimate) {
       },
       () => {
         triggerPulse(streakDisplay);
-        updateGainUI(feedbackColor, shouldAnimate);
+        updateGainUI(color, true);
       },
       250
     );
@@ -262,40 +285,26 @@ export function updateStreakUI(feedbackColor, shouldAnimate) {
   }
 }
 
-/** Update score display */
+/** Update score visually */
 export function updateScoreUI(shouldAnimate) {
   scoreDisplay.textContent = getScore();
-  if (shouldAnimate) {
-    triggerPulse(scoreDisplay);
-  }
+  if (shouldAnimate) triggerPulse(scoreDisplay);
 }
 
-/** Update score gain display */
+/** Update score gain text with animation */
 export function updateGainUI(color, shouldAnimate) {
   gainDisplay.textContent = `+${getGain()}`;
   gainDisplay.style.color = color;
   gainDisplay.style.textShadow = `0 0 4px ${color}, 0 0 8px ${color}`;
-  if (shouldAnimate) {
-    triggerGainAnimation(gainDisplay, () => updateScoreUI(shouldAnimate));
-  }
+  if (shouldAnimate)
+    triggerGainAnimation(gainDisplay, () => updateScoreUI(true));
 }
 
-/** Reset only the current round state (UI + timer logic) */
+/** Reset UI and timer for new round */
 export function resetRoundUI() {
   console.log("[INFO] Round reset");
-  if (isPerfectionMode()) {
-    scoreDisplay.style.display = "none";
-    streakDisplay.style.display = "none";
-    gainDisplay.style.display = "none";
-    differenceDisplay.hidden = true;
-  } else {
-    scoreDisplay.style.display = "block";
-    streakDisplay.style.display = "block";
-    gainDisplay.style.display = "block";
-    differenceDisplay.hidden = false;
-  }
+  const isPerf = isPerfectionMode();
 
-  // Core logic reset
   reset();
   stopInfiniteParticleRain();
 
@@ -318,15 +327,16 @@ export function resetRoundUI() {
   gainDisplay.classList.add("hidden");
   precisionDisplay.classList.remove("perfection-pulse");
 
-  // Reset text colors
-  precisionDisplay.style.color = "#ffffff";
-  precisionDisplay.style.textShadow = `0 0 4px #ffffff, 0 0 8px #ffffff`;
-  streakDisplay.style.color = "#ffffff";
-  streakDisplay.style.textShadow = `0 0 4px #ffffff, 0 0 8px #ffffff`;
-  scoreDisplay.style.color = "#ffffff";
-  scoreDisplay.style.textShadow = `0 0 4px #ffffff, 0 0 8px #ffffff`;
+  scoreDisplay.style.display = isPerf ? "none" : "block";
+  streakDisplay.style.display = isPerf ? "none" : "block";
+  gainDisplay.style.display = isPerf ? "none" : "block";
 
+  [precisionDisplay, streakDisplay, scoreDisplay].forEach((el) => {
+    el.style.color = "#ffffff";
+    el.style.textShadow = `0 0 4px #ffffff, 0 0 8px #ffffff`;
+  });
   differenceDisplay.hidden = true;
+
   previousDirection = 1;
 
   // Circular progress reset
@@ -343,11 +353,11 @@ export function resetRoundUI() {
   updateScoreUI(false);
 }
 
-/** Fully reset the game session (UI + core state) */
+/** Reset full UI and game state */
 export function resetGameUI() {
   console.log("[INFO] Game session reset");
-
   modeTitle.textContent = getMode();
+
   // Reset core game stats
   resetScore();
   resetStreak();
@@ -356,6 +366,7 @@ export function resetGameUI() {
 
   // Reset round-specific UI
   resetRoundUI();
+
   button.classList.remove("hidden");
   congratsMsg.classList.remove("visible");
   congratsMsg.classList.add("hidden");
@@ -370,7 +381,7 @@ export function resetGameUI() {
   differenceDisplay.hidden = true;
 }
 
-/** Start or stop timer on button click */
+/** Attach game timer to start/stop logic */
 export function setupTimerUI() {
   button.addEventListener("click", () => {
     if (!isTimerRunning()) {
@@ -390,15 +401,17 @@ export function setupTimerUI() {
   });
 }
 
+/** Display end game stats and show end screen */
 function showEndScreen() {
   if (isPerfectionMode()) return;
   console.log("[INFO] Game Over");
-  document.getElementById("stat-precision").textContent = getAveragePrecision();
-  document.getElementById("stat-score").textContent = getScore() + " PTS";
-  document.getElementById("stat-avg-score").textContent =
+
+  document.querySelector("#stat-precision").textContent = getAveragePrecision();
+  document.querySelector("#stat-score").textContent = getScore() + " PTS";
+  document.querySelector("#stat-avg-score").textContent =
     getAverageScore().toFixed(0) + " PTS";
-  document.getElementById("stat-streak").textContent = getStreak();
-  document.getElementById("stat-best-score").textContent =
+  document.querySelector("#stat-streak").textContent = getStreak();
+  document.querySelector("#stat-best-score").textContent =
     getMaxGain() + " PTS";
 
   showScreen("end-screen");

@@ -3,7 +3,10 @@ import { resetGameUI } from "./game-ui.js";
 const backBtn = document.getElementById("back-to-menu-btn");
 const screens = document.querySelectorAll(".screen");
 
-/** Display one screen with transitions */
+/**
+ * Show a screen by its ID, applying transitions and visibility.
+ * @param {string} screenId - The ID of the screen to display.
+ */
 export function showScreen(screenId) {
   const targetScreen = document.getElementById(screenId);
 
@@ -12,6 +15,7 @@ export function showScreen(screenId) {
   );
 
   if (currentScreen && currentScreen !== targetScreen) {
+    // Animate transition from current to target screen
     currentScreen.classList.remove("active");
     currentScreen.classList.add("fade-out");
 
@@ -20,6 +24,8 @@ export function showScreen(screenId) {
       currentScreen.classList.remove("fade-out");
 
       targetScreen.style.display = "block";
+
+      // Force reflow for animation
       if (screenId === "menu") {
         void targetScreen.offsetWidth;
         requestAnimationFrame(() => targetScreen.classList.add("active"));
@@ -28,19 +34,26 @@ export function showScreen(screenId) {
       backBtn.style.display = screenId !== "menu" ? "block" : "none";
     }, 300);
   } else {
+    // No current screen or navigating to the same screen
     screens.forEach((s) => {
       s.style.display = "none";
       s.classList.remove("active");
     });
+
     targetScreen.style.display = "block";
+
     if (screenId === "menu") {
       requestAnimationFrame(() => targetScreen.classList.add("active"));
     }
+
     backBtn.style.display = screenId !== "menu" ? "block" : "none";
   }
 }
 
-/** Handle UI navigation buttons */
+/**
+ * Set up navigation event listeners for UI buttons.
+ * This should be called once on app initialization.
+ */
 export function setupNavigation() {
   document.getElementById("tutorial-btn").addEventListener("click", () => {
     showScreen("tutorial");
@@ -48,7 +61,9 @@ export function setupNavigation() {
 
   document.getElementById("modes-btn").addEventListener("click", () => {
     showScreen("mode-selection");
-    if (typeof window.renderModes === "function") window.renderModes();
+    if (typeof window.renderModes === "function") {
+      window.renderModes(); // Optional rendering hook
+    }
   });
 
   backBtn.addEventListener("click", () => {

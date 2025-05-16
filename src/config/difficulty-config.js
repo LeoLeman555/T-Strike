@@ -1,4 +1,25 @@
-export const difficultyLevels = [
+// Parameters used for the "Perfection" difficulty mode
+export const perfectionParams = {
+  decimalCount: 3,
+  chronoSpeed: 1.0,
+  precisionMargin: 0,
+  minTargetTime: 5,
+  maxTargetTime: 5,
+  circleVisibility: true,
+  circleMargin: 0,
+  chronoHideCycles: 0,
+  minHideDuration: 0,
+  maxHideDuration: 0,
+  chronoPauseCycles: 0,
+  minPauseDuration: 0,
+  maxPauseDuration: 0,
+  chronoInvertCycles: 0,
+  minInvertDuration: 0,
+  maxInvertDuration: 0,
+};
+
+// Endless mode difficulty levels, increasing with score
+export const endlessLevels = [
   {
     level: 1,
     minScore: 0,
@@ -631,13 +652,20 @@ export const difficultyLevels = [
   },
 ];
 
-export function getDifficultyParams(score) {
-  for (let i = difficultyLevels.length - 1; i >= 0; i--) {
-    const level = difficultyLevels[i];
+/**
+ * Returns the endless mode parameters corresponding to the given score.
+ * @param {number} score - The current score of the player.
+ * @returns {Object|null} The matching difficulty level configuration, or null if not found.
+ */
+export function getEndlessParams(score) {
+  for (let i = endlessLevels.length - 1; i >= 0; i--) {
+    const level = endlessLevels[i];
     if (score >= level.minScore && score <= level.maxScore) {
       return level;
     }
   }
+
+  // This should not happen if levels are defined correctly
   console.error(`No difficulty level found for score: ${score}`);
   return null;
 }

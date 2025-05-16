@@ -5,41 +5,49 @@ import {
   shiftMode,
   updateMode,
 } from "../core/mode-core.js";
-import { isVisible } from "../utils/dom-utils.js";
 
 const section = document.getElementById("mode-selection");
-const currentEl = document.getElementById("current-mode");
-const prevEl = document.getElementById("prev-mode");
-const nextEl = document.getElementById("next-mode");
+const currentMode = document.getElementById("current-mode");
+const previousMode = document.getElementById("prev-mode");
+const nextMode = document.getElementById("next-mode");
 
-/** Renders the mode elements in the DOM */
+/**
+ * Render the current, previous, and next modes in the DOM.
+ */
 export function renderModes() {
   const { prev, current, next } = getAdjacentModes();
-  currentEl.textContent = current;
-  prevEl.textContent = prev;
-  nextEl.textContent = next;
+  currentMode.textContent = current;
+  previousMode.textContent = prev;
+  nextMode.textContent = next;
 }
 
-/** Handles interaction setup for mode selection */
+/**
+ * Set up UI interaction for mode selection.
+ * @param {function(string):void} onSelectMode - Callback called on mode confirm.
+ */
 export function setupModeUI(onSelectMode) {
-  currentEl.addEventListener("click", () => {
+  currentMode.addEventListener("click", () => {
     updateMode(getCurrentMode());
     console.log(`[INFO] Mode ${getMode()}`);
     onSelectMode(getMode());
   });
 
-  prevEl.addEventListener("click", () => {
+  previousMode.addEventListener("click", () => {
     shiftMode(-1);
     renderModes();
   });
 
-  nextEl.addEventListener("click", () => {
+  nextMode.addEventListener("click", () => {
     shiftMode(1);
     renderModes();
   });
 
   document.addEventListener("keydown", (e) => {
-    if (!isVisible(section)) return;
+    // Only allow navigation if mode section is visible
+    const visible =
+      section && window.getComputedStyle(section).display !== "none";
+    if (!visible) return;
+
     if (e.key === "ArrowUp") {
       shiftMode(-1);
       renderModes();
