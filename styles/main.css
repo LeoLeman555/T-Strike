@@ -1,8 +1,9 @@
 /* Root CSS entry point */
 @import url("./base/base.css");
 
-@import url("./components/particle.css");
 @import url("./components/buttons.css");
+@import url("./components/github-link.css");
+@import url("./components/particle.css");
 @import url("./components/score.css");
 @import url("./components/timer.css");
 

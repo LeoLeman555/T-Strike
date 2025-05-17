@@ -7,7 +7,6 @@
   text-align: center;
   color: #39ff14;
   border-radius: 12px;
-  min-height: 100vh; /* Full viewport height */
 }
 
 #end-screen h2 {
@@ -17,7 +16,7 @@
 #end-screen ul {
   list-style: none; /* Remove default list style */
   padding: 0;
-  margin: 0 0 2rem 0;
+  margin: 0 0 1.5rem 0;
   width: 100%;
   max-width: 400px;
   margin-left: auto;
