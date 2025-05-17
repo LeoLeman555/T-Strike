@@ -302,7 +302,6 @@ export function updateGainUI(color, shouldAnimate) {
 
 /** Reset UI and timer for new round */
 export function resetRoundUI() {
-  console.log("[INFO] Round reset");
   const isPerf = isPerfectionMode();
 
   reset();
@@ -355,7 +354,6 @@ export function resetRoundUI() {
 
 /** Reset full UI and game state */
 export function resetGameUI() {
-  console.log("[INFO] Game session reset");
   modeTitle.textContent = getMode();
 
   // Reset core game stats
@@ -404,8 +402,6 @@ export function setupTimerUI() {
 /** Display end game stats and show end screen */
 function showEndScreen() {
   if (isPerfectionMode()) return;
-  console.log("[INFO] Game Over");
-
   document.querySelector("#stat-precision").textContent = getAveragePrecision();
   document.querySelector("#stat-score").textContent = getScore() + " PTS";
   document.querySelector("#stat-avg-score").textContent =

@@ -28,7 +28,6 @@ export function renderModes() {
 export function setupModeUI(onSelectMode) {
   currentMode.addEventListener("click", () => {
     updateMode(getCurrentMode());
-    console.log(`[INFO] Mode ${getMode()}`);
     onSelectMode(getMode());
   });
 
@@ -56,7 +55,6 @@ export function setupModeUI(onSelectMode) {
       renderModes();
     } else if (e.key === "Enter") {
       updateMode(getCurrentMode());
-      console.log(`[INFO] Mode ${getMode()}`);
       onSelectMode(getMode());
     }
   });
