@@ -205,6 +205,7 @@ export function applyModeSettings() {
   maxTargetTime = params.maxTargetTime;
   targetTime = getRandomTarget();
   circleVisibility = params.circleVisibility;
+  circleMargin = params.circleMargin;
   chronoHideCycles = params.chronoHideCycles;
   minHideDuration = params.minHideDuration;
   maxHideDuration = params.maxHideDuration;
