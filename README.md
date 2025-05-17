@@ -1,10 +1,10 @@
 # T-Strike
 
-_Perfection or Nothing_
+![T-Strike banner](assets/images/github-banner.png)
 
 [![License](https://img.shields.io/github/license/LeoLeman555/T-Strike)](LICENSE)
-![Status](https://img.shields.io/badge/status-development-orange)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?)](https://github.com/prettier/prettier)
+[![Status](https://img.shields.io/badge/status-stable-brightgreen)]()
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![GitHub stars](https://img.shields.io/github/stars/LeoLeman555/T-Strike?style=social)](https://github.com/LeoLeman555/T-Strike/stargazers)
 
 T-Strike is a fast-paced, reaction-based web game where precision is everything. Your goal? Stop the timer exactly at a randomly generated target time (e.g., _5.00 seconds_). Simple? Yes. Easy? Not at all.
@@ -33,7 +33,7 @@ It was also originally created as part of a high school computer science project
 - Difficulty increases as you improve:
   - Faster timer
   - Tighter error margins
-  - Visual & audio distractions
+  - Visual distractions
 
 ### Tech Stack
 
