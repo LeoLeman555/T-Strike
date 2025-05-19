@@ -2,6 +2,7 @@
 
 ![T-Strike banner](assets/images/github-banner.png)
 
+[![Version](https://img.shields.io/github/v/release/LeoLeman555/T-Strike)](https://github.com/LeoLeman555/T-Strike/releases)
 [![License](https://img.shields.io/github/license/LeoLeman555/T-Strike)](LICENSE)
 [![Status](https://img.shields.io/badge/status-stable-brightgreen)]()
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
